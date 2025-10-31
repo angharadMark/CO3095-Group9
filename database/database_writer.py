@@ -1,0 +1,2 @@
+class DatabaseWriter:
+    pass
