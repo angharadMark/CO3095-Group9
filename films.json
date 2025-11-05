@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Inception",
+    "director": "Christopher Nolan",
+    "cast": [
+      { "name": "Leonardo DiCaprio", "role": "Cobb" },
+      { "name": "Joseph Gordon-Levitt", "role": "Arthur" },
+      { "name": "Elliot Page", "role": "Ariadne" },
+      { "name": "Tom Hardy", "role": "Eames" }
+    ],
+    "producer": "name",
+    "genre": ["horror", "random"],
+    "year": 2010,
+    "age_rating": "15"
+  },
+  {
+    "name": "The Matrix",
+    "director": "Lana Wachowski",
+    "year": 1999,
+    "cast": [
+      { "name": "Keanu Reeves", "role": "Neo" },
+      { "name": "Carrie-Anne Moss", "role": "Trinity" },
+      { "name": "Laurence Fishburne", "role": "Morpheus" }
+    ]
+  }
+]
