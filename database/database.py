@@ -11,4 +11,7 @@ class Database:
                 return films
             else:
                 return False
+            
+    def get_all_films(self):
+        return self.films
 

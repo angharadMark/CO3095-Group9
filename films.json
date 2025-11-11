@@ -16,11 +16,27 @@
   {
     "name": "The Matrix",
     "director": "Lana Wachowski",
-    "year": 1999,
     "cast": [
       { "name": "Keanu Reeves", "role": "Neo" },
       { "name": "Carrie-Anne Moss", "role": "Trinity" },
       { "name": "Laurence Fishburne", "role": "Morpheus" }
-    ]
+    ],
+    "producer": "name",
+    "genre": ["horror", "random"],
+    "year": 2010,
+    "age_rating": "15"
+  },
+  {
+    "name": "Titanic",
+    "director": "James Cameron",
+    "cast": [
+      { "name": "Leonardo DiCaprio", "role": "Jack Dawson" },
+      { "name": "Kate Winslet", "role": "Rose Dewitt Bukater" },
+      { "name": "Billy Zane", "role": "Cal Hockley" }
+    ],
+    "producer": "James Cameron",
+    "genre": ["romance", "tragedy"],
+    "year": 1997,
+    "age_rating": "12"
   }
 ]
