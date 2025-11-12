@@ -1,26 +1,53 @@
 [
   {
     "name": "Inception",
-    "director": "Christopher Nolan",
     "cast": [
-      { "name": "Leonardo DiCaprio", "role": "Cobb" },
-      { "name": "Joseph Gordon-Levitt", "role": "Arthur" },
-      { "name": "Elliot Page", "role": "Ariadne" },
-      { "name": "Tom Hardy", "role": "Eames" }
+      {
+        "name": "Leonardo DiCaprio",
+        "role": "Cobb"
+      },
+      {
+        "name": "Joseph Gordon-Levitt",
+        "role": "Arthur"
+      },
+      {
+        "name": "Elliot Page",
+        "role": "Ariadne"
+      },
+      {
+        "name": "Tom Hardy",
+        "role": "Eames"
+      }
     ],
     "producer": "name",
-    "genre": ["horror", "random"],
-    "year": 2010,
-    "age_rating": "15"
+    "director": "Christopher Nolan",
+    "genre": [
+      "horror",
+      "random"
+    ],
+    "age_rating": "15",
+    "year": 2010
   },
   {
     "name": "The Matrix",
-    "director": "Lana Wachowski",
-    "year": 1999,
     "cast": [
-      { "name": "Keanu Reeves", "role": "Neo" },
-      { "name": "Carrie-Anne Moss", "role": "Trinity" },
-      { "name": "Laurence Fishburne", "role": "Morpheus" }
-    ]
+      {
+        "name": "Keanu Reeves",
+        "role": "Neo"
+      },
+      {
+        "name": "Carrie-Anne Moss",
+        "role": "Trinity"
+      },
+      {
+        "name": "Laurence Fishburne",
+        "role": "Morpheus"
+      }
+    ],
+    "producer": null,
+    "director": "Lana Wachowski",
+    "genre": [],
+    "age_rating": null,
+    "year": 1999
   }
 ]
