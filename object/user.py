@@ -14,6 +14,9 @@ class User:
         for i, film in enumerate(self.watchList):
             print("Film Name: "f"{film.name}")
             print("Description: "f"{film.description}")
+            print("Actors:")
+            for actor in film.cast:
+                print(f"{actor.name} as {actor.role}")
             
 
 
