@@ -12,7 +12,12 @@ class User:
             return
         print("\nYour Watchlist:")
         for i, film in enumerate(self.watchList):
-            print(f"{film.name}")
+            print("Film Name: "f"{film.name}")
+            print("Description: "f"{film.description}")
+            
+
+
+
         
 
 
