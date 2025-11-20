@@ -11,7 +11,7 @@
     "producer": "name",
     "genre": ["horror", "random"],
     "year": 2010,
-    "age_rating": "15"
+    "age_rating": 15
   },
   {
     "name": "The Matrix",
@@ -24,7 +24,7 @@
     "producer": "name",
     "genre": ["horror", "random"],
     "year": 2010,
-    "age_rating": "15"
+    "age_rating": 15
   },
   {
     "name": "Titanic",
@@ -37,6 +37,6 @@
     "producer": "James Cameron",
     "genre": ["romance", "tragedy"],
     "year": 1997,
-    "age_rating": "12"
+    "age_rating": 12
   }
 ]
