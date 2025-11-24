@@ -1,14 +1,15 @@
 from object.actor import Actor
 
 class Film:
-    def __init__(self, name=None, cast=[], producer=None, director=None, genre=[], age_rating=None, year=None):
+    def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, ratings=None):
         self.name = name
-        self.cast = cast
+        self.cast = cast if cast is not None else []
         self.producer=producer
         self.director=director
-        self.genre = genre
+        self.genre = genre if genre is not None else []
         self.age_rating=age_rating
         self.year = year
+        self.ratings = ratings if ratings is not None else []
 
     def prompt_name(self):
         name = input("Whats the name of the film? : ").strip()
@@ -74,17 +75,36 @@ class Film:
         else:
             return False
     
+    def average_rating(self):
+        average = 0
+        if not self.ratings:
+            return 0
+        else:
+            for rating in self.ratings:
+                average += rating 
+            average = average / len(self.ratings)
+            return round(average,2)
+    
     def display_film(self):
+        print("\n")
         print("film name:",self.name)
         print("Director:",self.director)
         print("Producer:",self.producer)
-        print("Realse year:",self.year)
+        print("Release year:",self.year)
         print("Age rating:",self.age_rating)
         print("Genre:",self.genre)
         print("Cast: ")
         for actors in self.cast:
             actors.display_actor()
+            print("\n")
+        if self.average_rating() == 0:
+            print("unrated")
+        else:
+            print("Average rating: "+ str(self.average_rating()))
         print("\n")
+    
+    def add_ratings(self, rating):
+        self.ratings.append(rating)
 
 
         

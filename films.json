@@ -26,7 +26,10 @@
       "random"
     ],
     "age_rating": "15",
-    "year": 2010
+    "year": 2010,
+    "ratings": [
+      8.0
+    ]
   },
   {
     "name": "The Matrix",
@@ -48,6 +51,7 @@
     "director": "Lana Wachowski",
     "genre": [],
     "age_rating": null,
-    "year": 1999
+    "year": 1999,
+    "ratings": []
   }
 ]
