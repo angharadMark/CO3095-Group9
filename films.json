@@ -1,26 +1,102 @@
 [
   {
     "name": "Inception",
-    "director": "Christopher Nolan",
     "cast": [
-      { "name": "Leonardo DiCaprio", "role": "Cobb" },
-      { "name": "Joseph Gordon-Levitt", "role": "Arthur" },
-      { "name": "Elliot Page", "role": "Ariadne" },
-      { "name": "Tom Hardy", "role": "Eames" }
+      {
+        "name": "Leonardo DiCaprio",
+        "role": "Cobb"
+      },
+      {
+        "name": "Joseph Gordon-Levitt",
+        "role": "Arthur"
+      },
+      {
+        "name": "Elliot Page",
+        "role": "Ariadne"
+      },
+      {
+        "name": "Tom Hardy",
+        "role": "Eames"
+      }
+    ],
+    "producer": "name",
+    "director": "Christopher Nolan",
+    "genre": [
+      "horror",
+      "random"
+    ],
+    "age_rating": 15,
+    "year": 2010,
+    "description": null
+  },
+  {
+    "name": "The Matrix",
+    "cast": [
+      {
+        "name": "Keanu Reeves",
+        "role": "Neo"
+      },
+      {
+        "name": "Carrie-Anne Moss",
+        "role": "Trinity"
+      },
+      {
+        "name": "Laurence Fishburne",
+        "role": "Morpheus"
+      }
+    ],
+    "producer": null,
+    "director": "Lana Wachowski",
+    "genre": [
+      "horror",
+      "random"
+    ],
+    "age_rating": 15,
+    "year": 1999,
+    "description": "Horror movie about...."
+  },
+  {
+    "name": "The Matrix",
+    "cast": [
+      {
+        "name": "Keanu Reeves",
+        "role": "Neo"
+      },
+      {
+        "name": "Carrie-Anne Moss",
+        "role": "Trinity"
+      },
+      {
+        "name": "Laurence Fishburne",
+        "role": "Morpheus"
+      }
     ],
     "producer": "name",
     "genre": ["horror", "random"],
     "year": 2010,
-    "age_rating": "15"
+    "age_rating": 15,
+    "description": "Horror movie about...."
   },
   {
-    "name": "The Matrix",
-    "director": "Lana Wachowski",
-    "year": 1999,
+    "name": "Titanic",
     "cast": [
-      { "name": "Keanu Reeves", "role": "Neo" },
-      { "name": "Carrie-Anne Moss", "role": "Trinity" },
-      { "name": "Laurence Fishburne", "role": "Morpheus" }
-    ]
+      {
+        "name": "Leonardo DiCaprio",
+        "role": "Jack Dawson"
+      },
+      {
+        "name": "Kate Winslet",
+        "role": "Rose Dewitt Bukater"
+      },
+      {
+        "name": "Billy Zane",
+        "role": "Cal Hockley"
+      }
+    ],
+    "producer": "James Cameron",
+    "genre": ["romance", "tragedy"],
+    "year": 1997,
+    "age_rating": 12,
+    "description": "Romance movie about...."
   }
 ]

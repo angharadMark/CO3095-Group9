@@ -8,3 +8,7 @@ class Actor:
     
     def set_role(self):
         self.role = input("input the role of the actor")
+
+    def display_actor(self):
+        print("Name:",self.name)
+        print("Role:",self.role)
