@@ -72,7 +72,7 @@ def main():
                 for i, film in enumerate(age_filtered_films, 1):
                     print(f"{i}. {film.name}")
                     
-        elif quest == 6
+        elif quest == 6:
             rate_film_in_watchlist(user)
 
         elif quest == 7:
