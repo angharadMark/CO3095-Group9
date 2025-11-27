@@ -1,0 +1,12 @@
+{
+  "byId": {
+    "3ba09667-a149-459c-91f9-479db61479fc": {
+      "id": "3ba09667-a149-459c-91f9-479db61479fc",
+      "username": "emre",
+      "passwordHash": "$2b$12$t1P4WZu.HVkr2HfpbTaFnutAbLLYFwapvSeygZVB9LnVudHcMRRSm"
+    }
+  },
+  "byUsername": {
+    "emre": "3ba09667-a149-459c-91f9-479db61479fc"
+  }
+}
