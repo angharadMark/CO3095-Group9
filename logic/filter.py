@@ -29,6 +29,7 @@ class QueryFilter:
         return False
 
 def filter_films(filter_list, films):
+    if len(filter_list) == 0: return films
     return [film for film in films if functools.reduce(lambda a, b: a or b,
         map(lambda filter: filter.matches(film), filter_list)
     )] 
