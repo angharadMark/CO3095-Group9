@@ -16,7 +16,9 @@ def main():
         print("2: Add a film to your watch list")
         print("3: View your watch list")
         print("4: View all films in database")
-        print("5: Exit")
+        print("5: Get films based on age rating")
+        print("6: Exit")
+
         print()
 
 
@@ -62,8 +64,20 @@ def main():
                     print(f"{i}.{film.name}")
             print()
         elif quest == 5:
+            user_age = input("Please enter the minimum age rating you want the film to be: ")
+            age_filtered_films = database.get_age_filtered_films(user_age)
+
+            if not age_filtered_films:
+                print("No films match that age rating.")
+            else:
+                print("\nAll age appropriate films in the database:")
+                for i, film in enumerate(age_filtered_films, 1):
+                    print(f"{i}. {film.name}")
+
+        elif quest == 6:
             break
         export.upload(database,"films.json")
+
 
 
 

@@ -25,7 +25,7 @@
       "horror",
       "random"
     ],
-    "age_rating": "15",
+    "age_rating": 15,
     "year": 2010,
     "description": null
   },
@@ -51,7 +51,7 @@
       "horror",
       "random"
     ],
-    "age_rating": "15",
+    "age_rating": 15,
     "year": 1999,
     "description": "Horror movie about...."
   },
@@ -72,13 +72,9 @@
       }
     ],
     "producer": "name",
-    "director": "Lana Wachowski",
-    "genre": [
-      "horror",
-      "random"
-    ],
-    "age_rating": "15",
+    "genre": ["horror", "random"],
     "year": 2010,
+    "age_rating": 15,
     "description": "Horror movie about...."
   },
   {
@@ -98,13 +94,9 @@
       }
     ],
     "producer": "James Cameron",
-    "director": "James Cameron",
-    "genre": [
-      "romance",
-      "tragedy"
-    ],
-    "age_rating": "12",
+    "genre": ["romance", "tragedy"],
     "year": 1997,
+    "age_rating": 12,
     "description": "Romance movie about...."
   }
 ]
