@@ -20,7 +20,12 @@ class QueryFilter:
                 map(lambda actor: string_fuzzy_match(actor.name, self.content), film.cast)
             )
         elif self.type == FilterType.GENRE:
-            return string_fuzzy_match(film.genre, self.content)
+            if type(film.genre) == list:
+                return functools.reduce(lambda a, b: a or b, 
+                    map(lambda genre: string_fuzzy_match(genre, self.content), film.genre)
+                )
+            else:
+                return string_fuzzy_match(film.genre, self.content)
         return False
 
 def filter_films(filter_list, films):
