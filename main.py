@@ -14,8 +14,13 @@ def main():
         print("Welcome to the film reccomendation system!")
         print("1: Add a film to the database")
         print("2: Add a film to your watch list")
-        print("3: Exit")
-        print("\n")
+        print("3: View your watch list")
+        print("4: View all films in database")
+        print("5: Exit")
+        print()
+
+
+
 
         quest = int(input("Please select an option: "))
 
@@ -45,9 +50,20 @@ def main():
             user.add_to_watchList(result)
             print("Film added to watchlist!")
         elif quest == 3:
+            user.display_watchlist()
+            print()
+        elif quest == 4:
+            all_films=database.get_all_films()
+            if not all_films:
+                print("Database empty")
+            else:
+                print("\nAll films in the database:")
+                for i, film in enumerate(all_films,1):
+                    print(f"{i}.{film.name}")
+            print()
+        elif quest == 5:
             break
-    export.upload(database,"films.json")
-
+        export.upload(database,"films.json")
 
 
 

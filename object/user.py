@@ -13,5 +13,21 @@ class User:
     def set_films_added(self, value):
         self.films_added = value
 
+    def display_watchlist(self):
+        if not self.watchList:
+            print("\nYour watchlist is currently empty")
+            return
+        print("\nYour Watchlist:")
+        for i, film in enumerate(self.watchList):
+            print("Film Name: "f"{film.name}")
+            print("Description: "f"{film.description}")
+            print("Actors:")
+            for actor in film.cast:
+                print(f"{actor.name} as {actor.role}")
+            
+
+
+
+        
 
 
