@@ -2,11 +2,11 @@ import json
 
 class DatabaseWriter:
     def upload(self, database, filename):
-        cast_list=[]
-        for actor in film.cast:
-            cast_list.append({'name': actor.name, 'role': actor.role})
         data=[]
         for film in database.films:
+            cast_list=[]
+            for actor in film.cast:
+                cast_list.append({'name': actor.name, 'role': actor.role})
             data.append({
                 'name': film.name,
                 'cast': cast_list,
