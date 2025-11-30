@@ -15,6 +15,7 @@ class DatabaseWriter:
                 'genre': film.genre,
                 'age_rating': film.age_rating,
                 'year': film.year,
+                'ratings': film.ratings
                 'description' :film.description
             })
         with open(filename, 'w', encoding='utf-8') as file:

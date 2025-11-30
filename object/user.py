@@ -3,12 +3,14 @@ class User:
         self.username = username
         self.watchList=[]
         self.films_added=0
-
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = {}
 
     def add_to_watchList(self, film):
         self.watchList.append(film)
+
+    def get_watch_list(self):
+        return self.watchList
     
     def get_films_added(self):
         return self.films_added
@@ -38,7 +40,6 @@ class User:
     def get_rating(self, film_name):
         if not film_name in self.ratings:
             return None
-
         return self.ratings[film_name]
         
     def get_watch_list(self):
