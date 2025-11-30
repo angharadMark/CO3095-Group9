@@ -30,6 +30,7 @@
     "ratings": [
       8.0
     ]
+    "description": null
   },
   {
     "name": "The Matrix",
@@ -49,9 +50,59 @@
     ],
     "producer": null,
     "director": "Lana Wachowski",
-    "genre": [],
-    "age_rating": null,
+    "genre": [
+      "horror",
+      "random"
+    ],
+    "age_rating": 15,
     "year": 1999,
-    "ratings": []
+    "ratings": [],
+    "description": "Horror movie about...."
+  },
+  {
+    "name": "The Matrix",
+    "cast": [
+      {
+        "name": "Keanu Reeves",
+        "role": "Neo"
+      },
+      {
+        "name": "Carrie-Anne Moss",
+        "role": "Trinity"
+      },
+      {
+        "name": "Laurence Fishburne",
+        "role": "Morpheus"
+      }
+    ],
+    "producer": "name",
+    "genre": ["horror", "random"],
+    "year": 2010,
+    "age_rating": 15,
+    "ratings": [],
+    "description": "Horror movie about...."
+  },
+  {
+    "name": "Titanic",
+    "cast": [
+      {
+        "name": "Leonardo DiCaprio",
+        "role": "Jack Dawson"
+      },
+      {
+        "name": "Kate Winslet",
+        "role": "Rose Dewitt Bukater"
+      },
+      {
+        "name": "Billy Zane",
+        "role": "Cal Hockley"
+      }
+    ],
+    "producer": "James Cameron",
+    "genre": ["romance", "tragedy"],
+    "year": 1997,
+    "age_rating": 12,
+    "ratings": [],
+    "description": "Romance movie about...."
   }
 ]

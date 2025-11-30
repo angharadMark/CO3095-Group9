@@ -1,7 +1,7 @@
 from object.actor import Actor
 
 class Film:
-    def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, ratings=None):
+    def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, description=None):
         self.name = name
         self.cast = cast if cast is not None else []
         self.producer=producer
@@ -10,6 +10,7 @@ class Film:
         self.age_rating=age_rating
         self.year = year
         self.ratings = ratings if ratings is not None else []
+        self.description = description
 
     def prompt_name(self):
         name = input("Whats the name of the film? : ").strip()

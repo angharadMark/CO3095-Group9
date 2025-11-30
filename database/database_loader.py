@@ -25,6 +25,7 @@ class DatabaseLoader:
                     age_rating= f.get('age_rating'),
                     year = f.get('year'),
                     ratings = f.get('ratings', [])
+                    description=f.get('description')
                 )
                 database.add_films(film)
         except FileNotFoundError:
