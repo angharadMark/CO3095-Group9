@@ -24,7 +24,7 @@ class DatabaseLoader:
                     genre= f.get('genre',[]),
                     age_rating= f.get('age_rating'),
                     year = f.get('year'),
-                    ratings = f.get('ratings', [])
+                    ratings = f.get('ratings', []),
                     description=f.get('description')
                 )
                 database.add_films(film)

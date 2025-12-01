@@ -29,7 +29,7 @@
     "year": 2010,
     "ratings": [
       8.0
-    ]
+    ],
     "description": null
   },
   {
@@ -76,9 +76,13 @@
       }
     ],
     "producer": "name",
-    "genre": ["horror", "random"],
-    "year": 2010,
+    "director": null,
+    "genre": [
+      "horror",
+      "random"
+    ],
     "age_rating": 15,
+    "year": 2010,
     "ratings": [],
     "description": "Horror movie about...."
   },
@@ -99,9 +103,13 @@
       }
     ],
     "producer": "James Cameron",
-    "genre": ["romance", "tragedy"],
-    "year": 1997,
+    "director": null,
+    "genre": [
+      "romance",
+      "tragedy"
+    ],
     "age_rating": 12,
+    "year": 1997,
     "ratings": [],
     "description": "Romance movie about...."
   }
