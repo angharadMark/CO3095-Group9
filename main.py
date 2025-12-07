@@ -4,6 +4,73 @@ from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
 from object.film import Film
 
+def confirm_choice(dialog_message, validate_fun,
+    repeat_message = None, reject_message = "Invalid input value"):
+    if not repeat_message: repeat_message = dialog_message
+    user_input = input(f"{dialog_message}: ")
+    while not validate_fun(user_input):
+        print(reject_message)
+        choice = input("Would you like to try again y/n: ")
+        if choice.lower() == "y":
+            user_input = input(f"{repeat_message}: ")
+        else:
+            return None
+
+    return user_input
+
+def is_text_int(text):
+    try:
+        converted = int(text)
+        return True
+    except ValueError:
+        return False
+
+def watchlist_dialog(database, user):
+    while True:
+        print("Select:")
+        print("1: Add a film to your watchlist")
+        print("2: Remove a film from your watchlist")
+        print("3: Exit this menu")
+        print()
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            result = confirm_choice(
+                "Please input the film name you want to add",
+                lambda choice: database.get_film(choice),
+                reject_message = "Your film could not be found")
+            if result != None:
+                result = database.get_film(result)
+                result.display_film()
+                correct_check = input("Is this the correct film? Y/N : ").strip()
+                if correct_check.lower() == "n":
+                    print("Film not added")
+                    pass
+                user.add_to_watchList(result)
+                print("Film added to watchlist!")
+        elif user_input == 2:
+            user.display_watchlist()
+            user_watch_list = user.get_watch_list()
+            if len(user_watch_list) < 1: continue
+            film = confirm_choice("Please input the film index to remove",
+                lambda choice: is_text_int(choice) 
+                    and int(choice) > 0
+                    and int(choice) <= len(user_watch_list)
+                    # ensures that the chosen int is in the right range
+            )
+
+            if film:
+                film_index = int(film) - 1
+                removed_film = user.pop_from_watchlist(film_index);
+                print(f"Removed film #{film_index} ({removed_film.name}) from your watchlist.")
+
+        elif user_input == 3:
+            return
+        else:
+            print("Input unknown. Please input a valid choice.")
+
+    
+
 def main():
     user = User("test")
     imports = DatabaseLoader()
@@ -13,7 +80,7 @@ def main():
         print("\n")
         print("Welcome to the film reccomendation system!")
         print("1: Add a film to the database")
-        print("2: Add a film to your watch list")
+        print("2: Add/remove a film to/from your watch list")
         print("3: Rate a film in your watchlist")
         print("4: Show popular films")
         print("5: View your watch list")
@@ -33,23 +100,7 @@ def main():
                 database.add_films(film)
 
         elif quest == 2:
-            film = input("Please input the film name you want to add: ")
-            result = database.get_film(film)
-            while result == False:
-                print("Your film could not be found")
-                choice = input("Would you like to try again y/n : ")
-                if choice.lower() == "y":
-                    film = input("Please input the film again: ")
-                    result = database.get_film(film)
-                else:
-                    break
-            result.display_film()
-            correct_check = input("Is this the correct film? Y/N : ").strip()
-            if correct_check.lower() == "n":
-                print("Film not added")
-                pass
-            user.add_to_watchList(result)
-            print("Film added to watchlist!")
+            watchlist_dialog(database, user) 
         elif quest == 3:
             rate_film_in_watchlist(user)
         elif quest == 4:
