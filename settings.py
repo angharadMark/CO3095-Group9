@@ -1,11 +1,14 @@
 from getpass import getpass
 from logic.user_state import UserState
 from logic.user_settings import changePassword, changeUsername
+from object.user import User
 
 def settingsMenu(state:UserState):
     if not state.isLoggedIn():
         print("You must be logged in to access settings.")
         return
+
+    current_user_obj = User(state.currentUser["username"])
 
     while True:
         print("\nAccount Settings")
@@ -19,8 +22,8 @@ def settingsMenu(state:UserState):
         choice = input("Select an option: ")
 
         if choice == "1":
-            print(f"\nUsername: {state.currentUser['username']}")
-            print(f"User ID: {state.currentUser['id']}")
+            current_user_obj.display_profile()
+
 
         elif choice == "2":
             newUsername = input("Enter new username: ").strip()

@@ -5,6 +5,7 @@ class User:
         self.films_added=0
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = {}
+        self.avatar_ascii=self.set_default_avatar()
 
     def add_to_watchList(self, film):
         self.watchList.append(film)
@@ -44,4 +45,20 @@ class User:
         
     def get_watch_list(self):
         return self.watchList
+    
+    def set_default_avatar(self):
+        avatar=(
+            "   /\\ \n"
+            "  /  \\ \n"
+            " |o  o|\n"
+            "  \\ - /\n"
+            "   \\_/\n"
+        )
+        return avatar
 
+    def display_profile(self):
+        print("\n--- Profile: " + self.username + " ---")
+        print(self.avatar_ascii)
+        print(f"Username: {self.username}")
+        print(f"Films in Watchlist: {len(self.watchList)}")
+        print("---------------------------\n")
