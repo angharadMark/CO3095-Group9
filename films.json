@@ -28,7 +28,8 @@
     "age_rating": "15",
     "year": 2010,
     "ratings": [
-      8.0
+      8.0,
+      10.0
     ],
     "description": null
   },
@@ -112,5 +113,23 @@
     "year": 1997,
     "ratings": [],
     "description": "Romance movie about...."
+  },
+  {
+    "name": "test",
+    "cast": [
+      {
+        "name": "Test",
+        "role": "test"
+      }
+    ],
+    "producer": "test",
+    "director": "test",
+    "genre": [
+      "Test"
+    ],
+    "age_rating": "12",
+    "year": "1245",
+    "ratings": [],
+    "description": null
   }
 ]

@@ -4,12 +4,50 @@ from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
 from object.film import Film
 
+from logic.user_state import UserState
+from logic.user_login import loginUser
+from settings import settingsMenu
+from getpass import getpass
+
 def main():
-    user = User("test")
+    state=UserState()
+    print("Welcome to the film reccomendation system")
+
+    # Log in / Register first
+    while not state.isLoggedIn():
+        print("1: Login")
+        print("2: Register")
+        print("3: Exit")
+
+        choice = int( input ("Select an option:  "))
+        #Login
+        if choice==1:
+            username = input("Username: ").strip()
+            password = getpass("Password: ")
+
+            user = loginUser(username, password)
+
+            if user:
+                state.login(user)
+                print(f"\nLogged in as {state.currentUser['username']} (id: {state.currentUser['id']})")
+            else:
+                print("\nInvalid username or password.")
+        #Register
+        if choice==2:
+            print("Run register_CLI.py to register")
+        #Exit
+        if choice==3:
+            return
+    
+
+    from object.user import User
+    user=User(state.currentUser["username"])
+
+    
     imports = DatabaseLoader()
     database = imports.load("films.json")
     export = DatabaseWriter()
-    while True:
+    while state.isLoggedIn():
         print("\n")
         print("Welcome to the film reccomendation system!")
         print("1: Add a film to the database")
@@ -21,6 +59,7 @@ def main():
         print("7: Get films based on age rating")
         print("8: Rate a film in your watchlist")
         print("9: Exit")
+        print("10: Account Settings")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -82,6 +121,9 @@ def main():
 
         elif quest == 9:
             break
+        elif quest==10:
+            settingsMenu(state)
+
         export.upload(database,"films.json")
 
 def rate_film_in_watchlist(user):

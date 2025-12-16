@@ -70,7 +70,7 @@ class Film:
         self.prompt_cast()
 
         self.display_film()
-        choice = input("Confirm and save this film? : ").strip()
+        choice = input("Confirm and save this film? y/n : ").strip()
         if choice.lower() == "y":
             return True
         else:
