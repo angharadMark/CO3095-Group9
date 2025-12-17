@@ -41,7 +41,7 @@ def main():
     
 
     from object.user import User
-    user=User(state.currentUser["username"])
+    user=User(state.currentUser["username"], avatar_index=state.currentUser.get("avatarIndex",0))
 
     
     imports = DatabaseLoader()

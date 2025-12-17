@@ -69,6 +69,7 @@ def registerUser(username: str, password: str):
         "id": userId,
         "username": username,
         "passwordHash": hashPassword(password),
+        "avatarIndex":0,
     }
 
     users["byId"][userId] = record

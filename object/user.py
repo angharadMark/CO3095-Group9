@@ -1,11 +1,86 @@
 class User:
-    def __init__(self, username):
+    AVATAR_OPTIONS=[
+        #Got these from https://www.asciiart.eu
+        # Option 1: Neutral Face
+        (
+            "   /\\ \n"
+            "  /  \\ \n"
+            " |o  o|\n"
+            "  \\ - /\n"
+            "   \\_/\n"
+        ),
+        # Option 2: MONKEY!!
+        (
+            "                 __------__\n"
+            "              /~          ~\\\n"
+            "             |    //^\\\\//^\\|\n"
+            "           /~~\  ||  o| |o|:~\\\n"
+            "          | |6   ||___|_|_||:|\n"
+            "           \\__.  /      o  \\/'\n"
+            "            |   (       O   )\n"
+            "   /~~~\\    `\\  \\         /\n"
+            "  | |~~\\ |     )  ~------~`\\\n"
+            " /' |  | |   /     ____ /~~~)\n"
+            "(_/'   | | |     /'    |    ( |\n"
+            "       | | |     \\    /   __)/ \\\n"
+            "       \\  \\ \\      \\/    /' \\   `\\\n"
+            "         \\  \\|\\        /   | |\\___|\n"
+            "           \\ |  \\____/     | |\n"
+            "           /^~>  \\        _/ <\n"
+            "          |  |         \\       \\\n"
+            "          |  | \\        \\        \\\n"
+            "          -^-\\  \\       |        )\n"
+            "               `\\_______/^\\______/\n"
+        ),
+        # Option 3: long dog
+        (
+            "                                  .-.\n"
+            "     (___________________________()6 `-, \n"
+            "     (   ______________________   /''\"`\n"
+            "     //\\                      //\\\n"
+            "    ""  ""                     "" "" \n"
+        ),
+        # Option 4: pufferfish
+        (
+            "                          . \n"
+            "                          A       ;\n"
+            "                |   ,--,-/ \\---,-/|  , \n"
+            "               _|\,'. /|      /|   `/|-. \n"
+            "           \`.'    /|      ,            `;. \n"
+            "          ,'\   A     A         A   A _ /| `.; \n"
+            "        ,/  _              A       _  / _   /|  ; \n"
+            "       /\  / \\   ,  ,           A  /    /     `/| \n"
+            "      /_| | _ \\         ,     ,             ,/  \\ \n"
+            "     // | |/ `.\  ,-      ,       ,   ,/ ,/      \\/ \n"
+            "     / @| |@  / /'   \\  \\      ,              >  /|    ,--. \n"
+            "    |\_/   \_/ /      |  |           ,  ,/        \\  ./' __:.. \n"
+            "    |  __ __  |       |  | .--.  ,         >  >   |-'   /     ` \n"
+            "  ,/| /  '  \\ |       |  |     \\      ,           |    / \n"
+            " /  |<--.__,->|       |  | .    `.        >  >    /   ( \n"
+            "/_,' \\\\  ^  /  \\     /  /   `.    >--            /^\   | \n"
+            "      \\\\___/    \\   /  /      \\__'     \\   \\   \\/   \\  | \n"
+            "       `.   |/          ,  ,                  /`\\    \\  ) \n"
+            "         \\  '  |/    ,       V    \\          /        `-\ \n"
+            "          `|/  '  V      V           \\    \\.'            \\_ \n"
+            "           '`-.       V       V        \\./'\\ \n"
+            "               `|/-.      \\ /   \ /,---`\\          \n"
+            "                /   `._____V_____V' \n"
+        )
+    ]
+
+    def __init__(self, username,avatar_index=0):
         self.username = username
         self.watchList=[]
         self.films_added=0
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = {}
-        self.avatar_ascii=self.set_default_avatar()
+        self.avatar_index = avatar_index
+
+        #Set ASCII based on the index above from database
+        if 0 <= self.avatar_index < len(User.AVATAR_OPTIONS):
+             self.avatar_ascii = User.AVATAR_OPTIONS[self.avatar_index]
+        else:
+             self.avatar_ascii = User.AVATAR_OPTIONS[0] # Fallback
 
     def add_to_watchList(self, film):
         self.watchList.append(film)
@@ -62,3 +137,11 @@ class User:
         print(f"Username: {self.username}")
         print(f"Films in Watchlist: {len(self.watchList)}")
         print("---------------------------\n")
+
+    def change_avatar(self,index:int)->bool:
+        # Sets avatar to what the user has selected
+        if 0<=index < len(self.AVATAR_OPTIONS):
+            self.avatar_index=index
+            self.avatar_ascii = User.AVATAR_OPTIONS[index]
+            return True
+        return False

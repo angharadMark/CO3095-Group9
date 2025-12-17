@@ -3,22 +3,26 @@
     "3ba09667-a149-459c-91f9-479db61479fc": {
       "id": "3ba09667-a149-459c-91f9-479db61479fc",
       "username": "emre",
-      "passwordHash": "$2b$12$t1P4WZu.HVkr2HfpbTaFnutAbLLYFwapvSeygZVB9LnVudHcMRRSm"
+      "passwordHash": "$2b$12$t1P4WZu.HVkr2HfpbTaFnutAbLLYFwapvSeygZVB9LnVudHcMRRSm",
+      "avatarIndex": 0
     },
     "d6bc8a63-d832-4aff-a4c4-a207a5768a20": {
       "id": "d6bc8a63-d832-4aff-a4c4-a207a5768a20",
       "username": "Bemre",
-      "passwordHash": "$2b$12$26pHGZjg9eigBsQgOo/wA.9f0Yf0UBn5ZVXRnsLMhcH1US3FGytV."
+      "passwordHash": "$2b$12$26pHGZjg9eigBsQgOo/wA.9f0Yf0UBn5ZVXRnsLMhcH1US3FGytV.",
+      "avatarIndex": 0
     },
     "bbfc651f-d488-45fc-b248-5a45454a49bc": {
       "id": "bbfc651f-d488-45fc-b248-5a45454a49bc",
       "username": "test",
-      "passwordHash": "$2b$12$pblL9pyMq.pL6mX6vEM2Me5tvkFgHgqsNgQ27UW9JNZzjhdspypxO"
+      "passwordHash": "$2b$12$pblL9pyMq.pL6mX6vEM2Me5tvkFgHgqsNgQ27UW9JNZzjhdspypxO",
+      "avatarIndex": 0
     },
     "b9895d05-667f-44ed-8e55-474f8b643310": {
       "id": "b9895d05-667f-44ed-8e55-474f8b643310",
       "username": "ang",
-      "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6"
+      "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6",
+      "avatarIndex": 3
     }
   },
   "byUsername": {
