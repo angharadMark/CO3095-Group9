@@ -62,6 +62,7 @@ def main():
         print("9: Exit")
         print("10: Account Settings")
         print("11: Comment on your watchlist")
+        print("12: View actor filmography")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -137,12 +138,16 @@ def main():
                 ((user.get_watch_list())[film_num-1]).add_comment(Comment(message))
             else:
                 ((user.get_watch_list())[film_num-1]).add_comment(Comment(message,user.username))
+        elif quest==12:
+            target = input("What actor do you want to look at? : ")
+            results = database.search_actor(target)
+            for i,actor in enumerate(results,1):
+                print(f"{i}. {actor.name}")
+            
+            detail = int(input("Choose which one you want to look at in detail : "))
+            (results[detail-1]).filmography()
+
         export.upload(database,"films.json")
-
-def rate_film_in_watchlist(user):
-    user_watchlist = user.get_watch_list()
-
-        
 
 def rate_film_in_watchlist(user):
     user_watchlist = user.get_watch_list()

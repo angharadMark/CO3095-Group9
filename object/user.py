@@ -5,6 +5,7 @@ class User:
         self.films_added=0
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = {}
+        self.comments = {}
 
     def add_to_watchList(self, film):
         self.watchList.append(film)
@@ -47,4 +48,7 @@ class User:
         
     def get_watch_list(self):
         return self.watchList
+
+    def add_comment(self,film, comment):
+        self.comments.update({film,comment})
 
