@@ -2,6 +2,7 @@ import json
 from object.film import Film
 from database.database import Database
 from object.actor import Actor
+from object.comment import Comment
 
 class DatabaseLoader:
     def load(self, fileName):
@@ -11,10 +12,16 @@ class DatabaseLoader:
                 data = json.load(file)
             for f in data:
                 cast_list=[]
+                comments=[]
                 for actor in f.get('cast',[]):
                     cast_list.append(Actor(
                         name = actor.get('name'),
                         role = actor.get('role')
+                    ))
+                for comment in f.get('comments',[]):
+                    comments.append(Comment(
+                        message = comment.get('comment'),
+                        user = comment.get('user')
                     ))
                 film = Film(
                     name = f.get('name'),
@@ -25,7 +32,8 @@ class DatabaseLoader:
                     age_rating= f.get('age_rating'),
                     year = f.get('year'),
                     ratings = f.get('ratings', []),
-                    description=f.get('description')
+                    description=f.get('description'),
+                    comments=comments
                 )
                 database.add_films(film)
         except FileNotFoundError:

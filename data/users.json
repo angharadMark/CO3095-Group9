@@ -19,12 +19,18 @@
       "id": "b9895d05-667f-44ed-8e55-474f8b643310",
       "username": "ang",
       "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6"
+    },
+    "2ffb3e62-edda-4c25-80ad-ea1bde4c829e": {
+      "id": "2ffb3e62-edda-4c25-80ad-ea1bde4c829e",
+      "username": "c",
+      "passwordHash": "$2b$12$S0MjzduSMXo8kYZlUcw2d.CukR9g2bBGHOCs9wutxnAerm8h/TEs2"
     }
   },
   "byUsername": {
     "emre": "3ba09667-a149-459c-91f9-479db61479fc",
     "Bemre": "d6bc8a63-d832-4aff-a4c4-a207a5768a20",
     "test": "bbfc651f-d488-45fc-b248-5a45454a49bc",
-    "ang": "b9895d05-667f-44ed-8e55-474f8b643310"
+    "ang": "b9895d05-667f-44ed-8e55-474f8b643310",
+    "c": "2ffb3e62-edda-4c25-80ad-ea1bde4c829e"
   }
 }

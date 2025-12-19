@@ -3,6 +3,7 @@ from database.database import Database
 from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
 from object.film import Film
+from object.comment import Comment
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
@@ -60,6 +61,7 @@ def main():
         print("8: Rate a film in your watchlist")
         print("9: Exit")
         print("10: Account Settings")
+        print("11: Comment on your watchlist")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -123,7 +125,18 @@ def main():
             break
         elif quest==10:
             settingsMenu(state)
+        elif quest==11:
+            for i,film in enumerate(user.get_watch_list(), 1):
+                print(f"{i}. {film.name}")
+            
+            film_num = int(input("Which film do you want to comment on? : "))
+            anon = int(input("would you like it to be anonymous? 1: Y 2: N "))
+            message = input("Input your comment: ")
 
+            if anon == 1:
+                ((user.get_watch_list())[film_num-1]).add_comment(Comment(message))
+            else:
+                ((user.get_watch_list())[film_num-1]).add_comment(Comment(message,user.username))
         export.upload(database,"films.json")
 
 def rate_film_in_watchlist(user):

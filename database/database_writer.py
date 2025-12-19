@@ -5,8 +5,11 @@ class DatabaseWriter:
         data=[]
         for film in database.films:
             cast_list=[]
+            comments=[]
             for actor in film.cast:
                 cast_list.append({'name': actor.name, 'role': actor.role})
+            for comment in film.comments:
+                comments.append({'user': comment.user, 'comment': comment.message})
             data.append({
                 'name': film.name,
                 'cast': cast_list,
@@ -16,7 +19,8 @@ class DatabaseWriter:
                 'age_rating': film.age_rating,
                 'year': film.year,
                 'ratings': film.ratings,
-                'description' :film.description
+                'description' :film.description,
+                'comments':comments
             })
         with open(filename, 'w', encoding='utf-8') as file:
             json.dump(data, file, indent=2)

@@ -42,6 +42,8 @@ class Database:
 
                 print("\n")
                 return False
+            else:
+                break
             
     def get_all_films(self):
         return self.films
