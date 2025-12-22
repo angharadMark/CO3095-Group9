@@ -6,8 +6,10 @@ from object.film import Film
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
+from logic.movie_recommendations import getMovieOfTheDay
 from settings import settingsMenu, adminMenu
 from getpass import getpass
+
 
 def main():
     state=UserState()
@@ -60,12 +62,13 @@ def main():
         print("8: Rate a film in your watchlist")
         print("9: Exit")
         print("10: Account Settings")
+        print("11: Movie of the Day")
         print("\n")
 
         # Admin Username= admin
         # Admin Password= admins
         if username=="admin":
-            print("11: Administrator Tools")
+            print("100: Administrator Tools")
         
         quest = int(input("Please select an option: "))
 
@@ -128,7 +131,17 @@ def main():
             break
         elif quest==10:
             settingsMenu(state)
-        elif quest==11 and username=="admin":
+        elif quest==11:
+            motd=getMovieOfTheDay()
+            print()
+            print("--- MOVIE OF THE DAY ---")
+            if motd:
+                print(f"Title: {motd.name}")
+                print(f"Description: {motd.description}")
+            else:
+                print("No movies available")
+                      
+        elif quest==100 and username=="admin":
             adminMenu(state)
 
         export.upload(database,"films.json")
