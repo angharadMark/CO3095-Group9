@@ -103,13 +103,14 @@ class User:
         )
     ]
 
-    def __init__(self, username,avatar_index=0):
+    def __init__(self, username,avatar_index=0,favFilm="None Set"):
         self.username = username
         self.watchList=[]
         self.films_added=0
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = {}
         self.avatar_index = avatar_index
+        self.favFilm=favFilm
 
         #Set ASCII based on the index above from database
         if 0 <= self.avatar_index < len(User.AVATAR_OPTIONS):
@@ -170,6 +171,7 @@ class User:
         print("\n--- Profile: " + self.username + " ---")
         print(self.avatar_ascii)
         print(f"Username: {self.username}")
+        print(f"Favourite Film: {self.favFilm}")
         print(f"Films in Watchlist: {len(self.watchList)}")
         print("---------------------------\n")
 
@@ -180,3 +182,8 @@ class User:
             self.avatar_ascii = User.AVATAR_OPTIONS[index]
             return True
         return False
+    
+    def change_favFilm(self, film_name:str):
+        self.favFilm=film_name
+        print(f"Favourite Film Updated to: {self.favFilm}")
+    

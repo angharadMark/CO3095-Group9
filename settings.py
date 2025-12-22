@@ -1,6 +1,6 @@
 from getpass import getpass
 from logic.user_state import UserState
-from logic.user_settings import changePassword, changeUsername, changeAvatarMenu
+from logic.user_settings import changePassword, changeUsername, changeAvatarMenu, changeFavFilmMenu
 from object.user import User
 
 def settingsMenu(state:UserState):
@@ -18,8 +18,9 @@ def settingsMenu(state:UserState):
         print("2. Change username")
         print("3. Change password")
         print("4. Change profile picture")
-        print("5. Logout")
-        print("6. Back")
+        print("5. Change favourite film")
+        print("6. Logout")
+        print("7. Back")
 
         choice = input("Select an option: ")
 
@@ -53,12 +54,14 @@ def settingsMenu(state:UserState):
 
         elif choice=="4":
             changeAvatarMenu(current_user_obj, user_id) 
-        elif choice == "5":
+        elif choice=="5":
+            changeFavFilmMenu(current_user_obj,user_id)
+        elif choice == "6":
             state.logout()
             print("Logged out.")
             break
 
-        elif choice == "6":
+        elif choice == "7":
             break
 
         else:

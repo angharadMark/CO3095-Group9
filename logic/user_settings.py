@@ -96,3 +96,27 @@ def changeAvatarMenu(user_obj:User,user_id:str):
                 print("Invalid option number.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+
+
+def saveFavFilm(userId: str, newFilm: str):
+    users = readJson(usersFile, {"byId":{}, "byUsername":{}})
+    user = users["byId"].get(userId) 
+
+    if user:
+        user["favFilm"] = newFilm
+        saveJson(usersFile, users)
+    else:
+        print("Warning: User record not found for favourite film update")
+
+def changeFavFilmMenu(user_obj: User, user_id: str):    
+    print("\n--- Change Favourite Film ---")
+    print(f"Current Favourite: {user_obj.favFilm}")
+    
+    new_film = input("Enter your new favourite film (or press Enter to cancel): ").strip()
+    
+    if new_film:
+        user_obj.favFilm = new_film
+        saveFavFilm(user_id, new_film)
+        print("Favourite film updated successfully!")
+    else:
+        print("No changes made.")
