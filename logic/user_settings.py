@@ -120,3 +120,20 @@ def changeFavFilmMenu(user_obj: User, user_id: str):
         print("Favourite film updated successfully!")
     else:
         print("No changes made.")
+
+def deleteUserAccount(userId:str):
+    # Deletes a user's account based on the userId
+    users=readJson(usersFile,{"byId":{},"byUsername":{}})
+    # Check it exists
+    user_record=users["byId"].get(userId)
+
+    if user_record:
+        username=user_record.get("username")
+        del users["byId"][userId]
+        if username in users["byUsername"]:
+            del users["byUsername"][username]
+
+        saveJson(usersFile,users)
+        return True
+    return False
+

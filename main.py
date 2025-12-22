@@ -6,7 +6,7 @@ from object.film import Film
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
-from settings import settingsMenu
+from settings import settingsMenu, adminMenu
 from getpass import getpass
 
 def main():
@@ -61,6 +61,11 @@ def main():
         print("9: Exit")
         print("10: Account Settings")
         print("\n")
+
+        # Admin Username= admin
+        # Admin Password= admins
+        if username=="admin":
+            print("11: Administrator Tools")
         
         quest = int(input("Please select an option: "))
 
@@ -123,6 +128,8 @@ def main():
             break
         elif quest==10:
             settingsMenu(state)
+        elif quest==11 and username=="admin":
+            adminMenu(state)
 
         export.upload(database,"films.json")
 

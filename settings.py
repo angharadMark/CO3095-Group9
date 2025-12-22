@@ -1,7 +1,8 @@
 from getpass import getpass
 from logic.user_state import UserState
-from logic.user_settings import changePassword, changeUsername, changeAvatarMenu, changeFavFilmMenu
+from logic.user_settings import changePassword, changeUsername, changeAvatarMenu, changeFavFilmMenu, deleteUserAccount
 from object.user import User
+from logic.user_registration import readJson,usersFile
 
 def settingsMenu(state:UserState):
     if not state.isLoggedIn():
@@ -69,3 +70,54 @@ def settingsMenu(state:UserState):
 
         else:
             print("Invalid option.")
+
+def adminMenu(state:UserState):
+    
+    # Admin Username= admin
+    # Admin Password= admins
+    while True:
+        print("\nAdministrator Settings")
+        print("----------------")
+        print("1. Delete user's account")
+        print("2. Print out all user account's names")
+        
+
+        adminChoice = input("Select an option: ")
+
+        # Delete user
+        if adminChoice == "1":
+            target_name=input("Please enter user's name you would like to delete:  ")
+            # Find entered user's id
+            users=readJson(usersFile,{"byId":{},"byUsername":{}})
+            target_id=users["byUsername"].get(target_name)
+
+            if not target_id:
+                print(f"User not found")
+                continue
+            if target_name=="admin":
+                print(f"You cannot delete the administrator account")
+                continue
+            confirm=input("Are you absolutely sure? y/n   ")
+            if confirm.lower()=="y":
+                if deleteUserAccount(target_id):
+                    print("Account deleted")
+                else:
+                    print("Account not found")
+            else:
+                print("Delete cancelled. ")
+
+        # Print all usernames
+        elif adminChoice=="2":
+            users = readJson(usersFile, {"byId": {}, "byUsername": {}})
+    
+            usernames = users.get("byUsername", {}).keys()
+            
+            if not usernames:
+                print("No users found in the database.")
+                return
+
+            print("\n--- Registered Users ---")
+            for i, name in enumerate(usernames, 1):
+                print(f"{i}. {name}")
+            print("------------------------")
+
