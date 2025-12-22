@@ -115,7 +115,7 @@ def changeFavFilmMenu(user_obj: User, user_id: str):
     new_film = input("Enter your new favourite film (or press Enter to cancel): ").strip()
     
     if new_film:
-        user_obj.favFilm = new_film
+        user_obj.change_favFilm(new_film)
         saveFavFilm(user_id, new_film)
         print("Favourite film updated successfully!")
     else:

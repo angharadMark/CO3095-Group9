@@ -9,7 +9,10 @@ def settingsMenu(state:UserState):
         return
 
     user_id=state.currentUser["id"]
-    current_user_obj = User(state.currentUser["username"], avatar_index=state.currentUser.get("avatarIndex",0))
+    current_user_obj = User(state.currentUser["username"], 
+                            avatar_index=state.currentUser.get("avatarIndex",0),
+                            favFilm=state.currentUser.get("favFilm","None set")
+                            )
 
     while True:
         print("\nAccount Settings")
