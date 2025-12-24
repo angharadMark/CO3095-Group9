@@ -4,6 +4,9 @@ from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
 from object.film import Film
 
+from logic.filter import *
+from object.filter_type import FilterType
+
 def confirm_choice(dialog_message, validate_fun,
     repeat_message = None, reject_message = "Invalid input value"):
     if not repeat_message: repeat_message = dialog_message
@@ -25,12 +28,84 @@ def is_text_int(text):
     except ValueError:
         return False
 
+def filter_search_dialog(database, user):
+    filters = []
+    while True:
+        if len(filters) > 0:
+            print("Filters:")
+            for (i, filter) in enumerate(filters):
+                print(f"{i+1}: (filter {filter.type.name} by '{filter.content}')")
+            print()
+
+        print("Please choose:")
+        print("1: Filter results by cast")
+        print("2: Filter results by genre")
+        print("3: Show results")
+        print("4: Add results to watchlist")
+        print("5: Remove filter by index")
+        print("6: Clear filters")
+        print("7: Exit this menu")
+        print()
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            filter_content = input("What cast member should the results be filtered by? ")
+            filters.append(
+                QueryFilter(FilterType.CAST, filter_content)
+            )
+        elif user_input == 2:
+            filter_content = input("What genre should the results be filtered by? ")
+            filters.append(
+                QueryFilter(FilterType.GENRE, filter_content)
+            )
+        elif user_input == 3:
+            results = filter_films(filters, database.get_all_films())
+            if len(results) > 0:
+                print("Found: ")
+                for film in results:
+                    print(film.name)
+            else:
+                print("No films found")
+        elif user_input == 4:
+            results = filter_films(filters, database.get_all_films())
+            if len(results) == 0:
+                print("No films found")
+                continue
+
+            for film in results:
+                user.add_to_watchList(film)
+
+            print(f"Added {len(results)} films to watchlist")
+        elif user_input == 5:
+            if len(filters) == 0: continue
+
+            filter_index = confirm_choice("Enter the index of the filter to be removed",
+                lambda choice: is_text_int(choice) 
+                    and int(choice) > 0
+                    and int(choice) <= len(filters)
+            )
+
+            if filter_index != None:
+                filter_index = int(filter_index)
+                del filters[filter_index - 1]
+                print(f"Removed filter #{i}")
+
+
+        elif user_input == 6:
+            print("Filters cleared...")
+            filters = []
+
+        elif user_input == 7:
+            return
+
+
 def watchlist_dialog(database, user):
     while True:
         print("Select:")
-        print("1: Add a film to your watchlist")
-        print("2: Remove a film from your watchlist")
-        print("3: Exit this menu")
+        print("1: Add a film to your watchlist by name")
+        print("2: Search for films to add to your watchlist")
+        print("3: Remove a film from your watchlist")
+        print("4: Exit this menu")
         print()
         user_input = int(input("Please select an option: "))
 
@@ -49,6 +124,8 @@ def watchlist_dialog(database, user):
                 user.add_to_watchList(result)
                 print("Film added to watchlist!")
         elif user_input == 2:
+            filter_search_dialog(database, user)
+        elif user_input == 3:
             user.display_watchlist()
             user_watch_list = user.get_watch_list()
             if len(user_watch_list) < 1: continue
@@ -64,7 +141,7 @@ def watchlist_dialog(database, user):
                 removed_film = user.pop_from_watchlist(film_index);
                 print(f"Removed film #{film_index} ({removed_film.name}) from your watchlist.")
 
-        elif user_input == 3:
+        elif user_input == 4:
             return
         else:
             print("Input unknown. Please input a valid choice.")
