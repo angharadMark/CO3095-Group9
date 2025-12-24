@@ -1,5 +1,7 @@
 from object.actor import Actor
 
+from copy import deepcopy
+
 class Film:
     def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, ratings=None, description=None):
         self.name = name
@@ -75,6 +77,28 @@ class Film:
             return True
         else:
             return False
+
+    def modify_film(self):
+        temp_film = deepcopy(self)
+
+        if temp_film.input_film():
+            if temp_film.get_name() != None:
+                self.set_name(temp_film.get_name())
+            if temp_film.get_producer() != None:
+                self.set_producer(temp_film.get_producer())
+            if temp_film.get_director() != None:
+                self.set_director(temp_film.get_director())
+            if temp_film.get_year() != None:
+                self.set_year(temp_film.get_year())
+            if temp_film.get_genre() != None:
+                self.set_genre(temp_film.get_genre())
+            if temp_film.get_cast() != None:
+                self.set_cast(temp_film.get_cast())
+
+            self.display_film()
+            return True
+
+        return False
     
     def average_rating(self):
         average = 0
@@ -103,29 +127,48 @@ class Film:
         else:
             print("Average rating: "+ str(self.average_rating()))
         print("\n")
-    
+
+    def get_name(self): 
+        return self.name
+
+    def get_producer(self):
+        return self.producer
+
+    def get_director(self):
+        return self.director
+
+    def get_year(self):
+        return self.year
+
+    def get_age_rating(self):
+        return self.age_rating
+
+    def get_genre(self):
+        return self.genre
+
+    def get_cast(self):
+        return self.cast
+
     def add_ratings(self, rating):
         self.ratings.append(rating)
 
-
+    def set_name(self, name):
+        self.name = name
         
+    def set_producer(self, producer):
+        self.producer = producer
 
-        
+    def set_director(self, director):
+        self.director = director
 
-        
+    def set_year(self, year):
+        self.year = year
 
-        
+    def set_age_rating(self, age_rating):
+        self.age_rating = age_rating
 
-        
+    def set_genre(self, genre):
+        self.genre = genre if genre is not None else []
 
-
-
-
-
-            
-
-        
-
-
-
-
+    def set_cast(self, cast):
+        self.cast = cast if cast is not None else []

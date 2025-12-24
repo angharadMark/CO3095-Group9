@@ -87,7 +87,8 @@ def main():
         print("6: View all films in database")
         print("7: Get films based on age rating")
         print("8: Rate a film in your watchlist")
-        print("9: Exit")
+        print("9: Edit a film in the database")
+        print("0: Exit")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -132,6 +133,25 @@ def main():
             rate_film_in_watchlist(user)
 
         elif quest == 9:
+            result = confirm_choice(
+                "Please input the film name you want to change",
+                lambda choice: database.get_film(choice),
+                reject_message = "Your film could not be found")
+            if result == None:
+                continue
+
+            result = database.get_film(result)
+            result.display_film()
+            correct_check = input("Is this the correct film? Y/N : ").strip()
+            if correct_check.lower() == "n":
+                continue
+
+            if result.modify_film():
+                print("Film modified")
+            else:
+                print("Film was not modified")
+
+        elif quest == 0:
             break
         export.upload(database,"films.json")
 
