@@ -42,11 +42,14 @@ def main():
 
     from object.user import User
     user=User(state.currentUser["username"])
-
+    
     
     imports = DatabaseLoader()
     database = imports.load("films.json")
     export = DatabaseWriter()
+
+    user.load(database)
+
     while state.isLoggedIn():
         print("\n")
         print("Welcome to the film reccomendation system!")
@@ -125,6 +128,8 @@ def main():
             settingsMenu(state)
 
         export.upload(database,"films.json")
+        user.write()
+        
 
 def rate_film_in_watchlist(user):
     user_watchlist = user.get_watch_list()
