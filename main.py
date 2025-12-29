@@ -9,6 +9,11 @@ from logic.user_login import loginUser
 from settings import settingsMenu
 from getpass import getpass
 
+from logic.friends_system import friends_menu
+
+
+
+
 def main():
     state=UserState()
     print("Welcome to the film reccomendation system")
@@ -60,6 +65,7 @@ def main():
         print("8: Rate a film in your watchlist")
         print("9: Exit")
         print("10: Account Settings")
+        print("11: Friends System")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -123,6 +129,10 @@ def main():
             break
         elif quest==10:
             settingsMenu(state)
+        elif quest == 11:
+            friends_menu(state.currentUser["id"])
+
+
 
         export.upload(database,"films.json")
 
