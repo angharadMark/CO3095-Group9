@@ -3,6 +3,7 @@ from database.database import Database
 from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
 from object.film import Film
+from logic.watchlist_similarity import WatchlistSimilarity
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
@@ -63,6 +64,7 @@ def main():
         print("8: Rate a film in your watchlist")
         print("9: Exit")
         print("10: Account Settings")
+        print("11: Show similar watchlists")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -126,6 +128,16 @@ def main():
             break
         elif quest==10:
             settingsMenu(state)
+        elif quest == 11:
+            # list 3 most similar user's watchlists 
+            similarities = WatchlistSimilarity.find(user, database)[:3]
+
+            for (similar_user_name, score) in similarities:
+                similar_user = User(similar_user_name)
+                similar_user.load(database)
+                print(f"Similar user found: {similar_user_name}")
+
+                similar_user.display_watchlist(displaying_other_user = True)
 
         export.upload(database,"films.json")
         user.write()
