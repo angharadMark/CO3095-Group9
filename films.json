@@ -1,117 +1,132 @@
 [
   {
     "name": "Inception",
-    "cast": [
-      {
-        "name": "Leonardo DiCaprio",
-        "role": "Cobb"
-      },
-      {
-        "name": "Joseph Gordon-Levitt",
-        "role": "Arthur"
-      },
-      {
-        "name": "Elliot Page",
-        "role": "Ariadne"
-      },
-      {
-        "name": "Tom Hardy",
-        "role": "Eames"
-      }
-    ],
-    "producer": "name",
     "director": "Christopher Nolan",
+    "producer": "name",
+    "year": 2010,
     "genre": [
       "horror",
       "random"
     ],
-    "age_rating": "15",
-    "year": 2010,
     "ratings": [
       8.0,
       10.0
     ],
-    "description": null,
-    "comments": []
+    "cast": [
+      {
+        "actor": "Leonardo DiCaprio",
+        "role": "Cobb"
+      },
+      {
+        "actor": "Joseph Gordon-Levitt",
+        "role": "Arthur"
+      },
+      {
+        "actor": "Elliot Page",
+        "role": "Ariadne"
+      },
+      {
+        "actor": "Tom Hardy",
+        "role": "Eames"
+      }
+    ],
+    "comments": [],
+    "age_rating": "15",
+    "description": null
   },
   {
     "name": "The Matrix",
-    "cast": [
-      {
-        "name": "Keanu Reeves",
-        "role": "Neo"
-      },
-      {
-        "name": "Carrie-Anne Moss",
-        "role": "Trinity"
-      },
-      {
-        "name": "Laurence Fishburne",
-        "role": "Morpheus"
-      }
-    ],
-    "producer": null,
     "director": "Lana Wachowski",
+    "producer": null,
+    "year": 1999,
     "genre": [
       "horror",
       "random"
     ],
-    "age_rating": 15,
-    "year": 1999,
     "ratings": [],
-    "description": "Horror movie about....",
-    "comments": []
+    "cast": [
+      {
+        "actor": "Keanu Reeves",
+        "role": "Neo"
+      },
+      {
+        "actor": "Carrie-Anne Moss",
+        "role": "Trinity"
+      },
+      {
+        "actor": "Laurence Fishburne",
+        "role": "Morpheus"
+      }
+    ],
+    "comments": [],
+    "age_rating": 15,
+    "description": "Horror movie about...."
   },
   {
     "name": "Titanic",
-    "cast": [
-      {
-        "name": "Leonardo DiCaprio",
-        "role": "Cobb"
-      },
-      {
-        "name": "Kate Winslet",
-        "role": "Rose Dewitt Bukater"
-      },
-      {
-        "name": "Billy Zane",
-        "role": "Cal Hockley"
-      }
-    ],
-    "producer": "James Cameron",
     "director": null,
+    "producer": "James Cameron",
+    "year": 1997,
     "genre": [
       "romance",
       "tragedy"
     ],
-    "age_rating": 12,
-    "year": 1997,
-    "ratings": [],
-    "description": "Romance movie about....",
+    "ratings": [
+      10.0,
+      10.0
+    ],
+    "cast": [
+      {
+        "actor": "Leonardo DiCaprio",
+        "role": "Cobb"
+      },
+      {
+        "actor": "Kate Winslet",
+        "role": "Rose Dewitt Bukater"
+      },
+      {
+        "actor": "Billy Zane",
+        "role": "Cal Hockley"
+      }
+    ],
     "comments": [
       {
         "user": "Anonymous",
-        "comment": "Good film!"
+        "message": "Good film!"
       }
-    ]
+    ],
+    "age_rating": 12,
+    "description": "Romance movie about...."
   },
   {
     "name": "test",
-    "cast": [
-      {
-        "name": "Test",
-        "role": "test"
-      }
-    ],
-    "producer": "test",
     "director": "test",
+    "producer": "test",
+    "year": "1245",
     "genre": [
       "Test"
     ],
-    "age_rating": "12",
-    "year": "1245",
     "ratings": [],
-    "description": null,
-    "comments": []
+    "cast": [
+      {
+        "actor": "Test",
+        "role": "test"
+      }
+    ],
+    "comments": [],
+    "age_rating": "12",
+    "description": null
+  },
+  {
+    "name": null,
+    "director": null,
+    "producer": null,
+    "year": null,
+    "genre": [],
+    "ratings": [],
+    "cast": [],
+    "comments": [],
+    "age_rating": null,
+    "description": null
   }
 ]

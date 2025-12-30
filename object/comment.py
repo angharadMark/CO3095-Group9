@@ -1,7 +1,7 @@
 
 class Comment:
     def __init__(self,message,user="Anonymous"):
-        self.user = user
+        self.user = user #username not user object
         self.message = message
 
     def display_comment(self):
@@ -9,3 +9,4 @@ class Comment:
 
     def edit_message(self, message):
         self.message = message
+

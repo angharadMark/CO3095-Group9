@@ -1,36 +1,16 @@
 {
   "byId": {
-    "3ba09667-a149-459c-91f9-479db61479fc": {
-      "id": "3ba09667-a149-459c-91f9-479db61479fc",
-      "username": "emre",
-      "passwordHash": "$2b$12$t1P4WZu.HVkr2HfpbTaFnutAbLLYFwapvSeygZVB9LnVudHcMRRSm"
-    },
-    "d6bc8a63-d832-4aff-a4c4-a207a5768a20": {
-      "id": "d6bc8a63-d832-4aff-a4c4-a207a5768a20",
-      "username": "Bemre",
-      "passwordHash": "$2b$12$26pHGZjg9eigBsQgOo/wA.9f0Yf0UBn5ZVXRnsLMhcH1US3FGytV."
-    },
-    "bbfc651f-d488-45fc-b248-5a45454a49bc": {
-      "id": "bbfc651f-d488-45fc-b248-5a45454a49bc",
-      "username": "test",
-      "passwordHash": "$2b$12$pblL9pyMq.pL6mX6vEM2Me5tvkFgHgqsNgQ27UW9JNZzjhdspypxO"
-    },
-    "b9895d05-667f-44ed-8e55-474f8b643310": {
-      "id": "b9895d05-667f-44ed-8e55-474f8b643310",
-      "username": "ang",
-      "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6"
-    },
-    "2ffb3e62-edda-4c25-80ad-ea1bde4c829e": {
-      "id": "2ffb3e62-edda-4c25-80ad-ea1bde4c829e",
+    "de71610f-5cc1-45b0-b843-f7ed6ee7bff8": {
+      "id": "de71610f-5cc1-45b0-b843-f7ed6ee7bff8",
       "username": "c",
-      "passwordHash": "$2b$12$S0MjzduSMXo8kYZlUcw2d.CukR9g2bBGHOCs9wutxnAerm8h/TEs2"
+      "passwordHash": "$2b$12$Y.SMEAA8tCI5HCOD4F/sGOojvMrMHhM6KL4YFx6NAPRwKdHbKDUm2",
+      "watchlist": [],
+      "films_added": 0,
+      "ratings": {},
+      "comments": {}
     }
   },
   "byUsername": {
-    "emre": "3ba09667-a149-459c-91f9-479db61479fc",
-    "Bemre": "d6bc8a63-d832-4aff-a4c4-a207a5768a20",
-    "test": "bbfc651f-d488-45fc-b248-5a45454a49bc",
-    "ang": "b9895d05-667f-44ed-8e55-474f8b643310",
-    "c": "2ffb3e62-edda-4c25-80ad-ea1bde4c829e"
+    "c": "de71610f-5cc1-45b0-b843-f7ed6ee7bff8"
   }
 }

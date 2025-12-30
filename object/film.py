@@ -13,6 +13,37 @@ class Film:
         self.description = description
         self.comments = comments if comments  is not None else []
 
+    def to_dict(self):
+        return{
+            "name": self.name,
+            "director": self.director,
+            "producer": self.producer,
+            "year": self.year,
+            "genre": self.genre,
+            "ratings": self.ratings,
+            "cast": [{
+                "actor": actor.name,
+                "role": actor.role
+                }
+                for actor in self.cast
+            ],
+            "comments": [
+                {
+                    "user": comment.user,
+                    "message": comment.message  
+                }
+                for comment in self.comments
+            ],
+            "age_rating": self.age_rating,
+            "description": self.description
+        }
+    
+    def add_actor(self, actor):
+        for a in self.cast:
+            if a.name == actor.name and a.role == actor.role:
+                return
+        self.cast.append(actor)
+
     def prompt_name(self):
         name = input("Whats the name of the film? : ").strip()
         self.name = name if name else None

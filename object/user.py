@@ -1,11 +1,27 @@
 class User:
-    def __init__(self, username):
-        self.username = username
-        self.watchList=[]
-        self.films_added=0
+    def __init__(self, record):
+        self.id = record["id"]
+        self.username = record["username"]
+        self.watchList= record.get("watchlist", [])
+        self.films_added= record.get("films_added", 0)
         # A dictionary associating film names with their ratings (0-10)
-        self.ratings = {}
-        self.comments = {}
+        self.ratings = record.get("ratings", {})
+        self.comments = record.get("comments", {})
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "watchlist": [film.to_dict() for film in self.watchList],
+            "films_added": self.films_added,
+            "ratings": self.ratings,
+            "comments": [{
+                "user": comment.user,
+                "message": comment.message
+                }
+                for comment in self.comments
+            ]
+        }
 
     def add_to_watchList(self, film):
         self.watchList.append(film)

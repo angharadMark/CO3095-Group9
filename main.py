@@ -7,6 +7,8 @@ from object.comment import Comment
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
+from logic.user_registration import LoadUserById, saveUserRecord
+from logic.user_download import export_data
 from settings import settingsMenu
 from getpass import getpass
 
@@ -42,7 +44,9 @@ def main():
     
 
     from object.user import User
-    user=User(state.currentUser["username"])
+    user_record = LoadUserById(state.currentUser["id"])
+    user = User(user_record)
+    #user=User(state.currentUser["username"]) #user object here
 
     
     imports = DatabaseLoader()
@@ -63,6 +67,7 @@ def main():
         print("10: Account Settings")
         print("11: Comment on your watchlist")
         print("12: View actor filmography")
+        print("13: download your personal data")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -123,6 +128,8 @@ def main():
             rate_film_in_watchlist(user)
 
         elif quest == 9:
+            if state.isLoggedIn():
+                saveUserRecord(user.to_dict())
             break
         elif quest==10:
             settingsMenu(state)
@@ -139,13 +146,34 @@ def main():
             else:
                 ((user.get_watch_list())[film_num-1]).add_comment(Comment(message,user.username))
         elif quest==12:
-            target = input("What actor do you want to look at? : ")
-            results = database.search_actor(target)
-            for i,actor in enumerate(results,1):
-                print(f"{i}. {actor.name}")
+            while True: 
+                target = input("What actor do you want to look at? (or 'q' to exit)")
+                if target.lower() == "q":
+                    break
             
-            detail = int(input("Choose which one you want to look at in detail : "))
-            (results[detail-1]).filmography()
+                results = database.search_actor(target)
+
+                if results == False:
+                    print("We couldn't find that actor, please try again.")
+                    continue
+
+                for i,actor in enumerate(results,1):
+                    print(f"{i}. {actor.name}")
+                
+                detail = input("Choose which one you want to look at in detail (or 'q' to exit) ")
+                if detail.lower() == "q":
+                    break
+
+                try:
+                    detail = int(detail)
+                    if 1 <= detail <= len(results):
+                        (results[detail-1]).filmography()
+                    else:
+                        print("")
+                except ValueError:
+                    print("Invalid input, returning to menu.")
+        elif quest==13:
+            export_data(user)
 
         export.upload(database,"films.json")
 
