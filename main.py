@@ -65,6 +65,8 @@ def main():
         print("10: Account Settings")
         print("11: Movie of the Day")
         print("12: Search for a movie using a keyword")
+        print("13: Save watchlist to txt file")
+
         print("\n")
 
         # Admin Username= admin
@@ -156,6 +158,9 @@ def main():
             else:
                 print("No movies found with that keyword")
                       
+        elif quest==13:
+            from logic.file_manager import exportWatchlist
+            exportWatchlist(user)
         elif quest==100 and username=="admin":
             adminMenu(state)
 
