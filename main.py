@@ -4,6 +4,8 @@ from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
 from object.film import Film
 from logic.watchlist_similarity import WatchlistSimilarity
+from logic.messaging_system import MessagingSystem
+from logic.user_registration import userExists
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
@@ -66,6 +68,7 @@ def main():
         print("10: Account Settings")
         print("11: Show similar watchlists")
         print("12: Manage dislikes")
+        print("13: Messaging")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -142,10 +145,73 @@ def main():
 
         elif quest == 12:
             manage_dislikes(user, database)
+        elif quest == 13:
+            message_system(user, database)
 
         export.upload(database,"films.json")
         user.write()
         
+def message_system(user, database):
+    while True:
+        unread = user.unread_message_count()
+
+        if unread > 0:
+            print(f"You have {unread} unread messages!")
+            print()
+
+        print("1: View inbox")
+        print("2: Send message")
+        print("3: Exit menu")
+
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            user_inbox = user.get_inbox()
+            if len(user_inbox) == 0:
+                print("You have no messages")
+
+            for (i, message) in enumerate(reversed(user.get_inbox())):
+                sender = message.get_sender_username()
+                message_content = message.get_message()
+                message_header_suffix = " (NEW)" if not message.get_read_status() else ""
+                print()
+                print(f"Message #{i+1}{message_header_suffix}")
+                print(f"    From: {sender}")
+                print(f"    Content: {message_content}")
+                message.mark_as_read()
+
+        elif user_input == 2:
+            target_username = None
+            message_content = None
+
+            while target_username == None:
+                input_username = input("Who do you want to send a message to? (Enter their exact username): ")
+                if not userExists(input_username):
+                    print("This user could not be found.")
+                    choice = input("Would you like to try again y/n : ")
+                    if choice.lower() == "y":
+                        continue
+                    else:
+                        break
+                target_username = input_username
+
+            if target_username != None:
+                while message_content == None:
+                    message_content = input("Write your message: ")
+
+                    choice = input("Is this message fine? (Y to proceed, N to rewrite your message): ")
+                    if choice.lower() == "n":
+                        message_content = None
+                        continue
+
+            if target_username != None and message_content != None:
+                if MessagingSystem.message_user(user, 
+                    target_username, message_content, database):
+                    print(f"Message sent to {target_username}")
+                else:
+                    print("Could not send this message. Try again later")
+
+        elif user_input == 3: return
 
 def manage_dislikes(user, database):
     while True:
