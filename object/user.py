@@ -9,6 +9,8 @@ class User:
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = {}
 
+        self.dislikes = []
+
     def add_to_watchList(self, film):
         self.watchList.append(film)
 
@@ -72,6 +74,9 @@ class User:
         if "filmsAdded" in user_data.keys():
             self.set_films_added(user_data["filmsAdded"]) 
 
+        if "dislikes" in user_data.keys():
+            self.dislikes = [database.get_film(film_title) for film_title in user_data["dislikes"]]
+
     # save data to users file.
     def write(self):
         users_json_data = readJson(usersFile, {"byId":{}, "byUsername": {}})
@@ -87,7 +92,7 @@ class User:
         copied_user = self.to_dict()
         copied_user["id"] = user_id
         copied_user["username"] = saved_username
-        copied_user["passwordHash"]= saved_hash
+        copied_user["passwordHash"] = saved_hash
 
         users_json_data["byId"][user_id] = copied_user
 
@@ -101,10 +106,23 @@ class User:
     def get_watch_list(self):
         return self.watchList
 
+    def get_dislikes(self):
+        return self.dislikes
+
+    def dislike_film(self, film):
+        if film not in self.dislikes:
+            self.dislikes.append(film)
+            return film
+        return None
+
+    def undislike_film(self, film):
+        self.dislikes.remove(film)
+
     def to_dict(self):
         return {
             "watchList": [film.name for film in self.watchList],
             "filmsAdded": self.films_added,
-            "ratings": self.ratings
+            "ratings": self.ratings,
+            "dislikes": [film.name for film in self.dislikes]
         }
 
