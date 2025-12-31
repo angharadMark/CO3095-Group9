@@ -203,7 +203,7 @@ def watchlist_dialog(database, user):
 
 def main():
     state=UserState()
-    print("Welcome to the film reccomendation system")
+    print("Welcome to the film recommendation system")
 
     # Log in / Register first
     while not state.isLoggedIn():
@@ -216,7 +216,7 @@ def main():
         #Login
         if choice==1:
             username = input("Username: ").strip()
-            password = getpass("Password: ")
+            password = input("Password: ")
 
             user = loginUser(username, password)
 
