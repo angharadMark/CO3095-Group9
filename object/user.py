@@ -1,6 +1,6 @@
 class User:
     AVATAR_OPTIONS=[
-        #Got these from https://www.asciiart.eu
+        # Got these from https://www.asciiart.eu
         # Option 1: Neutral Face
         (
             "   /\\ \n"

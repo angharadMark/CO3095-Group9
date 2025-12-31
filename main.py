@@ -3,6 +3,7 @@ from database.database import Database
 from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
 from object.film import Film
+from object.film import searchMovies
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
@@ -63,6 +64,7 @@ def main():
         print("9: Exit")
         print("10: Account Settings")
         print("11: Movie of the Day")
+        print("12: Search for a movie using a keyword")
         print("\n")
 
         # Admin Username= admin
@@ -140,6 +142,19 @@ def main():
                 print(f"Description: {motd.description}")
             else:
                 print("No movies available")
+
+        elif quest == 12:
+            searchKeyword = input("\nEnter a Movie Title or Keyword to search: ")
+            all_films = database.get_all_films() 
+            foundMovies = searchMovies(all_films, searchKeyword)
+            
+            if foundMovies:
+                print(f"\n--- Found {len(foundMovies)} match(es) ---")
+                for idx, movie in enumerate(foundMovies, 1):
+                    desc = getattr(movie, 'description', "No description") or "No description"
+                    print(f"{idx}. {movie.name} - {desc[:50]}...")
+            else:
+                print("No movies found with that keyword")
                       
         elif quest==100 and username=="admin":
             adminMenu(state)
