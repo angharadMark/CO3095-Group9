@@ -24,7 +24,9 @@ def settingsMenu(state:UserState):
         print("4. Change profile picture")
         print("5. Change favourite film")
         print("6. Logout")
-        print("7. Back")
+        print("7. Delete Account")
+        print("8. Back")
+
 
         choice = input("Select an option: ")
 
@@ -64,8 +66,19 @@ def settingsMenu(state:UserState):
             state.logout()
             print("Logged out.")
             break
-
         elif choice == "7":
+            confirm=input("Are you absolutely sure? y/n   ")
+            if confirm.lower()=="y":
+                success=deleteUserAccount(user_id)
+                if success:
+                    print("Succesffully deleted account.")
+                    state.logout()
+                    break
+                else:
+                    print("Error, could not delete account. ")
+            else:
+                print("Delete cancelled. ")
+        elif choice == "8":
             break
 
         else:
