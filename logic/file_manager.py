@@ -1,5 +1,7 @@
 import os
 
+
+# Used https://coderivers.org/blog/python-save-to-text-file/ to help better understand exporting
 def exportWatchlist(user):
     watchlist=user.get_watch_list()
     if not watchlist:
