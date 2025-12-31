@@ -1,6 +1,8 @@
 from copy import deepcopy
 from logic.user_registration import readJson, saveJson, usersFile
 
+from object.user_message import UserMessage
+
 class User:
     def __init__(self, username):
         self.username = username
@@ -10,6 +12,7 @@ class User:
         self.ratings = {}
 
         self.dislikes = []
+        self.inbox = []
 
     def add_to_watchList(self, film):
         self.watchList.append(film)
@@ -77,6 +80,9 @@ class User:
         if "dislikes" in user_data.keys():
             self.dislikes = [database.get_film(film_title) for film_title in user_data["dislikes"]]
 
+        if "inbox" in user_data.keys():
+            self.inbox = [UserMessage.from_dict(message_dict) for message_dict in user_data["inbox"]]
+
     # save data to users file.
     def write(self):
         users_json_data = readJson(usersFile, {"byId":{}, "byUsername": {}})
@@ -118,11 +124,21 @@ class User:
     def undislike_film(self, film):
         self.dislikes.remove(film)
 
+    def get_inbox(self):
+        return self.inbox
+
+    def unread_message_count(self):
+        return sum([1 if not message.get_read_status() else 0 for message in self.inbox])
+
+    def send_message(self, message):
+        self.inbox.append(message)
+
     def to_dict(self):
         return {
             "watchList": [film.name for film in self.watchList],
             "filmsAdded": self.films_added,
             "ratings": self.ratings,
-            "dislikes": [film.name for film in self.dislikes]
+            "dislikes": [film.name for film in self.dislikes],
+            "inbox": [message.to_dict() for message in self.inbox]
         }
 
