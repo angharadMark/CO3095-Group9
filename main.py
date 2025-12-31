@@ -65,6 +65,7 @@ def main():
         print("9: Exit")
         print("10: Account Settings")
         print("11: Show similar watchlists")
+        print("12: Manage dislikes")
         print("\n")
         
         quest = int(input("Please select an option: "))
@@ -139,9 +140,113 @@ def main():
 
                 similar_user.display_watchlist(displaying_other_user = True)
 
+        elif quest == 12:
+            manage_dislikes(user, database)
+
         export.upload(database,"films.json")
         user.write()
         
+
+def manage_dislikes(user, database):
+    while True:
+        print("1: Dislike a film in your watchlist")
+        print("2: Dislike a film from the database")
+        print("3: Remove a dislike")
+        print("4: Show disliked films")
+        print("5: Exit menu")
+
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            user_watchlist = user.get_watch_list()
+
+            if len(user_watchlist) < 1:
+                print("No films in watchlist")
+                continue
+
+            film = None
+
+            while film == None:
+                for (i, film) in enumerate(user_watchlist):
+                    print(f"{i+1}: {film.name}")
+                print()
+
+                user_input = input("Select a film in your watchlist to dislike: ")
+
+                try:
+                    result = int(user_input)
+                    if result < 1 or result > len(user_watchlist):
+                        print(f"Film #{result} cannot be found in your watchlist")
+                        raise ValueError("outside of range")
+
+                    film = user_watchlist[result - 1]
+                except ValueError:
+                    choice = input("Would you like to try again y/n : ")
+                    if choice.lower() == "y":
+                        continue
+                    else:
+                        break
+
+            if film != None:
+                if user.dislike_film(film) == None:
+                    print("Film already is disliked!")
+                else:
+                    print(f"Film '{film.name}' disliked")
+
+
+        elif user_input == 2:
+            film = input("Please input the film name you want to dislike: ")
+            result = database.get_film(film)
+            while result == False:
+                print("Your film could not be found")
+                choice = input("Would you like to try again y/n : ")
+                if choice.lower() == "y":
+                    film = input("Please input the film again: ")
+                    result = database.get_film(film)
+                else:
+                    break
+
+               
+            if result != False:
+                if user.dislike_film(result) == None:
+                    print("Film already is disliked!")
+                else:
+                    print(f"Film '{result.name}' disliked")
+
+        elif user_input == 3:
+            for (i, film) in enumerate(user.get_dislikes()):
+                print(f"{i+1}: {film.name}")
+            print()
+
+            user_input = input("Select which dislike to remove: ")
+
+            user_dislikes = user.get_dislikes()
+
+            film = None
+
+            try:
+                result = int(user_input)
+                if result < 1 or result > len(user_dislikes):
+                    print(f"Film #{result} cannot be found in your watchlist")
+                    raise ValueError("outside of range")
+
+                film = user_dislikes[result - 1]
+            except ValueError:
+                choice = input("Would you like to try again y/n : ")
+                if choice.lower() == "y":
+                    continue
+                else:
+                    break
+
+            if film != None:
+                user.undislike_film(film)
+            
+        elif user_input == 4:
+            for (i, film) in enumerate(user.get_dislikes()):
+                print(f"{i+1}: {film.name}")
+            print()
+
+        elif user_input == 5: return
 
 def rate_film_in_watchlist(user):
     user_watchlist = user.get_watch_list()
