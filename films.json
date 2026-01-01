@@ -10,6 +10,7 @@
     ],
     "ratings": [
       8.0,
+      10.0,
       10.0
     ],
     "cast": [
@@ -30,7 +31,12 @@
         "role": "Eames"
       }
     ],
-    "comments": [],
+    "comments": [
+      {
+        "user": "Anonymous",
+        "message": "****"
+      }
+    ],
     "age_rating": "15",
     "description": null
   },

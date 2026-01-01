@@ -13,3 +13,6 @@ class UserState:
     def logout(self):
         #Clear the current user.
         self.currentUser = None
+    
+    def isAdmin(self) -> bool:
+        return self.currentUser and self.currentUser.get("isAdmin", False)

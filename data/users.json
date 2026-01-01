@@ -1,16 +1,68 @@
 {
   "byId": {
-    "de71610f-5cc1-45b0-b843-f7ed6ee7bff8": {
-      "id": "de71610f-5cc1-45b0-b843-f7ed6ee7bff8",
+    "e49e9e2e-0fe6-4e2d-ae35-5a7772033f50": {
+      "id": "e49e9e2e-0fe6-4e2d-ae35-5a7772033f50",
       "username": "c",
-      "passwordHash": "$2b$12$Y.SMEAA8tCI5HCOD4F/sGOojvMrMHhM6KL4YFx6NAPRwKdHbKDUm2",
+      "watchlist": [
+        {
+          "name": "Inception",
+          "director": "Christopher Nolan",
+          "producer": "name",
+          "year": 2010,
+          "genre": [
+            "horror",
+            "random"
+          ],
+          "ratings": [
+            8.0,
+            10.0,
+            10.0
+          ],
+          "cast": [
+            {
+              "actor": "Leonardo DiCaprio",
+              "role": "Cobb"
+            },
+            {
+              "actor": "Joseph Gordon-Levitt",
+              "role": "Arthur"
+            },
+            {
+              "actor": "Elliot Page",
+              "role": "Ariadne"
+            },
+            {
+              "actor": "Tom Hardy",
+              "role": "Eames"
+            }
+          ],
+          "comments": [
+            {
+              "user": "Anonymous",
+              "message": "****"
+            }
+          ],
+          "age_rating": "15",
+          "description": null
+        }
+      ],
+      "films_added": 0,
+      "ratings": {},
+      "comments": []
+    },
+    "65c6d64d-46c9-4005-8d31-99c0c18696a7": {
+      "id": "65c6d64d-46c9-4005-8d31-99c0c18696a7",
+      "username": "admin",
+      "passwordHash": "$2b$12$uNC5UwMnKmzUK0I/vBTf4esl0REg0iVciCEv/DqAI20r1wTH8TAYS",
       "watchlist": [],
       "films_added": 0,
       "ratings": {},
-      "comments": {}
+      "comments": {},
+      "isAdmin": true
     }
   },
   "byUsername": {
-    "c": "de71610f-5cc1-45b0-b843-f7ed6ee7bff8"
+    "c": "e49e9e2e-0fe6-4e2d-ae35-5a7772033f50",
+    "admin": "65c6d64d-46c9-4005-8d31-99c0c18696a7"
   }
 }
