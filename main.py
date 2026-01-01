@@ -13,10 +13,6 @@ from settings import settingsMenu, adminMenu
 from getpass import getpass
 
 from logic.friends_system import friends_menu
-
-import os
-import sys
-import subprocess
 from logic.user_registration import registerUser, userExists
 
 
