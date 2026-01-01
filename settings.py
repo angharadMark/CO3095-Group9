@@ -3,6 +3,12 @@ from logic.user_state import UserState
 from logic.user_settings import changePassword, changeUsername, changeAvatarMenu, changeFavFilmMenu, deleteUserAccount
 from object.user import User
 from logic.user_registration import readJson,usersFile
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+HTML_PATH = BASE_DIR / "data" / "scrape_sources" / "movies.html"
+FILMS_PATH = BASE_DIR / "films.json"
+
 
 def settingsMenu(state:UserState):
     if not state.isLoggedIn():
@@ -93,6 +99,7 @@ def adminMenu(state:UserState):
         print("----------------")
         print("1. Delete user's account")
         print("2. Print out all user account's names")
+        print("3. Scrape movies from HTML file")
         
 
         adminChoice = input("Select an option: ")
@@ -133,4 +140,12 @@ def adminMenu(state:UserState):
             for i, name in enumerate(usernames, 1):
                 print(f"{i}. {name}")
             print("------------------------")
+
+        elif adminChoice == "3":
+            from logic.admin_actions import import_movies
+
+            added, skipped = import_movies(HTML_PATH, FILMS_PATH)
+            print(f"Added {added}, skipped {skipped}")
+
+
 
