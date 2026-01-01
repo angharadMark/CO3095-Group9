@@ -30,8 +30,6 @@ class DatabaseLoader:
                     description=f.get('description'),
                     comments=[]
                 )
-
-                # Load cast (deduplicated)
                 seen_cast = set()
                 for actor_data in f.get("cast", []):
                     if isinstance(actor_data, dict):
@@ -56,7 +54,6 @@ class DatabaseLoader:
                     film.add_actor(actor)
                     database.add_actor(actor)
 
-                # Load comments
                 for c in f.get("comments", []):
                     if isinstance(c, dict) and "user" in c and "message" in c:
                         comments.append(Comment(user=c["user"], message=c["message"]))

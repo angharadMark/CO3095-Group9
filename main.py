@@ -10,6 +10,7 @@ from logic.user_state import UserState
 from logic.user_login import loginUser
 from logic.user_registration import LoadUserById, saveUserRecord
 from logic.user_download import export_data
+from logic.admin_menu import add_profan, delete_profan
 from settings import settingsMenu
 from logic.movie_recommendations import getMovieOfTheDay
 from settings import settingsMenu, adminMenu
@@ -108,8 +109,60 @@ def main():
     imports = DatabaseLoader()
     database = imports.load("films.json")
     export = DatabaseWriter()
+    options = [
+        "1: Add a film to the database",
+        "2: Add a film to your watch list",
+        "3: Rate a film in your watchlist",
+        "4: Show popular films",
+        "5: View your watch list",
+        "6: View all films in database",
+        "7: Get films based on age rating",
+        "8: Rate a film in your watchlist",
+        "9: Exit",
+        "10: Account Settings",
+        "11: Comment on your watchlist",
+        "12: View actor filmography",
+        "13: download your personal data"
+            ]
+    admin_options = [
+        "1: Add to profanity filter",
+        "2: Delete from profanity fitler",
+        "3: Exit"
+        ]
+    while state.isLoggedIn() and state.isAdmin():
+        print("\n")
+        print("Welcome to the admin menu!")
+        for admin_op in admin_options:
+            print(admin_op)
+        print("\n")
+        while True:
+            quest = int(input("Please select an option: "))
+
+            if quest not in range(1, len(admin_options)):
+                print("Invalid option.")
+                break
+
+        if quest == 1:
+            profan = input("What profanity do you need to add: ")
+            add_profan(profan)
+        elif quest == 2:
+            while True:
+                profan = input("What profanity do you need to delete (or press 'q' to quit) ")
+                if profan.lower() == 'q':
+                    break
+                
+                if delete_profan(profan) == False:
+                    print("Word could not be found.")
+                    continue
+            print("Your word",profan,"has been deleted from the filter")
+        elif quest == 3:
+            break
+
     while state.isLoggedIn():
         print("\n")
+        print("Welcome to the film reccomendation system!")
+        for option in options:
+            print(option)
         print("\nWelcome to the film recommendation system!")
 
         print("\n--- DATABASE ---")
@@ -155,7 +208,17 @@ def main():
             print("100: Administrator Tools")
 
         
-        quest = int(input("Please select an option: "))
+        while True:
+            quest = input("Please select an option: ")
+            if not quest.isdigit():
+                print("Please select a number")
+                continue
+
+            quest = int(quest)
+            if quest not in range(1, len(options)):
+                print("Invalid option, please try again.")
+                continue
+            break
 
         if quest == 1:
             film = Film()
@@ -235,26 +298,43 @@ def main():
         elif quest==10:
             settingsMenu(state)
         elif quest==11:
-            for i,film in enumerate(user.get_watch_list(), 1):
-            from logic.file_manager import exportWatchlist
-            exportWatchlist(user)
-
-        elif quest == 10:
-            if not feature_on("comments"):
-                print("This feature is currently disabled by the administrator.")
-                continue
-
-            for i, film in enumerate(user.get_watch_list(), 1):
+            watchlist = user.get_watch_list()
+            for i,film in enumerate(watchlist, 1):
                 print(f"{i}. {film.name}")
+            
+            #need to fix, make sure input is digit
+            while True:
+                film_num = input("Which film do you want to comment on? or press 'q' to quit: ")
+                if film_num.strip().lower() == 'q':
+                    break
 
-            film_num = int(input("Which film do you want to comment on? : "))
-            anon = int(input("would you like it to be anonymous? 1: Y 2: N "))
-            message = input("Input your comment: ")
+                if not film_num.isdigit():
+                    print("Invalid input, please try again")
+                    continue
+                    
+                film_num = int(film_num)
 
-            if anon == 1:
-                ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message))
-            else:
-                ((user.get_watch_list())[film_num-1]).add_comment(Comment(message,user.username))
+                if not (1 <= film_num <= len(watchlist)):
+                    print("Invalid film number, please choose from the list")
+                    continue
+
+                while True:
+                    anon = input("would you like it to be anonymous? 1: Y 2: N ")
+                    if anon in ("1", "2"):
+                        anon = int(anon)
+                        break
+                    print("invalid choice, please enter 1 or 2")
+
+                message = input("Input your comment: ").strip()
+                if not message:
+                    print("comment cannot be empty, please try again.")
+                    continue
+
+                if anon == 1:
+                    (watchlist[film_num-1]).add_comment(Comment(message))
+                else:
+                    (watchlist[film_num-1]).add_comment(Comment(message,user.username))
+
         elif quest==12:
             while True: 
                 target = input("What actor do you want to look at? (or 'q' to exit)")
