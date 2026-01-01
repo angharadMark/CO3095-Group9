@@ -70,6 +70,7 @@ def registerUser(username: str, password: str):
         "username": username,
         "passwordHash": hashPassword(password),
         "avatarIndex":0,
+        "friends": [],
     }
 
     users["byId"][userId] = record

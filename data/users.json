@@ -4,7 +4,10 @@
       "id": "3ba09667-a149-459c-91f9-479db61479fc",
       "username": "emre",
       "passwordHash": "$2b$12$t1P4WZu.HVkr2HfpbTaFnutAbLLYFwapvSeygZVB9LnVudHcMRRSm",
-      "avatarIndex": 0,
+      "avatarIndex": 2,
+      "friends": [
+        "370b447a-7d83-454b-89eb-992f1726ad11"
+      ],
       "favFilm": "Inception"
     },
     "d6bc8a63-d832-4aff-a4c4-a207a5768a20": {
@@ -18,28 +21,19 @@
       "id": "bbfc651f-d488-45fc-b248-5a45454a49bc",
       "username": "test",
       "passwordHash": "$2b$12$pblL9pyMq.pL6mX6vEM2Me5tvkFgHgqsNgQ27UW9JNZzjhdspypxO",
-      "avatarIndex": 0,
-      "favFilm": "Inception"
+      "avatarIndex": 0
     },
     "b9895d05-667f-44ed-8e55-474f8b643310": {
       "id": "b9895d05-667f-44ed-8e55-474f8b643310",
       "username": "ang",
       "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6",
-      "avatarIndex": 3,
-      "favFilm": "asd"
-    },
-    "13e166b7-7c19-45eb-8d73-35e7a68721dc": {
-      "id": "13e166b7-7c19-45eb-8d73-35e7a68721dc",
-      "username": "admin",
-      "passwordHash": "$2b$12$bRUTp92v/x2s1rxi4JEwPuAjVjXsqssQk24y09gJ7I9CW4u6oFDC.",
-      "avatarIndex": 0
+      "avatarIndex": 3
     }
   },
   "byUsername": {
     "emre": "3ba09667-a149-459c-91f9-479db61479fc",
     "Bemre": "d6bc8a63-d832-4aff-a4c4-a207a5768a20",
     "test": "bbfc651f-d488-45fc-b248-5a45454a49bc",
-    "ang": "b9895d05-667f-44ed-8e55-474f8b643310",
-    "admin": "13e166b7-7c19-45eb-8d73-35e7a68721dc"
+    "ang": "b9895d05-667f-44ed-8e55-474f8b643310"
   }
 }

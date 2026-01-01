@@ -11,6 +11,10 @@ from logic.movie_recommendations import getMovieOfTheDay
 from settings import settingsMenu, adminMenu
 from getpass import getpass
 
+from logic.friends_system import friends_menu
+
+
+
 
 def main():
     state=UserState()
@@ -66,6 +70,8 @@ def main():
         print("11: Movie of the Day")
         print("12: Search for a movie using a keyword")
         print("13: Save watchlist to txt file")
+        print("14: Friends System")
+
 
         print("\n")
 
@@ -161,6 +167,8 @@ def main():
         elif quest==13:
             from logic.file_manager import exportWatchlist
             exportWatchlist(user)
+        elif quest == 14:
+            friends_menu(state.currentUser["id"])
         elif quest==100 and username=="admin":
             adminMenu(state)
 
