@@ -14,6 +14,49 @@ from getpass import getpass
 
 from logic.friends_system import friends_menu
 
+import os
+import sys
+import subprocess
+from logic.user_registration import registerUser, userExists
+
+
+
+def register_flow():
+    print("\nWelcome to the registration tool\n")
+
+    while True:
+        username = input("Enter a username: ").strip()
+        if not username:
+            print("Your username cannot be empty")
+            continue
+        if userExists(username):
+            print("That username already exists")
+            continue
+        break
+
+    while True:
+        password = getpass("Enter a password (Min 6 chars):")
+        confirm = getpass("Confirm Password: ")
+        if password != confirm:
+            print("Passwords do not match. \n")
+            continue
+        if len(password) < 6:
+            print("Password too short.\n")
+            continue
+        break
+
+    try:
+        user = registerUser(username, password)
+        print(f"\n user '{user['username']}' registered successfully!")
+        print(f" User ID: {user['id']}")
+        return user
+    except Exception as e:
+        print("Registration failed:", e)
+        return None
+
+
+
+
 
 
 
@@ -41,8 +84,14 @@ def main():
             else:
                 print("\nInvalid username or password.")
         #Register
-        if choice==2:
-            print("Run register_CLI.py to register")
+        if choice == 2:
+            new_user = register_flow()
+            if new_user:
+                state.login(new_user)
+                print(f"\nLogged in as {state.currentUser['username']} (id: {state.currentUser['id']})")
+            continue
+
+
         #Exit
         if choice==3:
             return
@@ -57,30 +106,41 @@ def main():
     export = DatabaseWriter()
     while state.isLoggedIn():
         print("\n")
-        print("Welcome to the film reccomendation system!")
-        print("1: Add a film to the database")
-        print("2: Add a film to your watch list")
-        print("3: Rate a film in your watchlist")
-        print("4: Show popular films")
-        print("5: View your watch list")
-        print("6: View all films in database")
-        print("7: Get films based on age rating")
-        print("8: Rate a film in your watchlist")
-        print("9: Exit")
-        print("10: Account Settings")
-        print("11: Movie of the Day")
-        print("12: Search for a movie using a keyword")
-        print("13: Save watchlist to txt file")
+        print("\nWelcome to the film recommendation system!")
 
-        print("14: Friends System")
-        print("15: Comment on your watchlist")
+        print("\n--- DATABASE ---")
+        print("1: Add a film to the database")
+        print("2: Show popular films")
+        print("3: View all films in database")
+        print("4: Get films based on age rating")
+        print("5: Search for a movie using a keyword")
+
+        print("\n--- WATCHLIST ---")
+        print("6: Add a film to your watchlist")
+        print("7: View your watchlist")
+        print("8: Rate a film in your watchlist")
+        print("9: Save watchlist to txt file")
+        print("10: Comment on your watchlist")
+
+        print("\n--- DISCOVER ---")
+        print("11: Movie of the Day")
+
+        print("\n--- SOCIAL ---")
+        print("12: Friends System")
+
+        print("\n--- ACCOUNT ---")
+        print("13: Account Settings")
+
+        print("\n14: Exit")
+
 
         print("\n")
 
         # Admin Username= admin
         # Admin Password= admins
-        if username=="admin":
+        if state.currentUser["username"] == "admin":
             print("100: Administrator Tools")
+
         
         quest = int(input("Please select an option: "))
 
@@ -92,6 +152,43 @@ def main():
                 database.add_films(film)
 
         elif quest == 2:
+            database.popular_films()
+
+        elif quest == 3:
+            all_films = database.get_all_films()
+            if not all_films:
+                print("Database empty")
+            else:
+                print("\nAll films in the database:")
+                for i, film in enumerate(all_films, 1):
+                    print(f"{i}.{film.name}")
+            print()
+
+        elif quest == 4:
+            user_age = input("Please enter the minimum age rating you want the film to be: ")
+            age_filtered_films = database.get_age_filtered_films(user_age)
+
+            if not age_filtered_films:
+                print("No films match that age rating.")
+            else:
+                print("\nAll age appropriate films in the database:")
+                for i, film in enumerate(age_filtered_films, 1):
+                    print(f"{i}. {film.name}")
+
+        elif quest == 5:
+            searchKeyword = input("\nEnter a Movie Title or Keyword to search: ")
+            all_films = database.get_all_films()
+            foundMovies = searchMovies(all_films, searchKeyword)
+
+            if foundMovies:
+                print(f"\n--- Found {len(foundMovies)} match(es) ---")
+                for idx, movie in enumerate(foundMovies, 1):
+                    desc = getattr(movie, 'description', "No description") or "No description"
+                    print(f"{idx}. {movie.name} - {desc[:50]}...")
+            else:
+                print("No movies found with that keyword")
+
+        elif quest == 6:
             film = input("Please input the film name you want to add: ")
             result = database.get_film(film)
             while result == False:
@@ -102,6 +199,7 @@ def main():
                     result = database.get_film(film)
                 else:
                     break
+
             result.display_film()
             correct_check = input("Is this the correct film? Y/N : ").strip()
             if correct_check.lower() == "n":
@@ -109,42 +207,33 @@ def main():
                 pass
             user.add_to_watchList(result)
             print("Film added to watchlist!")
-        elif quest == 3:
-            rate_film_in_watchlist(user)
-        elif quest == 4:
-            database.popular_films()
-        elif quest == 5:
+
+        elif quest == 7:
             user.display_watchlist()
             print()
-        elif quest == 6:
-            all_films=database.get_all_films()
-            if not all_films:
-                print("Database empty")
-            else:
-                print("\nAll films in the database:")
-                for i, film in enumerate(all_films,1):
-                    print(f"{i}.{film.name}")
-            print()
-        elif quest == 7:
-            user_age = input("Please enter the minimum age rating you want the film to be: ")
-            age_filtered_films = database.get_age_filtered_films(user_age)
 
-            if not age_filtered_films:
-                print("No films match that age rating.")
-            else:
-                print("\nAll age appropriate films in the database:")
-                for i, film in enumerate(age_filtered_films, 1):
-                    print(f"{i}. {film.name}")
-                    
         elif quest == 8:
             rate_film_in_watchlist(user)
 
         elif quest == 9:
-            break
-        elif quest==10:
-            settingsMenu(state)
-        elif quest==11:
-            motd=getMovieOfTheDay()
+            from logic.file_manager import exportWatchlist
+            exportWatchlist(user)
+
+        elif quest == 10:
+            for i, film in enumerate(user.get_watch_list(), 1):
+                print(f"{i}. {film.name}")
+
+            film_num = int(input("Which film do you want to comment on? : "))
+            anon = int(input("would you like it to be anonymous? 1: Y 2: N "))
+            message = input("Input your comment: ")
+
+            if anon == 1:
+                ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message))
+            else:
+                ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
+
+        elif quest == 11:
+            motd = getMovieOfTheDay()
             print()
             print("--- MOVIE OF THE DAY ---")
             if motd:
@@ -154,39 +243,19 @@ def main():
                 print("No movies available")
 
         elif quest == 12:
-            searchKeyword = input("\nEnter a Movie Title or Keyword to search: ")
-            all_films = database.get_all_films() 
-            foundMovies = searchMovies(all_films, searchKeyword)
-            
-            if foundMovies:
-                print(f"\n--- Found {len(foundMovies)} match(es) ---")
-                for idx, movie in enumerate(foundMovies, 1):
-                    desc = getattr(movie, 'description', "No description") or "No description"
-                    print(f"{idx}. {movie.name} - {desc[:50]}...")
-            else:
-                print("No movies found with that keyword")
-                      
-        elif quest==13:
-            from logic.file_manager import exportWatchlist
-            exportWatchlist(user)
-        elif quest==100 and username=="admin":
-            adminMenu(state)
-        elif quest == 14:
             friends_menu(state.currentUser["id"])
 
-        elif quest==15:
-            for i,film in enumerate(user.get_watch_list(), 1):
-                print(f"{i}. {film.name}")
-            
-            film_num = int(input("Which film do you want to comment on? : "))
-            anon = int(input("would you like it to be anonymous? 1: Y 2: N "))
-            message = input("Input your comment: ")
+        elif quest == 13:
+            settingsMenu(state)
 
-            if anon == 1:
-                ((user.get_watch_list())[film_num-1]).add_comment(Comment(message))
-            else:
-                ((user.get_watch_list())[film_num-1]).add_comment(Comment(message,user.username))
-        export.upload(database,"films.json")
+        elif quest == 14:
+            break
+
+        elif quest == 100 and state.currentUser["username"] == "admin":
+            adminMenu(state)
+
+        export.upload(database, "films.json")
+
 
 def rate_film_in_watchlist(user):
     user_watchlist = user.get_watch_list()
