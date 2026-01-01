@@ -141,6 +141,9 @@ class User:
             print("Actors:")
             for actor in film.cast:
                 print(f"{actor.name} as {actor.role}")
+            print("Comments:")
+            for comment in film.comments:
+                comment.display_comment()
             
     def add_rating(self, film_name, rating):
         if rating < 0 or rating > 10:

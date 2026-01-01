@@ -1,4 +1,7 @@
 from logic.user_registration import readJson, saveJson, usersFile
+from database.database_loader import DatabaseLoader
+
+
 
 
 def _load_users():
@@ -38,6 +41,62 @@ def view_friends(current_user_id):
             print(f"- {friend['username']}")
         else:
             print(f"- Unknown user ({friend_id})")
+
+
+def view_friends_comments(current_user_id):
+    users = _load_users()
+    current_user = _get_user_record(users, current_user_id)
+
+    if not current_user:
+        print("Current user not found.")
+        return
+
+    current_user.setdefault("friends", [])
+
+    if len(current_user["friends"]) == 0:
+        print("You have no friends added.")
+        return
+
+    # Build a list of friend usernames
+    friend_usernames = []
+    for friend_id in current_user["friends"]:
+        friend = _get_user_record(users, friend_id)
+        if friend and "username" in friend:
+            friend_usernames.append(friend["username"])
+
+    if len(friend_usernames) == 0:
+        print("You have no friends added.")
+        return
+
+    print("\nYour friends:")
+    for username in friend_usernames:
+        print(f"- {username}")
+
+    chosen_username = input("\nWhich friend's comments would you like to see? ").strip()
+
+    if chosen_username not in friend_usernames:
+        print("That user is not in your friends list.")
+        return
+
+    # Load films database
+    imports = DatabaseLoader()
+    database = imports.load("films.json")
+
+    results = []
+    for film in database.films:
+        for comment in film.comments:
+            if comment.user == chosen_username:
+                results.append((film.name, comment.message))
+
+    if len(results) == 0:
+        print(f"{chosen_username} has not made any comments.")
+        return
+
+    print(f"\nComments by {chosen_username}:")
+    for film_name, message in results:
+        print(f"\nFilm: {film_name}")
+        print(f"Comment: {message}")
+
 
 
 def add_friend(current_user_id):
@@ -114,7 +173,8 @@ def friends_menu(current_user_id):
         print("1. View friends")
         print("2. Add friend")
         print("3. Remove friend")
-        print("4. Back")
+        print("4. View friends comments")
+        print("5. Back")
 
         choice = input("Choose an option: ").strip()
 
@@ -125,6 +185,8 @@ def friends_menu(current_user_id):
         elif choice == "3":
             remove_friend(current_user_id)
         elif choice == "4":
+            view_friends_comments(current_user_id)
+        elif choice == "5":
             break
         else:
             print("Invalid option.")

@@ -31,7 +31,8 @@
       8.0,
       10.0
     ],
-    "description": null
+    "description": null,
+    "comments": []
   },
   {
     "name": "The Matrix",
@@ -58,34 +59,17 @@
     "age_rating": 15,
     "year": 1999,
     "ratings": [],
-    "description": "Horror movie about...."
-  },
-  {
-    "name": "The Matrix",
-    "cast": [
+    "description": "Horror movie about....",
+    "comments": [
       {
-        "name": "Keanu Reeves",
-        "role": "Neo"
+        "user": "emre",
+        "comment": "NEO"
       },
       {
-        "name": "Carrie-Anne Moss",
-        "role": "Trinity"
-      },
-      {
-        "name": "Laurence Fishburne",
-        "role": "Morpheus"
+        "user": "emre",
+        "comment": "red or blue"
       }
-    ],
-    "producer": "name",
-    "director": null,
-    "genre": [
-      "horror",
-      "random"
-    ],
-    "age_rating": 15,
-    "year": 2010,
-    "ratings": [],
-    "description": "Horror movie about...."
+    ]
   },
   {
     "name": "Titanic",
@@ -112,7 +96,17 @@
     "age_rating": 12,
     "year": 1997,
     "ratings": [],
-    "description": "Romance movie about...."
+    "description": "Romance movie about....",
+    "comments": [
+      {
+        "user": "Anonymous",
+        "comment": "Good film!"
+      },
+      {
+        "user": "emre",
+        "comment": "ship"
+      }
+    ]
   },
   {
     "name": "test",
@@ -130,6 +124,7 @@
     "age_rating": "12",
     "year": "1245",
     "ratings": [],
-    "description": null
+    "description": null,
+    "comments": []
   }
 ]
