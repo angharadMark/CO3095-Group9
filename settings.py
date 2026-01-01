@@ -10,6 +10,84 @@ HTML_PATH = BASE_DIR / "data" / "scrape_sources" / "movies.html"
 FILMS_PATH = BASE_DIR / "films.json"
 
 
+import json
+import os
+
+INTERFACE_FILE = "interface.json"
+
+DEFAULT_INTERFACE = {
+    "friends": True,
+    "movie_of_day": True,
+    "comments": True,
+}
+
+def feature_on(key):
+    cfg = load_interface()
+    return cfg.get(key, True)
+
+def load_interface():
+    if not os.path.exists(INTERFACE_FILE):
+        return DEFAULT_INTERFACE.copy()
+
+    try:
+        with open(INTERFACE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # merge defaults so missing keys don't break things
+        cfg = DEFAULT_INTERFACE.copy()
+        for k in cfg:
+            if k in data:
+                cfg[k] = bool(data[k])
+        return cfg
+    except:
+        return DEFAULT_INTERFACE.copy()
+
+def save_interface(cfg):
+    with open(INTERFACE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=4)
+
+
+
+def interface_menu():
+    while True:
+        cfg = load_interface()
+
+        print("\nInterface Management")
+        print("-------------------")
+        print("1. Toggle Friends System        :", "ON" if cfg["friends"] else "OFF")
+        print("2. Toggle Movie of the Day      :", "ON" if cfg["movie_of_day"] else "OFF")
+        print("3. Toggle Comments              :", "ON" if cfg["comments"] else "OFF")
+        print("4. Reset to default")
+        print("5. Back")
+
+        choice = input("Select an option: ").strip()
+
+        if choice == "1":
+            cfg["friends"] = not cfg["friends"]
+            save_interface(cfg)
+
+        elif choice == "2":
+            cfg["movie_of_day"] = not cfg["movie_of_day"]
+            save_interface(cfg)
+
+        elif choice == "3":
+            cfg["comments"] = not cfg["comments"]
+            save_interface(cfg)
+
+
+        elif choice == "4":
+            save_interface(DEFAULT_INTERFACE.copy())
+            print("Reset complete.")
+
+        elif choice == "5":
+            return
+
+        else:
+            print("Invalid option")
+
+
+
+
 def settingsMenu(state:UserState):
     if not state.isLoggedIn():
         print("You must be logged in to access settings.")
@@ -100,6 +178,8 @@ def adminMenu(state:UserState):
         print("1. Delete user's account")
         print("2. Print out all user account's names")
         print("3. Scrape movies from HTML file")
+        print("4. Manage interface")
+
         
 
         adminChoice = input("Select an option: ")
@@ -146,6 +226,10 @@ def adminMenu(state:UserState):
 
             added, skipped = import_movies(HTML_PATH, FILMS_PATH)
             print(f"Added {added}, skipped {skipped}")
+
+        elif adminChoice == "4":
+            interface_menu()
+
 
 
 

@@ -15,6 +15,9 @@ from getpass import getpass
 from logic.friends_system import friends_menu
 from logic.user_registration import registerUser, userExists
 
+from settings import feature_on
+
+
 
 
 def register_flow():
@@ -116,13 +119,17 @@ def main():
         print("7: View your watchlist")
         print("8: Rate a film in your watchlist")
         print("9: Save watchlist to txt file")
-        print("10: Comment on your watchlist")
+        if feature_on("comments"):
+            print("10: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
-        print("11: Movie of the Day")
+        if feature_on("movie_of_day"):
+            print("11: Movie of the Day")
 
         print("\n--- SOCIAL ---")
-        print("12: Friends System")
+        if feature_on("friends"):
+            print("12: Friends System")
+
 
         print("\n--- ACCOUNT ---")
         print("13: Account Settings")
@@ -216,6 +223,10 @@ def main():
             exportWatchlist(user)
 
         elif quest == 10:
+            if not feature_on("comments"):
+                print("This feature is currently disabled by the administrator.")
+                continue
+
             for i, film in enumerate(user.get_watch_list(), 1):
                 print(f"{i}. {film.name}")
 
@@ -228,7 +239,12 @@ def main():
             else:
                 ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
 
+
         elif quest == 11:
+            if not feature_on("movie_of_day"):
+                print("This feature is currently disabled by the administrator.")
+                continue
+
             motd = getMovieOfTheDay()
             print()
             print("--- MOVIE OF THE DAY ---")
@@ -238,8 +254,12 @@ def main():
             else:
                 print("No movies available")
 
+
         elif quest == 12:
-            friends_menu(state.currentUser["id"])
+            if not feature_on("friends"):
+                print("This feature is currently disabled by the administrator.")
+            else:
+                friends_menu(state.currentUser["id"])
 
         elif quest == 13:
             settingsMenu(state)
