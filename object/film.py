@@ -1,7 +1,7 @@
 from object.actor import Actor
 
 class Film:
-    def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, ratings=None, description=None):
+    def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, ratings=None, description=None, comments=None):
         self.name = name
         self.cast = cast if cast is not None else []
         self.producer=producer
@@ -11,6 +11,7 @@ class Film:
         self.year = year
         self.ratings = ratings if ratings is not None else []
         self.description = description
+        self.comments  = comments if comments  is not None else []
 
     def prompt_name(self):
         name = input("Whats the name of the film? : ").strip()
@@ -102,6 +103,9 @@ class Film:
             print("unrated")
         else:
             print("Average rating: "+ str(self.average_rating()))
+        print("Comments: ")
+        for comment in self.comments:
+            comment.display_comment()
         print("\n")
     
     def add_ratings(self, rating):
@@ -119,6 +123,10 @@ def searchMovies(movies, keyword):
             results.append(movie)
     
     return results
+
+    def add_comment(self, comment):
+        self.comments.append(comment)
+
 
 
         
