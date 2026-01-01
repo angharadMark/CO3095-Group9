@@ -5,9 +5,7 @@
       "username": "emre",
       "passwordHash": "$2b$12$t1P4WZu.HVkr2HfpbTaFnutAbLLYFwapvSeygZVB9LnVudHcMRRSm",
       "avatarIndex": 2,
-      "friends": [
-        "370b447a-7d83-454b-89eb-992f1726ad11"
-      ],
+      "friends": [],
       "favFilm": "Inception"
     },
     "d6bc8a63-d832-4aff-a4c4-a207a5768a20": {
@@ -27,7 +25,8 @@
       "id": "b9895d05-667f-44ed-8e55-474f8b643310",
       "username": "ang",
       "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6",
-      "avatarIndex": 3
+      "avatarIndex": 3,
+      "friends": []
     }
   },
   "byUsername": {
