@@ -72,6 +72,9 @@ def registerUser(username: str, password: str):
         "comments": {},
         "isAdmin": False
         }
+        "avatarIndex":0,
+        "friends": [],
+    }
 
     users["byId"][userId] = record
     users["byUsername"][username] = userId

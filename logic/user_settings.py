@@ -5,6 +5,8 @@ from logic.user_registration import(
     hashPassword,
     verifyPassword,
 )
+from object.user import User
+
 
 def changeUsername(userID:str,newUsername:str):
     newUsername=(newUsername or "").strip()
@@ -53,3 +55,85 @@ def changePassword(userId:str,oldPassword:str,newPassword:str):
     user["passwordHash"]=hashPassword(newPassword)
     saveJson(usersFile,users)
     
+def saveAvatarIndex(userId: str, newIndex: int):
+    #Saves to JSON
+    users = readJson(usersFile, {"byId":{}, "byUsername":{}})
+    user = users["byId"].get(userId)
+    
+    if user:
+        user["avatarIndex"] = newIndex 
+        saveJson(usersFile, users)
+    else:
+        print("Warning: User record not found for avatar update.")
+
+def changeAvatarMenu(user_obj:User,user_id:str):
+    while True:
+        print("\n--- Change Profile Picture ---")
+        print("Select a new ASCII avatar:")
+
+        for i, avatar in enumerate(User.AVATAR_OPTIONS):
+            print(f"\n--- OPTION {i+1} ---") 
+            print(avatar)
+        
+        print("\nEnter 0 to go back to settings")
+        
+        choice = input("Select an option number: ")
+        
+        if choice == "0":
+            break
+            
+        try:
+            selection_index = int(choice) - 1
+            
+            if user_obj.change_avatar(selection_index):
+                saveAvatarIndex(user_id, selection_index)
+
+                print("\nProfile picture updated successfully!")
+                print("Your new avatar:")
+                print(user_obj.avatar_ascii)
+                break
+            else:
+                print("Invalid option number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+
+def saveFavFilm(userId: str, newFilm: str):
+    users = readJson(usersFile, {"byId":{}, "byUsername":{}})
+    user = users["byId"].get(userId) 
+
+    if user:
+        user["favFilm"] = newFilm
+        saveJson(usersFile, users)
+    else:
+        print("Warning: User record not found for favourite film update")
+
+def changeFavFilmMenu(user_obj: User, user_id: str):    
+    print("\n--- Change Favourite Film ---")
+    print(f"Current Favourite: {user_obj.favFilm}")
+    
+    new_film = input("Enter your new favourite film (or press Enter to cancel): ").strip()
+    
+    if new_film:
+        user_obj.change_favFilm(new_film)
+        saveFavFilm(user_id, new_film)
+        print("Favourite film updated successfully!")
+    else:
+        print("No changes made.")
+
+def deleteUserAccount(userId:str):
+    # Deletes a user's account based on the userId
+    users=readJson(usersFile,{"byId":{},"byUsername":{}})
+    # Check it exists
+    user_record=users["byId"].get(userId)
+
+    if user_record:
+        username=user_record.get("username")
+        del users["byId"][userId]
+        if username in users["byUsername"]:
+            del users["byUsername"][username]
+
+        saveJson(usersFile,users)
+        return True
+    return False
+

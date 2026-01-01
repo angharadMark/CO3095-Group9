@@ -66,7 +66,19 @@
     ],
     "comments": [],
     "age_rating": 15,
-    "description": "Horror movie about...."
+    "year": 1999,
+    "ratings": [],
+    "description": "Horror movie about....",
+    "comments": [
+      {
+        "user": "emre",
+        "comment": "NEO"
+      },
+      {
+        "user": "emre",
+        "comment": "red or blue"
+      }
+    ]
   },
   {
     "name": "Titanic",
@@ -98,7 +110,11 @@
     "comments": [
       {
         "user": "Anonymous",
-        "message": "Good film!"
+        "comment": "Good film!"
+      },
+      {
+        "user": "emre",
+        "comment": "ship"
       }
     ],
     "age_rating": 12,
