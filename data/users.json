@@ -1,45 +1,37 @@
 {
   "byId": {
-    "3ba09667-a149-459c-91f9-479db61479fc": {
-      "id": "3ba09667-a149-459c-91f9-479db61479fc",
+    "bc9cf55d-5a37-4a3c-97a6-b3334576197d": {
+      "id": "bc9cf55d-5a37-4a3c-97a6-b3334576197d",
       "username": "emre",
-      "passwordHash": "$2b$12$t1P4WZu.HVkr2HfpbTaFnutAbLLYFwapvSeygZVB9LnVudHcMRRSm",
-      "avatarIndex": 2,
-      "friends": [
-        "370b447a-7d83-454b-89eb-992f1726ad11"
-      ]
-    },
-    "d6bc8a63-d832-4aff-a4c4-a207a5768a20": {
-      "id": "d6bc8a63-d832-4aff-a4c4-a207a5768a20",
-      "username": "Bemre",
-      "passwordHash": "$2b$12$26pHGZjg9eigBsQgOo/wA.9f0Yf0UBn5ZVXRnsLMhcH1US3FGytV.",
-      "avatarIndex": 0
-    },
-    "b9895d05-667f-44ed-8e55-474f8b643310": {
-      "id": "b9895d05-667f-44ed-8e55-474f8b643310",
-      "username": "ang",
-      "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6",
-      "avatarIndex": 3
-    },
-    "370b447a-7d83-454b-89eb-992f1726ad11": {
-      "id": "370b447a-7d83-454b-89eb-992f1726ad11",
-      "username": "em",
-      "passwordHash": "$2b$12$wHWdfIHmI/RgpDMO0aIhOuoANVvCZ.TXwkoNsKO2j89plfnYdduDu",
+      "passwordHash": "$2b$12$9.ip5bhajnErIEO0rG/FbuoA.bJ/lyKFTG3lUPP2lxgOzoMDmIuuG",
       "avatarIndex": 0,
       "friends": [
-        "3ba09667-a149-459c-91f9-479db61479fc"
+        "0103a950-ba6e-4fd4-9f9f-b7014ffdf725",
+        "d7f5564e-ee3a-450b-b90a-1e3ba6e5133c"
       ]
     },
-    "2ffb3e62-edda-4c25-80ad-ea1bde4c829e": {
-      "id": "2ffb3e62-edda-4c25-80ad-ea1bde4c829e",
-      "username": "c",
-      "passwordHash": "$2b$12$S0MjzduSMXo8kYZlUcw2d.CukR9g2bBGHOCs9wutxnAerm8h/TEs2"
+    "0103a950-ba6e-4fd4-9f9f-b7014ffdf725": {
+      "id": "0103a950-ba6e-4fd4-9f9f-b7014ffdf725",
+      "username": "em",
+      "passwordHash": "$2b$12$TWQzTDzABQ2QASUMxAdemef0QogTZB/YFG9mvuAwj8IAXf.kU1RmG",
+      "avatarIndex": 0,
+      "friends": [
+        "bc9cf55d-5a37-4a3c-97a6-b3334576197d"
+      ]
+    },
+    "d7f5564e-ee3a-450b-b90a-1e3ba6e5133c": {
+      "id": "d7f5564e-ee3a-450b-b90a-1e3ba6e5133c",
+      "username": "amk",
+      "passwordHash": "$2b$12$h7dDk4cxD.xLztyxSF7LY.dJdCJWaI/Z3IrvfqC/LQfLx6IR6CLBW",
+      "avatarIndex": 0,
+      "friends": [
+        "bc9cf55d-5a37-4a3c-97a6-b3334576197d"
+      ]
     }
   },
   "byUsername": {
-    "emre": "3ba09667-a149-459c-91f9-479db61479fc",
-    "Bemre": "d6bc8a63-d832-4aff-a4c4-a207a5768a20",
-    "test": "bbfc651f-d488-45fc-b248-5a45454a49bc",
-    "ang": "b9895d05-667f-44ed-8e55-474f8b643310"
+    "emre": "bc9cf55d-5a37-4a3c-97a6-b3334576197d",
+    "em": "0103a950-ba6e-4fd4-9f9f-b7014ffdf725",
+    "amk": "d7f5564e-ee3a-450b-b90a-1e3ba6e5133c"
   }
 }
