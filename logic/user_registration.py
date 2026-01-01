@@ -74,6 +74,9 @@ def registerUser(username: str, password: str):
         "ratings": {},
         "comments": {}
         }
+        "avatarIndex":0,
+        "friends": [],
+    }
 
     users["byId"][userId] = record
     users["byUsername"][username] = userId

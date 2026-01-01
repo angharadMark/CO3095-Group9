@@ -12,5 +12,46 @@
   },
   "byUsername": {
     "c": "de71610f-5cc1-45b0-b843-f7ed6ee7bff8"
+    "b9895d05-667f-44ed-8e55-474f8b643310": {
+      "id": "b9895d05-667f-44ed-8e55-474f8b643310",
+      "username": "ang",
+      "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6",
+      "avatarIndex": 3,
+      "friends": [
+        "cdf9c678-1cd9-4687-95b0-9e8d10941073"
+      ]
+    },
+    "cdf9c678-1cd9-4687-95b0-9e8d10941073": {
+      "id": "cdf9c678-1cd9-4687-95b0-9e8d10941073",
+      "username": "em",
+      "passwordHash": "$2b$12$YRfqbR9oekJ59VJVX7aloeKLf9XnqT80X757ZSGx.ZpWCp5TORn6O",
+      "avatarIndex": 0,
+      "friends": [
+        "b9895d05-667f-44ed-8e55-474f8b643310",
+        "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1"
+      ]
+    },
+    "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1": {
+      "id": "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1",
+      "username": "emre",
+      "passwordHash": "$2b$12$ahc.9LExtVGC6pWJ7Mk7FeojBQDaw4Nt2xtPUPnJwBb002o3fAIOi",
+      "avatarIndex": 0,
+      "friends": [
+        "cdf9c678-1cd9-4687-95b0-9e8d10941073"
+      ]
+    },
+    "ada5b537-3bac-40cb-bb58-77af4ed4fcc6": {
+      "id": "ada5b537-3bac-40cb-bb58-77af4ed4fcc6",
+      "username": "admin",
+      "passwordHash": "$2b$12$1CCaAyIsqB8XCq0G1BleE.Yvm68ol528xqzroyL0fCzrCzaH1UeQK",
+      "avatarIndex": 0,
+      "friends": []
+    }
+  },
+  "byUsername": {
+    "ang": "b9895d05-667f-44ed-8e55-474f8b643310",
+    "em": "cdf9c678-1cd9-4687-95b0-9e8d10941073",
+    "emre": "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1",
+    "admin": "ada5b537-3bac-40cb-bb58-77af4ed4fcc6"
   }
 }
