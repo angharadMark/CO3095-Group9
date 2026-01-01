@@ -25,6 +25,10 @@ def loginUser(username: str, password: str):
 
     # Check password
     if verifyPassword(password, record.get("passwordHash", "")):
-        return {"id": record["id"], "username": record["username"]}
+        return {"id": record["id"], 
+                "username": record["username"],
+                "avatarIndex":record.get("avatarIndex",0),
+                "favFilm":record.get("favFilm","None Set")
+                }
 
     return None

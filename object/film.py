@@ -111,6 +111,19 @@ class Film:
     def add_ratings(self, rating):
         self.ratings.append(rating)
 
+def searchMovies(movies, keyword):
+    keyword = keyword.lower().strip()
+    results = []
+
+    for movie in movies:
+        title = (movie.name or "").lower()
+        description = (getattr(movie, 'description', "") or "").lower()
+
+        if keyword in title or keyword in description:
+            results.append(movie)
+    
+    return results
+
     def add_comment(self, comment):
         self.comments.append(comment)
 
