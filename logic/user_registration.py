@@ -38,7 +38,7 @@ def hashPassword(password: str):
 
 def verifyPassword(password:str, storedHash: str):
     #check if the password matches the hash
-    return bcrypt.checkpw(password.encode("utf-8"), storedHash.encode("utf-8"))
+    return bcrypt.checkpw(password.encode("utf-8"), storedHash.strip().encode("utf-8"))
 
 
 
@@ -69,6 +69,11 @@ def registerUser(username: str, password: str):
         "id": userId,
         "username": username,
         "passwordHash": hashPassword(password),
+        "watchlist": [],
+        "films_added": 0,
+        "ratings": {},
+        "comments": {}
+        }
         "avatarIndex":0,
         "friends": [],
     }
@@ -77,3 +82,12 @@ def registerUser(username: str, password: str):
     users["byUsername"][username] = userId
     saveJson(usersFile, users)
     return record
+
+def LoadUserById(userId):
+    users = readJson(usersFile, {"byId": {}, "byUsername": {}})
+    return users["byId"].get(userId)
+
+def saveUserRecord(record):
+    users = readJson(usersFile, {"byId": {}, "byUsername": {}})
+    users["byId"][record["id"]] = record
+    saveJson(usersFile, users)

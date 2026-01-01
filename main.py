@@ -8,6 +8,9 @@ from object.comment import Comment
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
+from logic.user_registration import LoadUserById, saveUserRecord
+from logic.user_download import export_data
+from settings import settingsMenu
 from logic.movie_recommendations import getMovieOfTheDay
 from settings import settingsMenu, adminMenu
 from getpass import getpass
@@ -97,7 +100,9 @@ def main():
     
 
     from object.user import User
-    user=User(state.currentUser["username"], avatar_index=state.currentUser.get("avatarIndex",0))
+    user_record = LoadUserById(state.currentUser["id"])
+    user = User(user_record)
+    #user=User(state.currentUser["username"]) #user object here
 
     
     imports = DatabaseLoader()
@@ -122,6 +127,7 @@ def main():
         print("10: Account Settings")
         print("11: Comment on your watchlist")
         print("12: View actor filmography")
+        print("13: download your personal data")
         print("9: Save watchlist to txt file")
         if feature_on("comments"):
             print("10: Comment on your watchlist")
@@ -223,6 +229,13 @@ def main():
             rate_film_in_watchlist(user)
 
         elif quest == 9:
+            if state.isLoggedIn():
+                saveUserRecord(user.to_dict())
+            break
+        elif quest==10:
+            settingsMenu(state)
+        elif quest==11:
+            for i,film in enumerate(user.get_watch_list(), 1):
             from logic.file_manager import exportWatchlist
             exportWatchlist(user)
 
@@ -243,11 +256,34 @@ def main():
             else:
                 ((user.get_watch_list())[film_num-1]).add_comment(Comment(message,user.username))
         elif quest==12:
-            target = input("What actor do you want to look at? : ")
-            results = database.search_actor(target)
-            for i,actor in enumerate(results,1):
-                print(f"{i}. {actor.name}")
+            while True: 
+                target = input("What actor do you want to look at? (or 'q' to exit)")
+                if target.lower() == "q":
+                    break
             
+                results = database.search_actor(target)
+
+                if results == False:
+                    print("We couldn't find that actor, please try again.")
+                    continue
+
+                for i,actor in enumerate(results,1):
+                    print(f"{i}. {actor.name}")
+                
+                detail = input("Choose which one you want to look at in detail (or 'q' to exit) ")
+                if detail.lower() == "q":
+                    break
+
+                try:
+                    detail = int(detail)
+                    if 1 <= detail <= len(results):
+                        (results[detail-1]).filmography()
+                    else:
+                        print("")
+                except ValueError:
+                    print("Invalid input, returning to menu.")
+        elif quest==13:
+            export_data(user)
             detail = int(input("Choose which one you want to look at in detail : "))
             (results[detail-1]).filmography()
                 ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
@@ -285,11 +321,6 @@ def main():
 
         export.upload(database, "films.json")
 
-
-def rate_film_in_watchlist(user):
-    user_watchlist = user.get_watch_list()
-
-        export.upload(database,"films.json")
 
 def rate_film_in_watchlist(user):
     user_watchlist = user.get_watch_list()
@@ -339,22 +370,7 @@ def rate_film_in_watchlist(user):
 
         print("Film rating applied.")
 
-        selected_film = user_watchlist[list_idx]
-        print(f"Selected '{selected_film.name}'")
 
-        while True:
-            user_rating_input = input("Rate this film (0-10): ")
-
-            try:
-                user_rating = float(user_rating_input)
-                user.add_rating(selected_film.name, user_rating)
-                break
-            except ValueError:
-                print("Invalid value. Please try again.")
-            except IndexError:
-                print("Value not in range. Please try again.")
-
-        print("Film rating applied.")
 
 if __name__ == "__main__":
     main()

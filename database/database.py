@@ -10,12 +10,14 @@ class Database:
     def __init__(self):
         self.films=[]
         self.actors=[]
+        self.users = []
 
     def add_films(self, film):
         self.films.append(film)
     
     def add_actor(self,actor):
-        self.actors.append(actor)
+        if actor not in self.actors:
+            self.actors.append(actor)
 
     def get_film(self, name):
         target = name.strip().lower()
@@ -46,12 +48,25 @@ class Database:
             user_inp = int(input("What would you like to do? : "))
 
             if user_inp == 1:
-                detail = int(input("Pick the number of the film: "))
-                film = popular[detail-1]
-                film.display_film()
+                while True:
+                    detail = input("Pick the number of the film (or press e to exit)")
 
-                print("\n")
-                return False
+                    if detail.lower() == "e":
+                        return False
+                    
+                    if not detail.isdigit():
+                        print("Please input a number")
+                        continue
+
+                    detail = int(detail)
+
+                    if 1 <= detail <= len(popular):
+                        film = popular[detail-1]
+                        film.display_film()
+                        print()
+                        return False
+                    else:
+                        print("That film number doesn't exist. Try again!")
             else:
                 break
             
@@ -92,8 +107,12 @@ class Database:
 
             if score >= threshold:
                 result.append(actor)
+                
         
-        return result
+        if len(result) <= 0:
+            return False
+        else:
+            return result
 
 
 
