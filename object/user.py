@@ -109,6 +109,7 @@ class User:
         self.films_added=0
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = {}
+        self.comments = {}
         self.avatar_index = avatar_index
         self.favFilm=favFilm
 
@@ -177,6 +178,9 @@ class User:
         print(f"Favourite Film: {self.favFilm}")
         print(f"Films in Watchlist: {len(self.watchList)}")
         print("---------------------------\n")
+
+    def add_comment(self,film, comment):
+        self.comments.update({film,comment})
 
     def change_avatar(self,index:int)->bool:
         # Sets avatar to what the user has selected

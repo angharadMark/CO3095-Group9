@@ -11,7 +11,7 @@ class Film:
         self.year = year
         self.ratings = ratings if ratings is not None else []
         self.description = description
-        self.comments  = comments if comments  is not None else []
+        self.comments = comments if comments  is not None else []
 
     def prompt_name(self):
         name = input("Whats the name of the film? : ").strip()

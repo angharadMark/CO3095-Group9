@@ -1,11 +1,21 @@
 from object.film import Film
+from object.actor import Actor
+from fuzzywuzzy import fuzz
+import re
+
+def normalise(text):
+    return re.sub(r'\s+', ' ', text.lower().strip())
 
 class Database:
     def __init__(self):
         self.films=[]
+        self.actors=[]
 
     def add_films(self, film):
         self.films.append(film)
+    
+    def add_actor(self,actor):
+        self.actors.append(actor)
 
     def get_film(self, name):
         target = name.strip().lower()
@@ -67,6 +77,24 @@ class Database:
                 filtered.append(film)
 
         return filtered
+    
+    def search_actor(self,target, threshold=60):
+        target = normalise(target)
+        result=[]
+
+        for actor in self.actors:
+            name = normalise(actor.name)
+
+            score = max(
+                fuzz.partial_ratio(target, name),
+                fuzz.partial_ratio(target, " ".join(name.split()[::1]))
+            )
+
+            if score >= threshold:
+                result.append(actor)
+        
+        return result
+
 
 
 
