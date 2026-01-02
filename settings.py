@@ -145,7 +145,7 @@ def settingsMenu(state:UserState):
         elif choice=="5":
             changeFavFilmMenu(current_user_obj,user_id)
         elif choice == "6":
-            state.logout()
+            state.logout(current_user_obj)
             print("Logged out.")
             break
         elif choice == "7":
@@ -159,7 +159,7 @@ def settingsMenu(state:UserState):
                 else:
                     print("Error, could not delete account. ")
             else:
-                print("Delete cancelled. ")
+                print("Delete cancelled.")
         elif choice == "8":
             break
 

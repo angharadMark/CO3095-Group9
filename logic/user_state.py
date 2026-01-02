@@ -12,7 +12,7 @@ class UserState:
         self.currentUser = userRecord
 
     def logout(self, user = None):
-        #Clear the current user.
+        #Clear the current user and saves.
         if user:
             saveUserRecord(user.to_dict())
         self.currentUser = None

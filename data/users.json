@@ -1,20 +1,21 @@
 {
   "byId": {
-    "9ad6c665-674b-4ee5-a946-29ee04b0d067": {
-      "id": "9ad6c665-674b-4ee5-a946-29ee04b0d067",
-      "username": "c",
-      "passwordHash": "$2b$12$gPnyuz9jzn3hBgoDKcUlwulWDExCxIK8VnRvlchV4CGiur0bAPxq2",
+    "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c": {
+      "id": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c",
+      "username": "kass",
       "watchlist": [],
       "films_added": 0,
       "ratings": {},
-      "comments": {},
-      "isAdmin": true,
-      "avatarIndex": 0,
+      "comments": [],
+      "avatar_index": 0,
+      "favFilm": "None Set",
       "friends": [],
-      "blocked": []
+      "blocked": [],
+      "passwordHash": "$2b$12$MQIpaX.5Y.Vt/quml4NG7OMIf2Vms0RMtokEwVF5HfHOO0iEqRUty",
+      "isAdmin": false
     }
   },
   "byUsername": {
-    "c": "9ad6c665-674b-4ee5-a946-29ee04b0d067"
+    "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c"
   }
 }
