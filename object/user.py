@@ -146,6 +146,39 @@ class User:
     def add_to_watchList(self, film):
         self.watchList.append(film)
 
+    def remove_from_watchlist(self, film):
+        self.watchList.remove(film)
+
+    def pop_from_watchlist(self, film_index):
+        return self.watchList.pop(film_index)
+
+    def remove_from_watchlist_by_name(self, film_name):
+        return self.remove_from_watchlist_by_property(
+            lambda film: self.name, film_name
+        )
+
+    def remove_from_watchlist_by_actors(self, actor_list):
+        removal_list = []
+
+        for film in self.watchList:
+            can_exit = False
+            #if property_getter(film) == property_value:
+            #    removal_list.push(film)
+            for actor in actor_list:
+                for film_actor in film.cast:
+                    if actor == film_actor.name:
+                        removal_list.push(film)
+                        can_exit = True
+                        break
+
+                if can_exit: break
+                
+
+        for film in removal_list:
+            self.watchList.remove(film)
+
+        return len(removal_list)
+
     def get_watch_list(self):
         return self.watchList
     
@@ -161,9 +194,9 @@ class User:
             return
         print("\nYour Watchlist:")
         for i, film in enumerate(self.watchList):
-            print("Film Name: "f"{film.name}")
-            print("Description: "f"{film.description}")
-            print("Actors:")
+            print(f"{i+1}: {film.name}")
+            print(f"  Description: {film.description}")
+            print("  Actors:")
             for actor in film.cast:
                 print(f"{actor.name} as {actor.role}")
             print("Comments:")

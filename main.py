@@ -54,6 +54,73 @@ def register_flow():
     except Exception as e:
         print("Registration failed:", e)
         return None
+      
+def confirm_choice(dialog_message, validate_fun,
+    repeat_message = None, reject_message = "Invalid input value"):
+    if not repeat_message: repeat_message = dialog_message
+    user_input = input(f"{dialog_message}: ")
+    while not validate_fun(user_input):
+        print(reject_message)
+        choice = input("Would you like to try again y/n: ")
+        if choice.lower() == "y":
+            user_input = input(f"{repeat_message}: ")
+        else:
+            return None
+
+    return user_input
+
+def is_text_int(text):
+    try:
+        converted = int(text)
+        return True
+    except ValueError:
+        return False
+
+def watchlist_dialog(database, user):
+    while True:
+        print("Select:")
+        print("1: Add a film to your watchlist")
+        print("2: Remove a film from your watchlist")
+        print("3: Exit this menu")
+        print()
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            result = confirm_choice(
+                "Please input the film name you want to add",
+                lambda choice: database.get_film(choice),
+                reject_message = "Your film could not be found")
+            if result != None:
+                result = database.get_film(result)
+                result.display_film()
+                correct_check = input("Is this the correct film? Y/N : ").strip()
+                if correct_check.lower() == "n":
+                    print("Film not added")
+                    pass
+                user.add_to_watchList(result)
+                print("Film added to watchlist!")
+        elif user_input == 2:
+            user.display_watchlist()
+            user_watch_list = user.get_watch_list()
+            if len(user_watch_list) < 1: continue
+            film = confirm_choice("Please input the film index to remove",
+                lambda choice: is_text_int(choice) 
+                    and int(choice) > 0
+                    and int(choice) <= len(user_watch_list)
+                    # ensures that the chosen int is in the right range
+            )
+
+            if film:
+                film_index = int(film) - 1
+                removed_film = user.pop_from_watchlist(film_index);
+                print(f"Removed film #{film_index+1} ({removed_film.name}) from your watchlist.")
+
+        elif user_input == 3:
+            return
+        else:
+            print("Input unknown. Please input a valid choice.")
+
+    
 
 def main():
     state=UserState()
@@ -130,22 +197,33 @@ def main():
         print("4: Get films based on age rating")
         print("5: Search for a movie using a keyword")
         print("6: View actor filmography")
+        print("7: Edit a film in the database")
 
         print("\n--- WATCHLIST ---")
-        print("7: Add a film to your watchlist")
-        print("8: View your watchlist")
-        print("9: Rate a film in your watchlist")
-        print("10: Save watchlist to txt file")
+        print("8: Add a film to your watchlist")
+        print("9: View your watchlist")
+        print("10: Rate a film in your watchlist")
+        
+
+        print("\n--- WATCHLIST ---")
+        print("11: Manage your watchlist")
+        print("12: View your watchlist")
+        print("13: Rate a film in your watchlist")
+        print("14: Exit")
+        print("15: Account Settings")
+        print("16: Comment on your watchlist")
+        print("17: download your personal data")
+        print("18: Save watchlist to txt file")
         if feature_on("comments"):
-            print("11: Comment on your watchlist")
+            print("19: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
         if feature_on("movie_of_day"):
-            print("12: Movie of the Day")
+            print("20: Movie of the Day")
 
         print("\n--- SOCIAL ---")
         if feature_on("friends"):
-            print("13: Friends System")
+            print("21: Friends System")
 
 
         print("\n--- ACCOUNT ---")
@@ -154,6 +232,7 @@ def main():
 
         print("\n16: Exit")
 
+        print("\n15: Exit")
 
         print("\n")
 
@@ -252,14 +331,26 @@ def main():
                     result = database.get_film(film)
                 else:
                     break
+            result = confirm_choice(
+                "Please input the film name you want to change",
+                lambda choice: database.get_film(choice),
+                reject_message = "Your film could not be found")
+            if result == None:
+                continue
 
+            result = database.get_film(result)
             result.display_film()
             correct_check = input("Is this the correct film? Y/N : ").strip()
             if correct_check.lower() == "n":
-                print("Film not added")
-                pass
-            user.add_to_watchList(result)
-            print("Film added to watchlist!")
+                continue
+
+            if result.modify_film():
+                print("Film modified")
+            else:
+                print("Film was not modified")
+
+        elif quest == 7:
+            watchlist_dialog(database, user) 
 
         elif quest == 8:
             user.display_watchlist()
@@ -270,7 +361,13 @@ def main():
 
         elif quest == 10:
             exportWatchlist(user)
+            if state.isLoggedIn():
+                saveUserRecord(user.to_dict())
+        elif quest == 0:
+            break
         elif quest==11:
+            settingsMenu(state)
+        elif quest==12:
             watchlist = user.get_watch_list()
             for i,film in enumerate(watchlist, 1):
                 print(f"{i}. {film.name}")
@@ -308,6 +405,42 @@ def main():
                 else:
                     (watchlist[film_num-1]).add_comment(Comment(message,user.username))
         elif quest==12:
+
+        elif quest==13:
+            while True: 
+                target = input("What actor do you want to look at? (or 'q' to exit)")
+                if target.lower() == "q":
+                    break
+            
+                results = database.search_actor(target)
+
+                if results == False:
+                    print("We couldn't find that actor, please try again.")
+                    continue
+
+                for i,actor in enumerate(results,1):
+                    print(f"{i}. {actor.name}")
+                
+                detail = input("Choose which one you want to look at in detail (or 'q' to exit) ")
+                if detail.lower() == "q":
+                    break
+
+                try:
+                    detail = int(detail)
+                    if 1 <= detail <= len(results):
+                        (results[detail-1]).filmography()
+                    else:
+                        print("")
+                except ValueError:
+                    print("Invalid input, returning to menu.")
+        elif quest==14:
+            export_data(user)
+            detail = int(input("Choose which one you want to look at in detail : "))
+            (results[detail-1]).filmography()
+            ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
+
+
+        elif quest == 12:
             if not feature_on("movie_of_day"):
                 print("This feature is currently disabled by the administrator.")
                 continue
@@ -320,8 +453,7 @@ def main():
                 print(f"Description: {motd.description}")
             else:
                 print("No movies available")
-
-        elif quest==13:
+        elif quest == 13:
             if not feature_on("friends"):
                 print("This feature is currently disabled by the administrator.")
             else:

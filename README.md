@@ -4,7 +4,7 @@
 ## Installions before running
 Please install these packages before running:
 - fuzzywuzzy
-- 
+- coverage
 
 you can install these by simply doing:
 
