@@ -2,9 +2,9 @@ from object.user import User
 from database.database import Database
 from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
-from object.film import Film
-from object.film import searchMovies
+from object.film import Film, searchMovies
 from object.comment import Comment
+from logic.watchlist_similarity import WatchlistSimilarity
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
@@ -158,6 +158,7 @@ def main():
         #Exit
         if choice==3:
             return
+
     imports = DatabaseLoader()
     database = imports.load("films.json")
     export = DatabaseWriter()
@@ -165,6 +166,7 @@ def main():
     from object.user import User
     user_record = LoadUserById(state.currentUser["id"])
     user = User(user_record, database)
+    user.load(database)
 
     while state.isLoggedIn():
         print("\nWelcome to the film recommendation system!")
@@ -184,23 +186,24 @@ def main():
         print("10: Manage your watchlist")
         print("11: Save watchlist to txt file")
         print("12: Reccomendations based on watchlist")
+        print("13: View similar watchlists")
 
         if feature_on("comments"):
-            print("13: Comment on your watchlist")
+            print("14: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
         if feature_on("movie_of_day"):
-            print("14: Movie of the Day")
+            print("15: Movie of the Day")
 
         print("\n--- SOCIAL ---")
         if feature_on("friends"):
-            print("15: Friends System")
+            print("16: Friends System")
 
         print("\n--- ACCOUNT ---")
-        print("16: Account Settings")
-        print("17: download your personal data")
+        print("17: Account Settings")
+        print("18: download your personal data")
 
-        print("\n18: Exit")
+        print("\n19: Exit")
 
         # Admin Username= admin
         # Admin Password= admins
@@ -339,7 +342,22 @@ def main():
                 print("\n Recommended films: ")
                 for i, film in enumerate(recco_films, 1):
                     print(f"{i}. {film.name}")
-        elif quest==13:
+
+        elif quest == 13:
+            # list 3 most similar user's watchlists 
+            similarities = WatchlistSimilarity.find(user, database)[:3]
+
+            for (similar_user_name, score) in similarities:
+                similar_user = User(similar_user_name)
+                similar_user.load(database)
+                print(f"Similar user found: {similar_user_name}")
+
+                similar_user.display_watchlist(displaying_other_user = True)
+
+            if len(similarities) == 0:
+                print("Found no similar users")
+
+        elif quest==14:
             watchlist = user.get_watch_list()
             for i,film in enumerate(watchlist, 1):
                 print(f"{i}. {film.name}")
@@ -377,7 +395,7 @@ def main():
                 else:
                     (watchlist[film_num-1]).add_comment(Comment(message,user.username))
 
-        elif quest == 14:
+        elif quest == 15:
             if not feature_on("movie_of_day"):
                 print("This feature is currently disabled by the administrator.")
                 continue
@@ -390,18 +408,18 @@ def main():
                 print(f"Description: {motd.description}")
             else:
                 print("No movies available")
-        elif quest == 15:
+        elif quest == 16:
             if not feature_on("friends"):
                 print("This feature is currently disabled by the administrator.")
             else:
                 friends_menu(state.currentUser["id"])
-        elif quest==16:
-            settingsMenu(state)
-
         elif quest==17:
+            settingsMenu(state)
+        
+        elif quest==18:
             export_data(user)
-
-        elif quest == 18:
+        
+        elif quest == 19:
             if state.isLoggedIn():
                 state.logout(user)
             break
@@ -410,6 +428,7 @@ def main():
             adminMenu(state)
 
         export.upload(database, "films.json")
+        user.write()
 
 
 def rate_film_in_watchlist(user):
