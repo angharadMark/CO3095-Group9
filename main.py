@@ -163,10 +163,8 @@ def main():
     database = imports.load("films.json")
     export = DatabaseWriter()
 
-    from object.user import User
     user_record = LoadUserById(state.currentUser["id"])
     user = User(user_record, database)
-    user.load(database)
 
     while state.isLoggedIn():
         print("\nWelcome to the film recommendation system!")
@@ -347,10 +345,10 @@ def main():
             # list 3 most similar user's watchlists 
             similarities = WatchlistSimilarity.find(user, database)[:3]
 
-            for (similar_user_name, score) in similarities:
-                similar_user = User(similar_user_name)
-                similar_user.load(database)
-                print(f"Similar user found: {similar_user_name}")
+            for (similar_user_id, score) in similarities:
+                similar_user_record = LoadUserById(similar_user_id)
+                similar_user = User(similar_user_record, database)
+                print(f"Similar user found: {similar_user.username}")
 
                 similar_user.display_watchlist(displaying_other_user = True)
 
@@ -428,8 +426,6 @@ def main():
             adminMenu(state)
 
         export.upload(database, "films.json")
-        user.write()
-
 
 def rate_film_in_watchlist(user):
     user_watchlist = user.get_watch_list()

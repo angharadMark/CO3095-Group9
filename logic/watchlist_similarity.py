@@ -13,20 +13,17 @@ class WatchlistSimilarity:
     def find(target_user, database):
         users_json_data = readJson(usersFile, {"byId":{}, "byUsername": {}})
 
-        (target_user_data, target_user_id) = target_user.get_user_data(users_json_data)
-
         similarities = []
 
         target_film_genres = WatchlistSimilarity.get_watchlist_genres(target_user.watchList)
         counted_target_genres = dict(Counter(target_film_genres))
 
         for (user_id, user_data) in users_json_data["byId"].items():
-            if user_id == target_user_id: continue
-            user_name = user_data["username"]
+            if user_id == target_user.id: continue
 
             similarity_score = 0
    
-            retrieved_films = [] if "watchList" not in user_data.keys() else [database.get_film(film) for film in user_data["watchList"]]
+            retrieved_films = [] if "watchlist" not in user_data.keys() else [database.get_film(film) for film in user_data["watchlist"]]
 
             # direct similarity
             for film in target_user.watchList:
@@ -45,9 +42,9 @@ class WatchlistSimilarity:
                 # added similarity score = (other_user_genre_occurrence) / target_user_genre_occurence
                 similarity_score += (other_occurence / target_occurence)
 
-            similarities.append((user_name, similarity_score))
+            similarities.append((user_id, similarity_score))
 
-        similarities = [(user_name, similarity_score) for (user_name, similarity_score) in similarities if similarity_score > 0]
+        similarities = [(user_id, similarity_score) for (user_id, similarity_score) in similarities if similarity_score > 0]
 
         return sorted(similarities, key= lambda similarity_tuple : similarity_tuple[1], reverse=True)
 
