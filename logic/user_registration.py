@@ -70,10 +70,10 @@ def registerUser(username: str, password: str):
         "films_added": 0,
         "ratings": {},
         "comments": {},
-        "isAdmin": False
-        }
+        "isAdmin": False,
         "avatarIndex":0,
         "friends": [],
+        "blocked": []
     }
 
     users["byId"][userId] = record
@@ -87,5 +87,12 @@ def LoadUserById(userId):
 
 def saveUserRecord(record):
     users = readJson(usersFile, {"byId": {}, "byUsername": {}})
-    users["byId"][record["id"]] = record
+    existing = users["byId"].get(record["id"], {})
+
+    updated = record.copy()
+    updated["passwordHash"] = existing.get("passwordHash", "")
+    updated["friends"] = existing.get("friends", [])
+    updated["blocked"] = existing.get("blocked", [])
+
+    users["byId"][record["id"]] = updated
     saveJson(usersFile, users)

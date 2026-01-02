@@ -1,110 +1,22 @@
 {
   "byId": {
-    "e49e9e2e-0fe6-4e2d-ae35-5a7772033f50": {
-      "id": "e49e9e2e-0fe6-4e2d-ae35-5a7772033f50",
-      "username": "c",
+    "43681ea7-2e0b-4756-bd82-a28a9cad51d7": {
+      "id": "43681ea7-2e0b-4756-bd82-a28a9cad51d7",
+      "username": "kass",
       "watchlist": [
-        {
-          "name": "Inception",
-          "director": "Christopher Nolan",
-          "producer": "name",
-          "year": 2010,
-          "genre": [
-            "horror",
-            "random"
-          ],
-          "ratings": [
-            8.0,
-            10.0,
-            10.0
-          ],
-          "cast": [
-            {
-              "actor": "Leonardo DiCaprio",
-              "role": "Cobb"
-            },
-            {
-              "actor": "Joseph Gordon-Levitt",
-              "role": "Arthur"
-            },
-            {
-              "actor": "Elliot Page",
-              "role": "Ariadne"
-            },
-            {
-              "actor": "Tom Hardy",
-              "role": "Eames"
-            }
-          ],
-          "comments": [
-            {
-              "user": "Anonymous",
-              "message": "****"
-            }
-          ],
-          "age_rating": "15",
-          "description": null
-        }
+        "Inception"
       ],
       "films_added": 0,
       "ratings": {},
-      "comments": []
-    },
-    "65c6d64d-46c9-4005-8d31-99c0c18696a7": {
-      "id": "65c6d64d-46c9-4005-8d31-99c0c18696a7",
-      "username": "admin",
-      "passwordHash": "$2b$12$uNC5UwMnKmzUK0I/vBTf4esl0REg0iVciCEv/DqAI20r1wTH8TAYS",
-      "watchlist": [],
-      "films_added": 0,
-      "ratings": {},
-      "comments": {},
-      "isAdmin": true
+      "comments": [],
+      "avatar_index": 0,
+      "favFilm": "None Set",
+      "friends": [],
+      "blocked": [],
+      "passwordHash": "$2b$12$ooB82CmcczHJczNBm2039uh22ATzKcQFmj/sKI5oeByMiRSqLFo8y"
     }
   },
   "byUsername": {
-    "c": "e49e9e2e-0fe6-4e2d-ae35-5a7772033f50",
-    "admin": "65c6d64d-46c9-4005-8d31-99c0c18696a7"
-    "c": "de71610f-5cc1-45b0-b843-f7ed6ee7bff8"
-    "b9895d05-667f-44ed-8e55-474f8b643310": {
-      "id": "b9895d05-667f-44ed-8e55-474f8b643310",
-      "username": "ang",
-      "passwordHash": "$2b$12$0dhgw.IAxHaJAC0ZQkJn9ukNvPNT6xLrCm0AKPdHx7.U59qr5Qpe6",
-      "avatarIndex": 3,
-      "friends": [
-        "cdf9c678-1cd9-4687-95b0-9e8d10941073"
-      ]
-    },
-    "cdf9c678-1cd9-4687-95b0-9e8d10941073": {
-      "id": "cdf9c678-1cd9-4687-95b0-9e8d10941073",
-      "username": "em",
-      "passwordHash": "$2b$12$YRfqbR9oekJ59VJVX7aloeKLf9XnqT80X757ZSGx.ZpWCp5TORn6O",
-      "avatarIndex": 0,
-      "friends": [
-        "b9895d05-667f-44ed-8e55-474f8b643310",
-        "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1"
-      ]
-    },
-    "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1": {
-      "id": "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1",
-      "username": "emre",
-      "passwordHash": "$2b$12$ahc.9LExtVGC6pWJ7Mk7FeojBQDaw4Nt2xtPUPnJwBb002o3fAIOi",
-      "avatarIndex": 0,
-      "friends": [
-        "cdf9c678-1cd9-4687-95b0-9e8d10941073"
-      ]
-    },
-    "ada5b537-3bac-40cb-bb58-77af4ed4fcc6": {
-      "id": "ada5b537-3bac-40cb-bb58-77af4ed4fcc6",
-      "username": "admin",
-      "passwordHash": "$2b$12$1CCaAyIsqB8XCq0G1BleE.Yvm68ol528xqzroyL0fCzrCzaH1UeQK",
-      "avatarIndex": 0,
-      "friends": []
-    }
-  },
-  "byUsername": {
-    "ang": "b9895d05-667f-44ed-8e55-474f8b643310",
-    "em": "cdf9c678-1cd9-4687-95b0-9e8d10941073",
-    "emre": "4f8f4066-ca0a-4d48-85f4-aa5dd87bebc1",
-    "admin": "ada5b537-3bac-40cb-bb58-77af4ed4fcc6"
+    "kass": "43681ea7-2e0b-4756-bd82-a28a9cad51d7"
   }
 }

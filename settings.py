@@ -4,6 +4,7 @@ from logic.user_settings import changePassword, changeUsername, changeAvatarMenu
 from object.user import User
 from logic.user_registration import readJson,usersFile
 from pathlib import Path
+from logic.admin_actions import add_profan, delete_profan
 
 BASE_DIR = Path(__file__).resolve().parent
 HTML_PATH = BASE_DIR / "data" / "scrape_sources" / "movies.html"
@@ -94,10 +95,7 @@ def settingsMenu(state:UserState):
         return
 
     user_id=state.currentUser["id"]
-    current_user_obj = User(state.currentUser["username"], 
-                            avatar_index=state.currentUser.get("avatarIndex",0),
-                            favFilm=state.currentUser.get("favFilm","None set")
-                            )
+    current_user_obj = User(state.currentUser)
 
     while True:
         print("\nAccount Settings")
@@ -179,8 +177,8 @@ def adminMenu(state:UserState):
         print("2. Print out all user account's names")
         print("3. Scrape movies from HTML file")
         print("4. Manage interface")
-
-        
+        print("5. Add word to profanity filter")
+        print("6. Delete word from profanity filter")
 
         adminChoice = input("Select an option: ")
 
@@ -229,6 +227,23 @@ def adminMenu(state:UserState):
 
         elif adminChoice == "4":
             interface_menu()
+        
+        elif adminChoice == "5":
+            profan = input("What profanity do you need to add: ")
+            add_profan(profan)
+
+        elif adminChoice == "6:":
+            while True:
+                profan = input("What profanity do you need to delete (or press 'q' to quit) ")
+                if profan.lower() == 'q':
+                    break
+                
+                if delete_profan(profan) == False:
+                    print("Word could not be found.")
+                    continue
+            print("Your word",profan,"has been deleted from the filter")
+
+
 
 
 

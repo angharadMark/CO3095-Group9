@@ -141,6 +141,9 @@ class Film:
     
     def add_ratings(self, rating):
         self.ratings.append(rating)
+            
+    def add_comment(self, comment):
+        self.comments.append(comment)
 
 def searchMovies(movies, keyword):
     keyword = keyword.lower().strip()
@@ -155,8 +158,7 @@ def searchMovies(movies, keyword):
     
     return results
 
-    def add_comment(self, comment):
-        self.comments.append(comment)
+
 
 
 

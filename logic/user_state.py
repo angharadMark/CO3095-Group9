@@ -1,3 +1,4 @@
+from logic.user_registration import saveUserRecord
 
 class UserState:
     def __init__(self):
@@ -10,8 +11,10 @@ class UserState:
         #Store the logged-in user (dict with id + username).
         self.currentUser = userRecord
 
-    def logout(self):
+    def logout(self, user = None):
         #Clear the current user.
+        if user:
+            saveUserRecord(user.to_dict())
         self.currentUser = None
     
     def isAdmin(self) -> bool:
