@@ -1,6 +1,6 @@
 class UserMessage:
-    def __init__(self, sender_username, message, read = False):
-        self.sender = sender_username
+    def __init__(self, sender_id, message, read = False):
+        self.sender = sender_id
         self.message = message
         self.read = read
 
@@ -14,7 +14,7 @@ class UserMessage:
     def get_message(self):
         return self.message
 
-    def get_sender_username(self):
+    def get_sender_id(self):
         return self.sender
 
     def get_read_status(self):

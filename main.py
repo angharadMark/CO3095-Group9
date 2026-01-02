@@ -459,7 +459,13 @@ def message_system(user, database):
                 print("You have no messages")
 
             for (i, message) in enumerate(reversed(user.get_inbox())):
-                sender = message.get_sender_username()
+                sender_id = message.get_sender_id()
+                sender_record = LoadUserById(sender_id)
+
+                sender = "Unknown User"
+                if sender_record != None:
+                    sender = sender_record.get("username", sender)
+                
                 message_content = message.get_message()
                 message_header_suffix = " (NEW)" if not message.get_read_status() else ""
                 print()
