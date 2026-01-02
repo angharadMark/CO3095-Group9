@@ -238,34 +238,34 @@ def main():
         print("3: View all films in database")
         print("4: Get films based on age rating")
         print("5: Search for a movie using a keyword")
+        print("6: Edit a film in the database")
 
         print("\n--- WATCHLIST ---")
-        print("6: Manage your watchlist")
-        print("7: View your watchlist")
-        print("8: Rate a film in your watchlist")
-        print("9: Exit")
-        print("10: Account Settings")
-        print("11: Comment on your watchlist")
-        print("12: View actor filmography")
-        print("13: download your personal data")
-        print("9: Save watchlist to txt file")
+        print("7: Manage your watchlist")
+        print("8: View your watchlist")
+        print("9: Rate a film in your watchlist")
+        print("10: Exit")
+        print("11: Account Settings")
+        print("12: Comment on your watchlist")
+        print("13: View actor filmography")
+        print("14: download your personal data")
+        print("10: Save watchlist to txt file")
         if feature_on("comments"):
-            print("10: Comment on your watchlist")
+            print("11: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
         if feature_on("movie_of_day"):
-            print("11: Movie of the Day")
+            print("12: Movie of the Day")
 
         print("\n--- SOCIAL ---")
         if feature_on("friends"):
-            print("12: Friends System")
+            print("13: Friends System")
 
 
         print("\n--- ACCOUNT ---")
-        print("13: Account Settings")
+        print("14: Account Settings")
 
-        print("\n14: Exit")
-
+        print("\n15: Exit")
 
         print("\n")
 
@@ -332,22 +332,42 @@ def main():
                 print("No movies found with that keyword")
 
         elif quest == 6:
-            watchlist_dialog(database, user) 
+            result = confirm_choice(
+                "Please input the film name you want to change",
+                lambda choice: database.get_film(choice),
+                reject_message = "Your film could not be found")
+            if result == None:
+                continue
+
+            result = database.get_film(result)
+            result.display_film()
+            correct_check = input("Is this the correct film? Y/N : ").strip()
+            if correct_check.lower() == "n":
+                continue
+
+            if result.modify_film():
+                print("Film modified")
+            else:
+                print("Film was not modified")
 
         elif quest == 7:
+            watchlist_dialog(database, user) 
+
+        elif quest == 8:
             user.display_watchlist()
             print()
 
-        elif quest == 8:
+        elif quest == 9:
             rate_film_in_watchlist(user)
 
-        elif quest == 9:
+        elif quest == 10:
             if state.isLoggedIn():
                 saveUserRecord(user.to_dict())
+        elif quest == 0:
             break
-        elif quest==10:
-            settingsMenu(state)
         elif quest==11:
+            settingsMenu(state)
+        elif quest==12:
             watchlist = user.get_watch_list()
             for i,film in enumerate(watchlist, 1):
                 print(f"{i}. {film.name}")
@@ -385,7 +405,7 @@ def main():
                 else:
                     (watchlist[film_num-1]).add_comment(Comment(message,user.username))
 
-        elif quest==12:
+        elif quest==13:
             while True: 
                 target = input("What actor do you want to look at? (or 'q' to exit)")
                 if target.lower() == "q":
@@ -412,14 +432,14 @@ def main():
                         print("")
                 except ValueError:
                     print("Invalid input, returning to menu.")
-        elif quest==13:
+        elif quest==14:
             export_data(user)
             detail = int(input("Choose which one you want to look at in detail : "))
             (results[detail-1]).filmography()
             ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
 
 
-        elif quest == 11:
+        elif quest == 12:
             if not feature_on("movie_of_day"):
                 print("This feature is currently disabled by the administrator.")
                 continue
@@ -434,16 +454,16 @@ def main():
                 print("No movies available")
 
 
-        elif quest == 12:
+        elif quest == 13:
             if not feature_on("friends"):
                 print("This feature is currently disabled by the administrator.")
             else:
                 friends_menu(state.currentUser["id"])
 
-        elif quest == 13:
+        elif quest == 14:
             settingsMenu(state)
 
-        elif quest == 14:
+        elif quest == 15:
             break
 
         elif quest == 100 and state.currentUser["username"] == "admin":
