@@ -17,12 +17,14 @@ class QueryFilter:
     def matches(self, film):
         if self.type == FilterType.CAST:
             return functools.reduce(lambda a, b: a or b, 
-                map(lambda actor: string_fuzzy_match(actor.name, self.content), film.cast)
+                map(lambda actor: string_fuzzy_match(actor.name, self.content), film.cast),
+                False
             )
         elif self.type == FilterType.GENRE:
             if type(film.genre) == list:
                 return functools.reduce(lambda a, b: a or b, 
-                    map(lambda genre: string_fuzzy_match(genre, self.content), film.genre)
+                    map(lambda genre: string_fuzzy_match(genre, self.content), film.genre),
+                    False
                 )
             else:
                 return string_fuzzy_match(film.genre, self.content)
@@ -30,6 +32,7 @@ class QueryFilter:
 
 def filter_films(filter_list, films):
     if len(filter_list) == 0: return films
+    if len(films) == 0: return []
     return [film for film in films if functools.reduce(lambda a, b: a or b,
         map(lambda filter: filter.matches(film), filter_list)
     )] 
