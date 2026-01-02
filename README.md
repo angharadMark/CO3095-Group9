@@ -6,6 +6,7 @@ Please install these packages before running:
 - fuzzywuzzy
 - coverage
 - beautifulsoup4
+- pynguin
 
 you can install these by simply doing:
 
