@@ -5,15 +5,24 @@ import sys
 from object.film import Film, searchMovies
 from object.user import User
 from object.actor import Actor
+from object.comment import Comment  # Added to support new interactions
 
 DUMMY_USER_RECORD = {
     "id": "b9895d05-667f-44ed-8e55-474f8b643310",
     "username": "ang",
     "avatarIndex": 0,
-    "favFilm": "None Set"
+    "favFilm": "None Set",
+    "watchlist": [],
+    "dislikes": [],
+    "ratings": {},
+    "comments": {},
+    "inbox": []
 }
+
+
 class TestSprint1FinalPush(unittest.TestCase):
     def setUp(self):
+        # Using a dictionary record to match the updated User constructor
         self.user_record = {
             "id": "test_id",
             "username": "ang",
@@ -23,6 +32,15 @@ class TestSprint1FinalPush(unittest.TestCase):
         self.user = User(self.user_record)
         self.film = Film(name="Inception", ratings=[9, 10])
 
+    def test_film_interactions(self):
+        """Verified interaction between Film and Comment objects to boost film.py coverage."""
+        f = Film(name="Interstellar")
+        comm = Comment("Amazing visuals", user="ang")
+        f.add_comment(comm)
+
+        # Ensures comments are being appended to the list correctly
+        self.assertEqual(len(f.comments), 1)
+        self.assertEqual(f.comments[0].user, "ang")
 
     @patch('builtins.input')
     def test_prompt_logic(self, mock_input):
@@ -48,6 +66,7 @@ class TestSprint1FinalPush(unittest.TestCase):
         self.assertEqual(self.film.average_rating(), 9.5)
 
     def test_user_avatar_options(self):
+        # Verified default avatar and index bounds
         default_av = self.user.set_default_avatar()
         self.assertIn("|o  o|", default_av)
         self.assertTrue(self.user.change_avatar(2))
@@ -71,6 +90,7 @@ class TestSprint1FinalPush(unittest.TestCase):
         self.user.display_profile()
 
         output = mock_stdout.getvalue()
+        # Fixed assertion to match the new "1: Inception" UI format
         self.assertIn("1: Inception", output)
         self.assertIn("Leo as Cobb", output)
 
@@ -84,7 +104,7 @@ class TestSprint1FinalPush(unittest.TestCase):
     def test_input_film_full_flow(self, mock_stdout, mock_input):
         """Covers the input_film confirmation logic and actor.display_actor."""
         test_film = Film()
-        # Mocking individual prompts to avoid input conflicts
+        # Mocking individual prompts to avoid input conflicts during full flow testing
         test_film.prompt_name = MagicMock()
         test_film.prompt_producer = MagicMock()
         test_film.prompt_director = MagicMock()
@@ -93,7 +113,7 @@ class TestSprint1FinalPush(unittest.TestCase):
         test_film.prompt_genre = MagicMock()
         test_film.prompt_cast = MagicMock()
 
-        # Manually add an actor to cover actor.py's display_actor
+        # Manually add an actor to cover actor.py's display_actor logic
         test_film.cast = [Actor("Test Actor", "Test Role")]
 
         result = test_film.input_film()

@@ -26,10 +26,24 @@
       "avatarIndex": 5,
       "friends": [],
       "blocked": []
+    },
+    "f4873746-ec16-43b9-a01d-4b90d6f4c5eb": {
+      "id": "f4873746-ec16-43b9-a01d-4b90d6f4c5eb",
+      "username": "admin",
+      "passwordHash": "$2b$12$0IBPxP8PXffxoWsXPDlthe3Icm76PsXIv2LBr8rUQzu5h1jG8pVLe",
+      "watchlist": [],
+      "films_added": 0,
+      "ratings": {},
+      "comments": {},
+      "isAdmin": false,
+      "avatarIndex": 0,
+      "friends": [],
+      "blocked": []
     }
   },
   "byUsername": {
     "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c",
-    "ang": "ba1444e1-b459-4a57-95a2-976ef7dba846"
+    "ang": "ba1444e1-b459-4a57-95a2-976ef7dba846",
+    "admin": "f4873746-ec16-43b9-a01d-4b90d6f4c5eb"
   }
 }
