@@ -93,6 +93,7 @@ def saveUserRecord(record):
     updated["passwordHash"] = existing.get("passwordHash", "")
     updated["friends"] = existing.get("friends", [])
     updated["blocked"] = existing.get("blocked", [])
+    updated["isAdmin"] = existing.get("isAdmin")
 
     users["byId"][record["id"]] = updated
     saveJson(usersFile, users)

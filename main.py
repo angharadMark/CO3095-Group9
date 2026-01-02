@@ -166,27 +166,6 @@ def main():
     user_record = LoadUserById(state.currentUser["id"])
     user = User(user_record, database)
 
-    options = [
-        "1: Add a film to the database",
-        "2: Add a film to your watch list",
-        "3: Rate a film in your watchlist",
-        "4: Show popular films",
-        "5: View your watch list",
-        "6: View all films in database",
-        "7: Get films based on age rating",
-        "8: Rate a film in your watchlist",
-        "9: Exit",
-        "10: Account Settings",
-        "11: Comment on your watchlist",
-        "12: View actor filmography",
-        "13: download your personal data"
-            ]
-    admin_options = [
-        "1: Add to profanity filter",
-        "2: Delete from profanity fitler",
-        "3: Exit"
-        ]
-
     while state.isLoggedIn():
         print("\nWelcome to the film recommendation system!")
 
@@ -200,41 +179,28 @@ def main():
         print("7: Edit a film in the database")
 
         print("\n--- WATCHLIST ---")
-        print("8: Add a film to your watchlist")
-        print("9: View your watchlist")
-        print("10: Rate a film in your watchlist")
-        
+        print("8: View your watchlist")
+        print("9: Rate a film in your watchlist")
+        print("10: Manage your watchlist")
+        print("11: Save watchlist to txt file")
 
-        print("\n--- WATCHLIST ---")
-        print("11: Manage your watchlist")
-        print("12: View your watchlist")
-        print("13: Rate a film in your watchlist")
-        print("14: Exit")
-        print("15: Account Settings")
-        print("16: Comment on your watchlist")
-        print("17: download your personal data")
-        print("18: Save watchlist to txt file")
         if feature_on("comments"):
-            print("19: Comment on your watchlist")
+            print("12: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
         if feature_on("movie_of_day"):
-            print("20: Movie of the Day")
+            print("13: Movie of the Day")
 
         print("\n--- SOCIAL ---")
         if feature_on("friends"):
-            print("21: Friends System")
+            print("14: Friends System")
 
 
         print("\n--- ACCOUNT ---")
-        print("14: Account Settings")
-        print("15: download your personal data")
+        print("15: Account Settings")
+        print("16: download your personal data")
 
-        print("\n16: Exit")
-
-        print("\n15: Exit")
-
-        print("\n")
+        print("\n17: Exit")
 
         # Admin Username= admin
         # Admin Password= admins
@@ -349,9 +315,6 @@ def main():
             else:
                 print("Film was not modified")
 
-        elif quest == 7:
-            watchlist_dialog(database, user) 
-
         elif quest == 8:
             user.display_watchlist()
             print()
@@ -360,13 +323,13 @@ def main():
             rate_film_in_watchlist(user)
 
         elif quest == 10:
+            watchlist_dialog(database, user) 
+            
+        elif quest == 11:
             exportWatchlist(user)
             if state.isLoggedIn():
                 saveUserRecord(user.to_dict())
-        elif quest == 0:
-            break
-        elif quest==11:
-            settingsMenu(state)
+
         elif quest==12:
             watchlist = user.get_watch_list()
             for i,film in enumerate(watchlist, 1):
@@ -404,43 +367,8 @@ def main():
                     (watchlist[film_num-1]).add_comment(Comment(message))
                 else:
                     (watchlist[film_num-1]).add_comment(Comment(message,user.username))
-        elif quest==12:
 
-        elif quest==13:
-            while True: 
-                target = input("What actor do you want to look at? (or 'q' to exit)")
-                if target.lower() == "q":
-                    break
-            
-                results = database.search_actor(target)
-
-                if results == False:
-                    print("We couldn't find that actor, please try again.")
-                    continue
-
-                for i,actor in enumerate(results,1):
-                    print(f"{i}. {actor.name}")
-                
-                detail = input("Choose which one you want to look at in detail (or 'q' to exit) ")
-                if detail.lower() == "q":
-                    break
-
-                try:
-                    detail = int(detail)
-                    if 1 <= detail <= len(results):
-                        (results[detail-1]).filmography()
-                    else:
-                        print("")
-                except ValueError:
-                    print("Invalid input, returning to menu.")
-        elif quest==14:
-            export_data(user)
-            detail = int(input("Choose which one you want to look at in detail : "))
-            (results[detail-1]).filmography()
-            ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
-
-
-        elif quest == 12:
+        elif quest == 13:
             if not feature_on("movie_of_day"):
                 print("This feature is currently disabled by the administrator.")
                 continue
@@ -453,19 +381,18 @@ def main():
                 print(f"Description: {motd.description}")
             else:
                 print("No movies available")
-        elif quest == 13:
+        elif quest == 14:
             if not feature_on("friends"):
                 print("This feature is currently disabled by the administrator.")
             else:
                 friends_menu(state.currentUser["id"])
-
-        elif quest == 14:
+        elif quest==15:
             settingsMenu(state)
 
-        elif quest == 15:
+        elif quest==16:
             export_data(user)
-        
-        elif quest == 16:
+
+        elif quest == 17:
             if state.isLoggedIn():
                 state.logout()
             break

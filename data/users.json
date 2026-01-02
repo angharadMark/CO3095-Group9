@@ -1,22 +1,20 @@
 {
   "byId": {
-    "43681ea7-2e0b-4756-bd82-a28a9cad51d7": {
-      "id": "43681ea7-2e0b-4756-bd82-a28a9cad51d7",
-      "username": "kass",
-      "watchlist": [
-        "Inception"
-      ],
+    "9ad6c665-674b-4ee5-a946-29ee04b0d067": {
+      "id": "9ad6c665-674b-4ee5-a946-29ee04b0d067",
+      "username": "c",
+      "passwordHash": "$2b$12$gPnyuz9jzn3hBgoDKcUlwulWDExCxIK8VnRvlchV4CGiur0bAPxq2",
+      "watchlist": [],
       "films_added": 0,
       "ratings": {},
-      "comments": [],
-      "avatar_index": 0,
-      "favFilm": "None Set",
+      "comments": {},
+      "isAdmin": true,
+      "avatarIndex": 0,
       "friends": [],
-      "blocked": [],
-      "passwordHash": "$2b$12$ooB82CmcczHJczNBm2039uh22ATzKcQFmj/sKI5oeByMiRSqLFo8y"
+      "blocked": []
     }
   },
   "byUsername": {
-    "kass": "43681ea7-2e0b-4756-bd82-a28a9cad51d7"
+    "c": "9ad6c665-674b-4ee5-a946-29ee04b0d067"
   }
 }
