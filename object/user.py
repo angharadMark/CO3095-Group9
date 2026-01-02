@@ -2,6 +2,8 @@ from object.film import Film
 from copy import deepcopy
 from logic.user_registration import readJson, saveJson, usersFile
 
+from object.user_message import UserMessage
+
 class User:
     def __init__(self, record, database=None, avatar_index=0,favFilm="None Set"):
         self.id = record["id"]
@@ -9,9 +11,11 @@ class User:
         if database != None:
             self.watchList= [database.get_film(f) for f in record.get("watchlist",[])]
             self.dislikes = [database.get_film(film_title) for film_title in record.get("dislikes", [])]
+            self.inbox = [UserMessage.from_dict(message_dict) for message_dict in record.get("inbox", [])]
         else:
             self.watchList = []
             self.dislikes = []
+            self.inbox = []
 
         self.films_added= record.get("films_added", 0)
         # A dictionary associating film names with their ratings (0-10)
@@ -43,7 +47,8 @@ class User:
             "favFilm": self.favFilm,
             "friends": [],
             "blocked": [],
-            "dislikes": [film.name for film in self.dislikes]
+            "dislikes": [film.name for film in self.dislikes],
+            "inbox": [message.to_dict() for message in self.inbox]
         }
     AVATAR_OPTIONS=[
         # Got these from https://www.asciiart.eu
@@ -257,6 +262,15 @@ class User:
 
     def add_comment(self,film, comment):
         self.comments.update({film,comment})
+    
+    def get_inbox(self):
+        return self.inbox
+
+    def unread_message_count(self):
+        return sum([1 if not message.get_read_status() else 0 for message in self.inbox])
+
+    def send_message(self, message):
+        self.inbox.append(message)
 
     def change_avatar(self,index:int)->bool:
         # Sets avatar to what the user has selected
