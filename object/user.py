@@ -8,8 +8,11 @@ class User:
         self.username = record["username"]
         if database != None:
             self.watchList= [database.get_film(f) for f in record.get("watchlist",[])]
+            self.dislikes = [database.get_film(film_title) for film_title in record.get("dislikes", [])]
         else:
             self.watchList = []
+            self.dislikes = []
+
         self.films_added= record.get("films_added", 0)
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = record.get("ratings", {})
@@ -39,7 +42,8 @@ class User:
             "avatar_index": self.avatar_index,
             "favFilm": self.favFilm,
             "friends": [],
-            "blocked": []
+            "blocked": [],
+            "dislikes": [film.name for film in self.dislikes]
         }
     AVATAR_OPTIONS=[
         # Got these from https://www.asciiart.eu
@@ -238,6 +242,18 @@ class User:
         print(f"Favourite Film: {self.favFilm}")
         print(f"Films in Watchlist: {len(self.watchList)}")
         print("---------------------------\n")
+
+    def get_dislikes(self):
+        return self.dislikes
+
+    def dislike_film(self, film):
+        if film not in self.dislikes:
+            self.dislikes.append(film)
+            return film
+        return None
+
+    def undislike_film(self, film):
+        self.dislikes.remove(film)
 
     def add_comment(self,film, comment):
         self.comments.update({film,comment})
