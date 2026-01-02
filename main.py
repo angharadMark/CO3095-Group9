@@ -121,7 +121,7 @@ def watchlist_dialog(database, user):
             if film:
                 film_index = int(film) - 1
                 removed_film = user.pop_from_watchlist(film_index);
-                print(f"Removed film #{film_index} ({removed_film.name}) from your watchlist.")
+                print(f"Removed film #{film_index+1} ({removed_film.name}) from your watchlist.")
 
         elif user_input == 3:
             return
