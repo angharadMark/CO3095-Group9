@@ -1,7 +1,7 @@
 from object.actor import Actor
 
 class Film:
-    def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, ratings=None, description=None):
+    def __init__(self, name=None, cast=None, producer=None, director=None, genre=None, age_rating=None, year=None, ratings=None, description=None, comments=None):
         self.name = name
         self.cast = cast if cast is not None else []
         self.producer=producer
@@ -11,6 +11,38 @@ class Film:
         self.year = year
         self.ratings = ratings if ratings is not None else []
         self.description = description
+        self.comments = comments if comments  is not None else []
+
+    def to_dict(self):
+        return{
+            "name": self.name,
+            "director": self.director,
+            "producer": self.producer,
+            "year": self.year,
+            "genre": self.genre,
+            "ratings": self.ratings,
+            "cast": [{
+                "actor": actor.name,
+                "role": actor.role
+                }
+                for actor in self.cast
+            ],
+            "comments": [
+                {
+                    "user": comment.user,
+                    "message": comment.message  
+                }
+                for comment in self.comments
+            ],
+            "age_rating": self.age_rating,
+            "description": self.description
+        }
+    
+    def add_actor(self, actor):
+        for a in self.cast:
+            if a.name == actor.name and a.role == actor.role:
+                return
+        self.cast.append(actor)
 
     def prompt_name(self):
         name = input("Whats the name of the film? : ").strip()
@@ -70,7 +102,7 @@ class Film:
         self.prompt_cast()
 
         self.display_film()
-        choice = input("Confirm and save this film? : ").strip()
+        choice = input("Confirm and save this film? y/n : ").strip()
         if choice.lower() == "y":
             return True
         else:
@@ -102,10 +134,30 @@ class Film:
             print("unrated")
         else:
             print("Average rating: "+ str(self.average_rating()))
+        print("Comments: ")
+        for comment in self.comments:
+            comment.display_comment()
         print("\n")
     
     def add_ratings(self, rating):
         self.ratings.append(rating)
+
+def searchMovies(movies, keyword):
+    keyword = keyword.lower().strip()
+    results = []
+
+    for movie in movies:
+        title = (movie.name or "").lower()
+        description = (getattr(movie, 'description', "") or "").lower()
+
+        if keyword in title or keyword in description:
+            results.append(movie)
+    
+    return results
+
+    def add_comment(self, comment):
+        self.comments.append(comment)
+
 
 
         
