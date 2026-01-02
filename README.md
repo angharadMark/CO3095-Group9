@@ -5,6 +5,7 @@
 Please install these packages before running:
 - fuzzywuzzy
 - coverage
+- beautifulsoup4
 
 you can install these by simply doing:
 
