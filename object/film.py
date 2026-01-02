@@ -162,6 +162,12 @@ class Film:
         for comment in self.comments:
             comment.display_comment()
         print("\n")
+    
+    def add_ratings(self, rating):
+        self.ratings.append(rating)
+            
+    def add_comment(self, comment):
+        self.comments.append(comment)
 
     def get_name(self): 
         return self.name

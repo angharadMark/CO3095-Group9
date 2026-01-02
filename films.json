@@ -11,6 +11,8 @@
     "ratings": [
       8.0,
       10.0,
+      10.0,
+      10.0,
       10.0
     ],
     "cast": [
@@ -35,6 +37,10 @@
       {
         "user": "Anonymous",
         "message": "****"
+      },
+      {
+        "user": "kass",
+        "message": "very good!"
       }
     ],
     "age_rating": "15",
@@ -66,19 +72,7 @@
     ],
     "comments": [],
     "age_rating": 15,
-    "year": 1999,
-    "ratings": [],
-    "description": "Horror movie about....",
-    "comments": [
-      {
-        "user": "emre",
-        "comment": "NEO"
-      },
-      {
-        "user": "emre",
-        "comment": "red or blue"
-      }
-    ]
+    "description": "Horror movie about...."
   },
   {
     "name": "Titanic",
@@ -107,16 +101,7 @@
         "role": "Cal Hockley"
       }
     ],
-    "comments": [
-      {
-        "user": "Anonymous",
-        "comment": "Good film!"
-      },
-      {
-        "user": "emre",
-        "comment": "ship"
-      }
-    ],
+    "comments": [],
     "age_rating": 12,
     "description": "Romance movie about...."
   },

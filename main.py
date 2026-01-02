@@ -10,7 +10,7 @@ from logic.user_state import UserState
 from logic.user_login import loginUser
 from logic.user_registration import LoadUserById, saveUserRecord
 from logic.user_download import export_data
-from logic.admin_menu import add_profan, delete_profan
+from logic.admin_actions import add_profan, delete_profan
 from settings import settingsMenu
 from logic.movie_recommendations import getMovieOfTheDay
 from settings import settingsMenu, adminMenu
@@ -18,11 +18,9 @@ from getpass import getpass
 
 from logic.friends_system import friends_menu
 from logic.user_registration import registerUser, userExists
+from logic.file_manager import exportWatchlist
 
 from settings import feature_on
-
-
-
 
 def register_flow():
     print("\nWelcome to the registration tool\n")
@@ -56,13 +54,7 @@ def register_flow():
     except Exception as e:
         print("Registration failed:", e)
         return None
-
-
-
-
-
-
-
+      
 def confirm_choice(dialog_message, validate_fun,
     repeat_message = None, reject_message = "Invalid input value"):
     if not repeat_message: repeat_message = dialog_message
@@ -141,6 +133,7 @@ def main():
         print("3: Exit")
 
         choice = int( input ("Select an option:  "))
+        
         #Login
         if choice==1:
             username = input("Username: ").strip()
@@ -153,6 +146,7 @@ def main():
                 print(f"\nLogged in as {state.currentUser['username']} (id: {state.currentUser['id']})")
             else:
                 print("\nInvalid username or password.")
+        
         #Register
         if choice == 2:
             new_user = register_flow()
@@ -161,21 +155,17 @@ def main():
                 print(f"\nLogged in as {state.currentUser['username']} (id: {state.currentUser['id']})")
             continue
 
-
         #Exit
         if choice==3:
             return
-    
-
-    from object.user import User
-    user_record = LoadUserById(state.currentUser["id"])
-    user = User(user_record)
-    #user=User(state.currentUser["username"]) #user object here
-
-    
     imports = DatabaseLoader()
     database = imports.load("films.json")
     export = DatabaseWriter()
+
+    from object.user import User
+    user_record = LoadUserById(state.currentUser["id"])
+    user = User(user_record, database)
+
     options = [
         "1: Add a film to the database",
         "2: Add a film to your watch list",
@@ -196,40 +186,8 @@ def main():
         "2: Delete from profanity fitler",
         "3: Exit"
         ]
-    while state.isLoggedIn() and state.isAdmin():
-        print("\n")
-        print("Welcome to the admin menu!")
-        for admin_op in admin_options:
-            print(admin_op)
-        print("\n")
-        while True:
-            quest = int(input("Please select an option: "))
-
-            if quest not in range(1, len(admin_options)):
-                print("Invalid option.")
-                break
-
-        if quest == 1:
-            profan = input("What profanity do you need to add: ")
-            add_profan(profan)
-        elif quest == 2:
-            while True:
-                profan = input("What profanity do you need to delete (or press 'q' to quit) ")
-                if profan.lower() == 'q':
-                    break
-                
-                if delete_profan(profan) == False:
-                    print("Word could not be found.")
-                    continue
-            print("Your word",profan,"has been deleted from the filter")
-        elif quest == 3:
-            break
 
     while state.isLoggedIn():
-        print("\n")
-        print("Welcome to the film reccomendation system!")
-        for option in options:
-            print(option)
         print("\nWelcome to the film recommendation system!")
 
         print("\n--- DATABASE ---")
@@ -238,32 +196,41 @@ def main():
         print("3: View all films in database")
         print("4: Get films based on age rating")
         print("5: Search for a movie using a keyword")
-        print("6: Edit a film in the database")
+        print("6: View actor filmography")
+        print("7: Edit a film in the database")
 
         print("\n--- WATCHLIST ---")
-        print("7: Manage your watchlist")
-        print("8: View your watchlist")
-        print("9: Rate a film in your watchlist")
-        print("10: Exit")
-        print("11: Account Settings")
-        print("12: Comment on your watchlist")
-        print("13: View actor filmography")
-        print("14: download your personal data")
-        print("10: Save watchlist to txt file")
+        print("8: Add a film to your watchlist")
+        print("9: View your watchlist")
+        print("10: Rate a film in your watchlist")
+        
+
+        print("\n--- WATCHLIST ---")
+        print("11: Manage your watchlist")
+        print("12: View your watchlist")
+        print("13: Rate a film in your watchlist")
+        print("14: Exit")
+        print("15: Account Settings")
+        print("16: Comment on your watchlist")
+        print("17: download your personal data")
+        print("18: Save watchlist to txt file")
         if feature_on("comments"):
-            print("11: Comment on your watchlist")
+            print("19: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
         if feature_on("movie_of_day"):
-            print("12: Movie of the Day")
+            print("20: Movie of the Day")
 
         print("\n--- SOCIAL ---")
         if feature_on("friends"):
-            print("13: Friends System")
+            print("21: Friends System")
 
 
         print("\n--- ACCOUNT ---")
         print("14: Account Settings")
+        print("15: download your personal data")
+
+        print("\n16: Exit")
 
         print("\n15: Exit")
 
@@ -271,10 +238,9 @@ def main():
 
         # Admin Username= admin
         # Admin Password= admins
-        if state.currentUser["username"] == "admin":
+        if state.isAdmin():
             print("100: Administrator Tools")
 
-        
         while True:
             quest = input("Please select an option: ")
             if not quest.isdigit():
@@ -282,9 +248,6 @@ def main():
                 continue
 
             quest = int(quest)
-            if quest not in range(1, len(options)):
-                print("Invalid option, please try again.")
-                continue
             break
 
         if quest == 1:
@@ -330,8 +293,44 @@ def main():
                     print(f"{idx}. {movie.name} - {desc[:50]}...")
             else:
                 print("No movies found with that keyword")
-
         elif quest == 6:
+            while True: 
+                target = input("What actor do you want to look at? (or 'q' to exit)")
+                if target.lower() == "q":
+                    break
+            
+                results = database.search_actor(target)
+
+                if results == False:
+                    print("We couldn't find that actor, please try again.")
+                    continue
+
+                for i,actor in enumerate(results,1):
+                    print(f"{i}. {actor.name}")
+                
+                detail = input("Choose which one you want to look at in detail (or 'q' to exit) ")
+                if detail.lower() == "q":
+                    break
+
+                try:
+                    detail = int(detail)
+                    if 1 <= detail <= len(results):
+                        (results[detail-1]).filmography()
+                    else:
+                        print("")
+                except ValueError:
+                    print("Invalid input, returning to menu.")
+        elif quest == 7:
+            film = input("Please input the film name you want to add: ")
+            result = database.get_film(film)
+            while result == False:
+                print("Your film could not be found")
+                choice = input("Would you like to try again y/n : ")
+                if choice.lower() == "y":
+                    film = input("Please input the film again: ")
+                    result = database.get_film(film)
+                else:
+                    break
             result = confirm_choice(
                 "Please input the film name you want to change",
                 lambda choice: database.get_film(choice),
@@ -361,6 +360,7 @@ def main():
             rate_film_in_watchlist(user)
 
         elif quest == 10:
+            exportWatchlist(user)
             if state.isLoggedIn():
                 saveUserRecord(user.to_dict())
         elif quest == 0:
@@ -404,6 +404,7 @@ def main():
                     (watchlist[film_num-1]).add_comment(Comment(message))
                 else:
                     (watchlist[film_num-1]).add_comment(Comment(message,user.username))
+        elif quest==12:
 
         elif quest==13:
             while True: 
@@ -452,8 +453,6 @@ def main():
                 print(f"Description: {motd.description}")
             else:
                 print("No movies available")
-
-
         elif quest == 13:
             if not feature_on("friends"):
                 print("This feature is currently disabled by the administrator.")
@@ -464,10 +463,16 @@ def main():
             settingsMenu(state)
 
         elif quest == 15:
+            export_data(user)
+        
+        elif quest == 16:
+            if state.isLoggedIn():
+                state.logout()
             break
 
-        elif quest == 100 and state.currentUser["username"] == "admin":
+        elif quest == 100 and state.isAdmin():
             adminMenu(state)
+
 
         export.upload(database, "films.json")
 

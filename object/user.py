@@ -1,26 +1,31 @@
+from object.film import Film
+
 class User:
-    def __init__(self, record, avatar_index=0,favFilm="None Set"):
+    def __init__(self, record, database=None, avatar_index=0,favFilm="None Set"):
         self.id = record["id"]
         self.username = record["username"]
-        self.watchList= record.get("watchlist", [])
+        if database != None:
+            self.watchList= [database.get_film(f) for f in record.get("watchlist",[])]
+        else:
+            self.watchList = []
         self.films_added= record.get("films_added", 0)
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = record.get("ratings", {})
         self.comments = record.get("comments", {})
-        self.avatar_index = record.get("avatar_index", avatar_index)
+        self.avatar_index = record.get("avatarIndex", avatar_index)
         self.favFilm= record.get("favFilm", favFilm)
 
         #Set ASCII based on the index above from database
         if 0 <= self.avatar_index < len(User.AVATAR_OPTIONS):
-             self.avatar_ascii = User.AVATAR_OPTIONS[self.avatar_index]
+            self.avatar_ascii = User.AVATAR_OPTIONS[self.avatar_index]
         else:
-             self.avatar_ascii = User.AVATAR_OPTIONS[0] # Fallback
+            self.avatar_ascii = User.AVATAR_OPTIONS[0] # Fallback
     
     def to_dict(self):
         return {
             "id": self.id,
             "username": self.username,
-            "watchlist": [film.to_dict() for film in self.watchList],
+            "watchlist": [film.name for film in self.watchList],
             "films_added": self.films_added,
             "ratings": self.ratings,
             "comments": [{
@@ -28,7 +33,11 @@ class User:
                 "message": comment.message
                 }
                 for comment in self.comments
-            ]
+            ],
+            "avatar_index": self.avatar_index,
+            "favFilm": self.favFilm,
+            "friends": [],
+            "blocked": []
         }
     AVATAR_OPTIONS=[
         # Got these from https://www.asciiart.eu
