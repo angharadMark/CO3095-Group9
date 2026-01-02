@@ -1,10 +1,15 @@
 import unittest
 from object.user import User
-
+DUMMY_USER_RECORD = {
+    "id": "b9895d05-667f-44ed-8e55-474f8b643310",
+    "username": "ang",
+    "avatarIndex": 0,
+    "favFilm": "None Set"
+}
 class TestUserAvatar(unittest.TestCase):
-
     def setUp(self):
-        self.user = User("test_user", avatar_index=0)
+        record = {"id": "123", "username": "test_user", "avatarIndex": 0}
+        self.user = User(record)
 
     # Frame 5: In_Range (Success)
     def test_avatar_valid(self):

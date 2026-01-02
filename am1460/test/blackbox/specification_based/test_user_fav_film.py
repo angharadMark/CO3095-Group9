@@ -2,15 +2,23 @@ import unittest
 from unittest.mock import patch, MagicMock
 from logic.user_settings import changeFavFilmMenu, saveFavFilm
 from object.user import User
-
+DUMMY_USER_RECORD = {
+    "id": "b9895d05-667f-44ed-8e55-474f8b643310",
+    "username": "ang",
+    "avatarIndex": 0,
+    "favFilm": "None Set"
+}
 
 class TestUserFavFilm(unittest.TestCase):
-
     def setUp(self):
-        # Using the actual ID and username from your JSON snippet
         self.user_id = "b9895d05-667f-44ed-8e55-474f8b643310"
         self.user_username = "ang"
-        self.user = User(self.user_username)
+        record = {
+            "id": self.user_id,
+            "username": self.user_username,
+            "favFilm": "None Set"
+        }
+        self.user = User(record)
 
     @patch('logic.user_settings.readJson')
     @patch('logic.user_settings.saveJson')

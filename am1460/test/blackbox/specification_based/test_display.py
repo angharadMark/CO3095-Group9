@@ -6,11 +6,23 @@ from object.film import Film, searchMovies
 from object.user import User
 from object.actor import Actor
 
-
+DUMMY_USER_RECORD = {
+    "id": "b9895d05-667f-44ed-8e55-474f8b643310",
+    "username": "ang",
+    "avatarIndex": 0,
+    "favFilm": "None Set"
+}
 class TestSprint1FinalPush(unittest.TestCase):
     def setUp(self):
-        self.user = User("ang")
+        self.user_record = {
+            "id": "test_id",
+            "username": "ang",
+            "watchlist": [],
+            "avatarIndex": 0
+        }
+        self.user = User(self.user_record)
         self.film = Film(name="Inception", ratings=[9, 10])
+
 
     @patch('builtins.input')
     def test_prompt_logic(self, mock_input):
@@ -59,7 +71,7 @@ class TestSprint1FinalPush(unittest.TestCase):
         self.user.display_profile()
 
         output = mock_stdout.getvalue()
-        self.assertIn("Film Name: Inception", output)
+        self.assertIn("1: Inception", output)
         self.assertIn("Leo as Cobb", output)
 
     def test_film_search_coverage(self):

@@ -13,9 +13,23 @@
       "blocked": [],
       "passwordHash": "$2b$12$MQIpaX.5Y.Vt/quml4NG7OMIf2Vms0RMtokEwVF5HfHOO0iEqRUty",
       "isAdmin": false
+    },
+    "ba1444e1-b459-4a57-95a2-976ef7dba846": {
+      "id": "ba1444e1-b459-4a57-95a2-976ef7dba846",
+      "username": "ang",
+      "passwordHash": "$2b$12$Gufi29vjpV2Got5jJPsc4.7xYKwcoRGkfiLVVWa2KPRijwn5KI8zW",
+      "watchlist": [],
+      "films_added": 0,
+      "ratings": {},
+      "comments": {},
+      "isAdmin": false,
+      "avatarIndex": 5,
+      "friends": [],
+      "blocked": []
     }
   },
   "byUsername": {
-    "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c"
+    "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c",
+    "ang": "ba1444e1-b459-4a57-95a2-976ef7dba846"
   }
 }

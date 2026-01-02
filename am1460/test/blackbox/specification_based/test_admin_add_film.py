@@ -7,8 +7,7 @@ class TestAdminAddFilm(unittest.TestCase):
     @patch('builtins.input')
     def test_add_valid_film(self, mock_input):
         # Order based on your terminal output:
-        # 1. Title, 2. Director, 3. Producer, 4. Year, 5. Age, 6. Genre,
-        # 7. Add More Genre?, 8. Actor Name, 9. Actor Role, 10. Add More Actor?, 11. Confirm Save
+
         mock_input.side_effect = [
             "Inception", "Chris Nolan", "Emma Thomas", "2010", "12",
             "Sci-Fi", "n", "Leo", "Cobb", "n", "y"
