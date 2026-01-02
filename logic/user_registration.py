@@ -70,8 +70,7 @@ def registerUser(username: str, password: str):
         "films_added": 0,
         "ratings": {},
         "comments": {},
-        "isAdmin": False
-        }
+        "isAdmin": False,
         "avatarIndex":0,
         "friends": [],
     }

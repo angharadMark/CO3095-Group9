@@ -416,7 +416,7 @@ def main():
             export_data(user)
             detail = int(input("Choose which one you want to look at in detail : "))
             (results[detail-1]).filmography()
-                ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
+            ((user.get_watch_list())[film_num - 1]).add_comment(Comment(message, user.username))
 
 
         elif quest == 11:
