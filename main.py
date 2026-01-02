@@ -12,7 +12,7 @@ from logic.user_registration import LoadUserById, saveUserRecord
 from logic.user_download import export_data
 from logic.admin_actions import add_profan, delete_profan
 from settings import settingsMenu
-from logic.movie_recommendations import getMovieOfTheDay
+from logic.movie_recommendations import getMovieOfTheDay, reccomend_films
 from settings import settingsMenu, adminMenu
 from getpass import getpass
 
@@ -183,24 +183,24 @@ def main():
         print("9: Rate a film in your watchlist")
         print("10: Manage your watchlist")
         print("11: Save watchlist to txt file")
+        print("12: Reccomendations based on watchlist")
 
         if feature_on("comments"):
-            print("12: Comment on your watchlist")
+            print("13: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
         if feature_on("movie_of_day"):
-            print("13: Movie of the Day")
+            print("14: Movie of the Day")
 
         print("\n--- SOCIAL ---")
         if feature_on("friends"):
-            print("14: Friends System")
-
+            print("15: Friends System")
 
         print("\n--- ACCOUNT ---")
-        print("15: Account Settings")
-        print("16: download your personal data")
+        print("16: Account Settings")
+        print("17: download your personal data")
 
-        print("\n17: Exit")
+        print("\n18: Exit")
 
         # Admin Username= admin
         # Admin Password= admins
@@ -324,13 +324,22 @@ def main():
 
         elif quest == 10:
             watchlist_dialog(database, user) 
-            
+
         elif quest == 11:
             exportWatchlist(user)
             if state.isLoggedIn():
                 saveUserRecord(user.to_dict())
 
-        elif quest==12:
+        elif quest == 12:
+            recco_films = reccomend_films(user, database)
+
+            if not recco_films:
+                print("No reccomendations avaiable!")
+            else:
+                print("\n Recommended films: ")
+                for i, film in enumerate(recco_films, 1):
+                    print(f"{i}. {film.name}")
+        elif quest==13:
             watchlist = user.get_watch_list()
             for i,film in enumerate(watchlist, 1):
                 print(f"{i}. {film.name}")
@@ -368,7 +377,7 @@ def main():
                 else:
                     (watchlist[film_num-1]).add_comment(Comment(message,user.username))
 
-        elif quest == 13:
+        elif quest == 14:
             if not feature_on("movie_of_day"):
                 print("This feature is currently disabled by the administrator.")
                 continue
@@ -381,25 +390,24 @@ def main():
                 print(f"Description: {motd.description}")
             else:
                 print("No movies available")
-        elif quest == 14:
+        elif quest == 15:
             if not feature_on("friends"):
                 print("This feature is currently disabled by the administrator.")
             else:
                 friends_menu(state.currentUser["id"])
-        elif quest==15:
+        elif quest==16:
             settingsMenu(state)
 
-        elif quest==16:
+        elif quest==17:
             export_data(user)
 
-        elif quest == 17:
+        elif quest == 18:
             if state.isLoggedIn():
-                state.logout()
+                state.logout(user)
             break
 
         elif quest == 100 and state.isAdmin():
             adminMenu(state)
-
 
         export.upload(database, "films.json")
 
