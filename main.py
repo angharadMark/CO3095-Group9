@@ -211,7 +211,11 @@ def main():
         print("2: Register")
         print("3: Exit")
 
-        choice = input ("Select an option:  ")
+        try:
+            choice = int (input ("Select an option:  "))
+        except ValueError:
+            print("Invalid Input")
+            continue
 
 
 
