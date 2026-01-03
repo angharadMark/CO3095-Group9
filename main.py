@@ -211,8 +211,10 @@ def main():
         print("2: Register")
         print("3: Exit")
 
-        choice = int( input ("Select an option:  "))
-        
+        choice = input ("Select an option:  ")
+
+
+
         #Login
         if choice==1:
             username = input("Username: ").strip()
@@ -237,6 +239,9 @@ def main():
         #Exit
         if choice==3:
             return
+
+
+
 
     imports = DatabaseLoader()
     database = imports.load("films.json")
