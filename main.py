@@ -41,8 +41,8 @@ def register_flow():
         break
 
     while True:
-        password = getpass("Enter a password (Min 6 chars):")
-        confirm = getpass("Confirm Password: ")
+        password = input("Enter a password (Min 6 chars):")
+        confirm = input("Confirm Password: ")
         if password != confirm:
             print("Passwords do not match. \n")
             continue
