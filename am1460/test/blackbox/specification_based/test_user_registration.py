@@ -3,11 +3,19 @@ from unittest.mock import patch, mock_open
 from logic.user_registration import registerUser, userExists
 
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Employs Boundary Value Analysis (BVA) for security constraints (password length) 
+             and Category Partitioning for unique identity checks during registration.
+
+Expected Results:
+- User Exists: Correctly identifies existing vs. new users via dictionary lookup.
+- Empty Input: registerUser() raises ValueError when username is blank.
+- Password Boundary: registerUser() raises ValueError if password length < 6 characters.
+- Duplicate Check: registerUser() raises ValueError if the username is already taken.
+- Successful Flow: Valid data generates a new UUID, hashes the password, and triggers saveJson().
+
+Actual Results: 100% Pass Rate. 
 '''
 class TestUserRegistration(unittest.TestCase):
 

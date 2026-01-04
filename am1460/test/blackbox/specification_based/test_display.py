@@ -7,11 +7,20 @@ from object.user import User
 from object.actor import Actor
 from object.comment import Comment  # Added to support new interactions
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Verifies integrated object interactions (Film-Comment-Actor) and 
+             input/output logic using Category Partitioning and Boundary Value Analysis.
+
+Expected Results:
+- Interaction: Successfully append Comment objects to Film records; ensure data integrity.
+- Prompt Logic: Correctly populate Film attributes from mocked user input; verify genre list.
+- Rating Logic: Return 0 for unrated films (Boundary) and correct mean for populated lists.
+- Display Logic: Capture and verify stdout for 'unrated' tags and profile summary strings.
+- Avatar Bounds: Return True for valid index (2) and False for out-of-range index (100).
+- Input Flow: input_film() returns True upon 'y' confirmation and displays cast details.
+
+Actual Results: 100% Pass Rate across all 8 test cases. 
 '''
 DUMMY_USER_RECORD = {
     "id": "b9895d05-667f-44ed-8e55-474f8b643310",

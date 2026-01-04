@@ -1,11 +1,19 @@
 import unittest
 from object.user import User
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Assigned Story: ID 17 (User Settings - Avatar Customization)
+Description: This test suite employs Category Partitioning and Boundary Value Analysis (BVA) 
+             to verify the logic for changing and persisting user avatars.
+
+Expected Results:
+- Menu Exit: Selecting the exit option ('0') successfully terminates the changeAvatarMenu loop.
+- Valid Index: Input within the valid range (e.g., 1) returns True and updates the User object.
+- Upper Boundary: Input significantly out of bounds (e.g., 99) returns False and preserves data.
+- Lower Boundary: Negative input index returns False and prevents data corruption.
+
+Actual Results: 100% Pass Rate. 
 '''
 DUMMY_USER_RECORD = {
     "id": "b9895d05-667f-44ed-8e55-474f8b643310",
