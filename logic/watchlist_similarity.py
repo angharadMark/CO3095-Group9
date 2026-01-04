@@ -1,16 +1,20 @@
-from logic.user_registration import readJson, saveJson, usersFile
+from logic.user_registration import readJson, usersFile
 
+from object.film import Film
+from object.user import User
+
+from database.database import Database
 from collections import Counter
 
 class WatchlistSimilarity:
     @staticmethod
-    def get_watchlist_genres(watchlist):
-        return [genre for film in watchlist for genre in film.genre]
+    def get_watchlist_genres(watchlist : list[Film]) -> list[str]:
+        return [genre for film in watchlist if film != False for genre in film.genre]
 
     # returns all users that have a similar watchlist to target_user ranked by
     # a similarity score
     @staticmethod
-    def find(target_user, database):
+    def find(target_user : User, database : Database) -> list[tuple[str, float]]:
         users_json_data = readJson(usersFile, {"byId":{}, "byUsername": {}})
 
         similarities = []
@@ -23,7 +27,7 @@ class WatchlistSimilarity:
 
             similarity_score = 0
    
-            retrieved_films = [] if "watchlist" not in user_data.keys() else [database.get_film(film) for film in user_data["watchlist"]]
+            retrieved_films = [] if "watchlist" not in user_data.keys() else [database.get_film(film) for film in user_data["watchlist"] if database.get_film(film) != False]
 
             # direct similarity
             for film in target_user.watchList:
