@@ -6,7 +6,7 @@ def deleteUser(username: str, password: str):
     if not username or not password: return False
 
     userData = readJson(usersFile, None)
-    if not userData or len(userData["byUsername"]) == 0:
+    if not userData or len(userData["byUsername"]) == 0 or len(userData["byId"]) == 0:
         return False
 
     userId = userData["byUsername"].get(username)
