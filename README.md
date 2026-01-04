@@ -35,6 +35,16 @@ python -m coverage run -p am1460/test/whitebox/branch_testing/test_object_logic.
 
 python -m coverage run -p am1460/test/whitebox/branch_testing/test_keyword_search_branches.py
 
+### To run EU20's random blackbox and whitebox testing input into terminal
+python -m coverage run -p -m pytest eu20/test/blackbox/random_based
+python -m coverage run -p -m pytest eu20/test/blackbox/specification_based
+python -m coverage run -p -m pytest eu20/test/whitebox/statement_testing/test_user_statement.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_database_loader_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_database_filter_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_film_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_user_auth_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_user_auth_branch.py
+
 ### Combine: 
 python -m coverage combine
 
