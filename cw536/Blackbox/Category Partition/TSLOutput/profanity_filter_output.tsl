@@ -1,0 +1,40 @@
+Test Case 1		<single>
+	Special Case  : EmptyString 
+
+
+Test Case 2		<single>
+	Special Case  : CaseInsensitive 
+
+
+Test Case 3		<single>
+	Special Case  : WordBoundaries 
+
+
+Test Case 4
+	File Status    : FileExists       
+	Load Result    : Returns word set 	(follows [if file_exists])
+	Text Type      : CleanText        
+	Censor Result  : Text unchanged   	(follows [if clean])
+
+
+Test Case 5
+	File Status    : FileExists       
+	Load Result    : Returns word set 	(follows [if file_exists])
+	Text Type      : HasProfanity     
+	Censor Result  : Text censored    	(follows [if has_profan])
+
+
+Test Case 6
+	File Status    : FileNotExists     
+	Load Result    : Returns empty set 	(follows [if file_not_exists])
+	Text Type      : CleanText         
+	Censor Result  : Text unchanged    	(follows [if clean])
+
+
+Test Case 7
+	File Status    : FileNotExists     
+	Load Result    : Returns empty set 	(follows [if file_not_exists])
+	Text Type      : HasProfanity      
+	Censor Result  : Text censored     	(follows [if has_profan])
+
+

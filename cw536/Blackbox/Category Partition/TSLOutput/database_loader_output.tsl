@@ -1,0 +1,188 @@
+Test Case 1		<error>
+	JSON File  : InvalidJSON 
+
+
+Test Case 2		<error>
+	File Permission  : NoPermission 
+
+
+Test Case 3
+	JSON File         : ValidJSON                    
+	Load Result       : Database loaded successfully 	(follows [if valid_json])
+	Database Content  : HasFilms                     
+	File Permission   : CanWrite                     
+	Write Result      : JSON file created            	(follows [if has_films && can_write])
+	Search Query      : ExactName                    
+	Search Result     : Returns actor list           	(follows [if exact_name || fuzzy])
+
+
+Test Case 4
+	JSON File         : ValidJSON                    
+	Load Result       : Database loaded successfully 	(follows [if valid_json])
+	Database Content  : HasFilms                     
+	File Permission   : CanWrite                     
+	Write Result      : JSON file created            	(follows [if has_films && can_write])
+	Search Query      : FuzzyMatch                   
+	Search Result     : Returns actor list           	(follows [if exact_name || fuzzy])
+
+
+Test Case 5
+	JSON File         : ValidJSON                    
+	Load Result       : Database loaded successfully 	(follows [if valid_json])
+	Database Content  : HasFilms                     
+	File Permission   : CanWrite                     
+	Write Result      : JSON file created            	(follows [if has_films && can_write])
+	Search Query      : NoMatch                      
+	Search Result     : Returns False                	(follows [if no_match])
+
+
+Test Case 6
+	JSON File         : ValidJSON                    
+	Load Result       : Database loaded successfully 	(follows [if valid_json])
+	Database Content  : EmptyDatabase                
+	File Permission   : CanWrite                     
+	Write Result      : Empty JSON created           	(follows [if empty_db && can_write])
+	Search Query      : ExactName                    
+	Search Result     : Returns actor list           	(follows [if exact_name || fuzzy])
+
+
+Test Case 7
+	JSON File         : ValidJSON                    
+	Load Result       : Database loaded successfully 	(follows [if valid_json])
+	Database Content  : EmptyDatabase                
+	File Permission   : CanWrite                     
+	Write Result      : Empty JSON created           	(follows [if empty_db && can_write])
+	Search Query      : FuzzyMatch                   
+	Search Result     : Returns actor list           	(follows [if exact_name || fuzzy])
+
+
+Test Case 8
+	JSON File         : ValidJSON                    
+	Load Result       : Database loaded successfully 	(follows [if valid_json])
+	Database Content  : EmptyDatabase                
+	File Permission   : CanWrite                     
+	Write Result      : Empty JSON created           	(follows [if empty_db && can_write])
+	Search Query      : NoMatch                      
+	Search Result     : Returns False                	(follows [if no_match])
+
+
+Test Case 9
+	JSON File         : EmptyJSON               
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : HasFilms                
+	File Permission   : CanWrite                
+	Write Result      : JSON file created       	(follows [if has_films && can_write])
+	Search Query      : ExactName               
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 10
+	JSON File         : EmptyJSON               
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : HasFilms                
+	File Permission   : CanWrite                
+	Write Result      : JSON file created       	(follows [if has_films && can_write])
+	Search Query      : FuzzyMatch              
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 11
+	JSON File         : EmptyJSON               
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : HasFilms                
+	File Permission   : CanWrite                
+	Write Result      : JSON file created       	(follows [if has_films && can_write])
+	Search Query      : NoMatch                 
+	Search Result     : Returns False           	(follows [if no_match])
+
+
+Test Case 12
+	JSON File         : EmptyJSON               
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : EmptyDatabase           
+	File Permission   : CanWrite                
+	Write Result      : Empty JSON created      	(follows [if empty_db && can_write])
+	Search Query      : ExactName               
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 13
+	JSON File         : EmptyJSON               
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : EmptyDatabase           
+	File Permission   : CanWrite                
+	Write Result      : Empty JSON created      	(follows [if empty_db && can_write])
+	Search Query      : FuzzyMatch              
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 14
+	JSON File         : EmptyJSON               
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : EmptyDatabase           
+	File Permission   : CanWrite                
+	Write Result      : Empty JSON created      	(follows [if empty_db && can_write])
+	Search Query      : NoMatch                 
+	Search Result     : Returns False           	(follows [if no_match])
+
+
+Test Case 15
+	JSON File         : FileNotFound            
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : HasFilms                
+	File Permission   : CanWrite                
+	Write Result      : JSON file created       	(follows [if has_films && can_write])
+	Search Query      : ExactName               
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 16
+	JSON File         : FileNotFound            
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : HasFilms                
+	File Permission   : CanWrite                
+	Write Result      : JSON file created       	(follows [if has_films && can_write])
+	Search Query      : FuzzyMatch              
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 17
+	JSON File         : FileNotFound            
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : HasFilms                
+	File Permission   : CanWrite                
+	Write Result      : JSON file created       	(follows [if has_films && can_write])
+	Search Query      : NoMatch                 
+	Search Result     : Returns False           	(follows [if no_match])
+
+
+Test Case 18
+	JSON File         : FileNotFound            
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : EmptyDatabase           
+	File Permission   : CanWrite                
+	Write Result      : Empty JSON created      	(follows [if empty_db && can_write])
+	Search Query      : ExactName               
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 19
+	JSON File         : FileNotFound            
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : EmptyDatabase           
+	File Permission   : CanWrite                
+	Write Result      : Empty JSON created      	(follows [if empty_db && can_write])
+	Search Query      : FuzzyMatch              
+	Search Result     : Returns actor list      	(follows [if exact_name || fuzzy])
+
+
+Test Case 20
+	JSON File         : FileNotFound            
+	Load Result       : Empty database returned 	(follows [if empty_json || not_found])
+	Database Content  : EmptyDatabase           
+	File Permission   : CanWrite                
+	Write Result      : Empty JSON created      	(follows [if empty_db && can_write])
+	Search Query      : NoMatch                 
+	Search Result     : Returns False           	(follows [if no_match])
+
+

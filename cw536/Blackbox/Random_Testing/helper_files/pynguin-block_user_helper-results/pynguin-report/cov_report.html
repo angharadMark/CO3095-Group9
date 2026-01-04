@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pynguin coverage report</title>
+  <style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: #586e75; background-color: #073642; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #586e75; background-color: #073642; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #073642 }
+.highlight { background: #002b36; color: #839496 }
+.highlight .c { color: #586E75; font-style: italic } /* Comment */
+.highlight .err { color: #839496; background-color: #DC322F } /* Error */
+.highlight .esc { color: #839496 } /* Escape */
+.highlight .g { color: #839496 } /* Generic */
+.highlight .k { color: #859900 } /* Keyword */
+.highlight .l { color: #839496 } /* Literal */
+.highlight .n { color: #839496 } /* Name */
+.highlight .o { color: #586E75 } /* Operator */
+.highlight .x { color: #839496 } /* Other */
+.highlight .p { color: #839496 } /* Punctuation */
+.highlight .ch { color: #586E75; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #586E75; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #D33682 } /* Comment.Preproc */
+.highlight .cpf { color: #586E75 } /* Comment.PreprocFile */
+.highlight .c1 { color: #586E75; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #586E75; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #DC322F } /* Generic.Deleted */
+.highlight .ge { color: #839496; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #839496; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #DC322F } /* Generic.Error */
+.highlight .gh { color: #839496; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #859900 } /* Generic.Inserted */
+.highlight .go { color: #839496 } /* Generic.Output */
+.highlight .gp { color: #268BD2; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #839496; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #839496; text-decoration: underline } /* Generic.Subheading */
+.highlight .gt { color: #268BD2 } /* Generic.Traceback */
+.highlight .kc { color: #2AA198 } /* Keyword.Constant */
+.highlight .kd { color: #2AA198 } /* Keyword.Declaration */
+.highlight .kn { color: #CB4B16 } /* Keyword.Namespace */
+.highlight .kp { color: #859900 } /* Keyword.Pseudo */
+.highlight .kr { color: #859900 } /* Keyword.Reserved */
+.highlight .kt { color: #B58900 } /* Keyword.Type */
+.highlight .ld { color: #839496 } /* Literal.Date */
+.highlight .m { color: #2AA198 } /* Literal.Number */
+.highlight .s { color: #2AA198 } /* Literal.String */
+.highlight .na { color: #839496 } /* Name.Attribute */
+.highlight .nb { color: #268BD2 } /* Name.Builtin */
+.highlight .nc { color: #268BD2 } /* Name.Class */
+.highlight .no { color: #268BD2 } /* Name.Constant */
+.highlight .nd { color: #268BD2 } /* Name.Decorator */
+.highlight .ni { color: #268BD2 } /* Name.Entity */
+.highlight .ne { color: #268BD2 } /* Name.Exception */
+.highlight .nf { color: #268BD2 } /* Name.Function */
+.highlight .nl { color: #268BD2 } /* Name.Label */
+.highlight .nn { color: #268BD2 } /* Name.Namespace */
+.highlight .nx { color: #839496 } /* Name.Other */
+.highlight .py { color: #839496 } /* Name.Property */
+.highlight .nt { color: #268BD2 } /* Name.Tag */
+.highlight .nv { color: #268BD2 } /* Name.Variable */
+.highlight .ow { color: #859900 } /* Operator.Word */
+.highlight .pm { color: #839496 } /* Punctuation.Marker */
+.highlight .w { color: #839496 } /* Text.Whitespace */
+.highlight .mb { color: #2AA198 } /* Literal.Number.Bin */
+.highlight .mf { color: #2AA198 } /* Literal.Number.Float */
+.highlight .mh { color: #2AA198 } /* Literal.Number.Hex */
+.highlight .mi { color: #2AA198 } /* Literal.Number.Integer */
+.highlight .mo { color: #2AA198 } /* Literal.Number.Oct */
+.highlight .sa { color: #2AA198 } /* Literal.String.Affix */
+.highlight .sb { color: #2AA198 } /* Literal.String.Backtick */
+.highlight .sc { color: #2AA198 } /* Literal.String.Char */
+.highlight .dl { color: #2AA198 } /* Literal.String.Delimiter */
+.highlight .sd { color: #586E75 } /* Literal.String.Doc */
+.highlight .s2 { color: #2AA198 } /* Literal.String.Double */
+.highlight .se { color: #2AA198 } /* Literal.String.Escape */
+.highlight .sh { color: #2AA198 } /* Literal.String.Heredoc */
+.highlight .si { color: #2AA198 } /* Literal.String.Interpol */
+.highlight .sx { color: #2AA198 } /* Literal.String.Other */
+.highlight .sr { color: #CB4B16 } /* Literal.String.Regex */
+.highlight .s1 { color: #2AA198 } /* Literal.String.Single */
+.highlight .ss { color: #2AA198 } /* Literal.String.Symbol */
+.highlight .bp { color: #268BD2 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #268BD2 } /* Name.Function.Magic */
+.highlight .vc { color: #268BD2 } /* Name.Variable.Class */
+.highlight .vg { color: #268BD2 } /* Name.Variable.Global */
+.highlight .vi { color: #268BD2 } /* Name.Variable.Instance */
+.highlight .vm { color: #268BD2 } /* Name.Variable.Magic */
+.highlight .il { color: #2AA198 } /* Literal.Number.Integer.Long */
+
+body{
+    color: #c9d1d9;
+    background: #0d1117;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+td.lines span{
+    display: block;
+    padding-right: 8px;
+    line-height: 125%;
+}
+
+.notCovered{
+    border-right: 5px solid darkred;
+}
+.partiallyCovered{
+    border-right: 5px solid orangered;
+}
+.fullyCovered{
+    border-right: 5px solid darkgreen;
+}
+.notRelevant{
+    border-right: 5px solid transparent;
+}
+
+</style>
+</head>
+<body>
+<h1>Pynguin coverage report for module 'Block_user_helper'</h1>
+<p>Achieved 81.98% line coverage:
+91/111 lines covered. </p>
+<table>
+    <tbody>
+        <tr>
+            <td style="width: 40px; text-align: right;" class="lines">
+                <span class="fullyCovered" title="Line 1 covered">1</span>
+                  <span class="notRelevant">2</span>
+                  <span class="notRelevant">3</span>
+                  <span class="notRelevant">4</span>
+                  <span class="notRelevant">5</span>
+                  <span class="notRelevant">6</span>
+                  <span class="fullyCovered" title="Line 7 covered">7</span>
+                  <span class="fullyCovered" title="Line 8 covered">8</span>
+                  <span class="notRelevant">9</span>
+                  <span class="fullyCovered" title="Line 10 covered">10</span>
+                  <span class="fullyCovered" title="Line 11 covered">11</span>
+                  <span class="fullyCovered" title="Line 12 covered">12</span>
+                  <span class="notRelevant">13</span>
+                  <span class="fullyCovered" title="Line 14 covered">14</span>
+                  <span class="notRelevant">15</span>
+                  <span class="fullyCovered" title="Line 16 covered">16</span>
+                  <span class="fullyCovered" title="Line 17 covered">17</span>
+                  <span class="fullyCovered" title="Line 18 covered">18</span>
+                  <span class="fullyCovered" title="Line 19 covered">19</span>
+                  <span class="fullyCovered" title="Line 20 covered">20</span>
+                  <span class="notRelevant">21</span>
+                  <span class="fullyCovered" title="Line 22 covered">22</span>
+                  <span class="fullyCovered" title="Line 23 covered">23</span>
+                  <span class="fullyCovered" title="Line 24 covered">24</span>
+                  <span class="notRelevant">25</span>
+                  <span class="fullyCovered" title="Line 26 covered">26</span>
+                  <span class="notRelevant">27</span>
+                  <span class="fullyCovered" title="Line 28 covered">28</span>
+                  <span class="notRelevant">29</span>
+                  <span class="fullyCovered" title="Line 30 covered">30</span>
+                  <span class="notRelevant">31</span>
+                  <span class="fullyCovered" title="Line 32 covered">32</span>
+                  <span class="notRelevant">33</span>
+                  <span class="fullyCovered" title="Line 34 covered">34</span>
+                  <span class="notRelevant">35</span>
+                  <span class="fullyCovered" title="Line 36 covered">36</span>
+                  <span class="notRelevant">37</span>
+                  <span class="notRelevant">38</span>
+                  <span class="fullyCovered" title="Line 39 covered">39</span>
+                  <span class="notRelevant">40</span>
+                  <span class="notRelevant">41</span>
+                  <span class="notRelevant">42</span>
+                  <span class="notRelevant">43</span>
+                  <span class="notRelevant">44</span>
+                  <span class="notRelevant">45</span>
+                  <span class="notRelevant">46</span>
+                  <span class="notRelevant">47</span>
+                  <span class="notRelevant">48</span>
+                  <span class="notRelevant">49</span>
+                  <span class="fullyCovered" title="Line 50 covered">50</span>
+                  <span class="notRelevant">51</span>
+                  <span class="fullyCovered" title="Line 52 covered">52</span>
+                  <span class="fullyCovered" title="Line 53 covered">53</span>
+                  <span class="notRelevant">54</span>
+                  <span class="fullyCovered" title="Line 55 covered">55</span>
+                  <span class="notRelevant">56</span>
+                  <span class="fullyCovered" title="Line 57 covered">57</span>
+                  <span class="fullyCovered" title="Line 58 covered">58</span>
+                  <span class="notRelevant">59</span>
+                  <span class="fullyCovered" title="Line 60 covered">60</span>
+                  <span class="notCovered" title="Line 61 not covered">61</span>
+                  <span class="notRelevant">62</span>
+                  <span class="fullyCovered" title="Line 63 covered">63</span>
+                  <span class="notCovered" title="Line 64 not covered">64</span>
+                  <span class="notRelevant">65</span>
+                  <span class="notRelevant">66</span>
+                  <span class="fullyCovered" title="Line 67 covered">67</span>
+                  <span class="fullyCovered" title="Line 68 covered">68</span>
+                  <span class="notRelevant">69</span>
+                  <span class="fullyCovered" title="Line 70 covered">70</span>
+                  <span class="fullyCovered" title="Line 71 covered">71</span>
+                  <span class="fullyCovered" title="Line 72 covered">72</span>
+                  <span class="notRelevant">73</span>
+                  <span class="notRelevant">74</span>
+                  <span class="fullyCovered" title="Line 75 covered">75</span>
+                  <span class="notRelevant">76</span>
+                  <span class="fullyCovered" title="Line 77 covered">77</span>
+                  <span class="notRelevant">78</span>
+                  <span class="notRelevant">79</span>
+                  <span class="fullyCovered" title="Line 80 covered">80</span>
+                  <span class="notRelevant">81</span>
+                  <span class="notRelevant">82</span>
+                  <span class="notRelevant">83</span>
+                  <span class="notRelevant">84</span>
+                  <span class="notRelevant">85</span>
+                  <span class="notRelevant">86</span>
+                  <span class="notRelevant">87</span>
+                  <span class="notRelevant">88</span>
+                  <span class="notRelevant">89</span>
+                  <span class="notRelevant">90</span>
+                  <span class="fullyCovered" title="Line 91 covered">91</span>
+                  <span class="notRelevant">92</span>
+                  <span class="fullyCovered" title="Line 93 covered">93</span>
+                  <span class="fullyCovered" title="Line 94 covered">94</span>
+                  <span class="notRelevant">95</span>
+                  <span class="fullyCovered" title="Line 96 covered">96</span>
+                  <span class="fullyCovered" title="Line 97 covered">97</span>
+                  <span class="notRelevant">98</span>
+                  <span class="notCovered" title="Line 99 not covered">99</span>
+                  <span class="notRelevant">100</span>
+                  <span class="notCovered" title="Line 101 not covered">101</span>
+                  <span class="notCovered" title="Line 102 not covered">102</span>
+                  <span class="notRelevant">103</span>
+                  <span class="notCovered" title="Line 104 not covered">104</span>
+                  <span class="notCovered" title="Line 105 not covered">105</span>
+                  <span class="notRelevant">106</span>
+                  <span class="notRelevant">107</span>
+                  <span class="notCovered" title="Line 108 not covered">108</span>
+                  <span class="notRelevant">109</span>
+                  <span class="notCovered" title="Line 110 not covered">110</span>
+                  <span class="notRelevant">111</span>
+                  <span class="notRelevant">112</span>
+                  <span class="fullyCovered" title="Line 113 covered">113</span>
+                  <span class="notRelevant">114</span>
+                  <span class="fullyCovered" title="Line 115 covered">115</span>
+                  <span class="fullyCovered" title="Line 116 covered">116</span>
+                  <span class="fullyCovered" title="Line 117 covered">117</span>
+                  <span class="fullyCovered" title="Line 118 covered">118</span>
+                  <span class="notRelevant">119</span>
+                  <span class="notRelevant">120</span>
+                  <span class="fullyCovered" title="Line 121 covered">121</span>
+                  <span class="notRelevant">122</span>
+                  <span class="fullyCovered" title="Line 123 covered">123</span>
+                  <span class="fullyCovered" title="Line 124 covered">124</span>
+                  <span class="fullyCovered" title="Line 125 covered">125</span>
+                  <span class="fullyCovered" title="Line 126 covered">126</span>
+                  <span class="notRelevant">127</span>
+                  <span class="notRelevant">128</span>
+                  <span class="fullyCovered" title="Line 129 covered">129</span>
+                  <span class="notRelevant">130</span>
+                  <span class="fullyCovered" title="Line 131 covered">131</span>
+                  <span class="fullyCovered" title="Line 132 covered">132</span>
+                  <span class="fullyCovered" title="Line 133 covered">133</span>
+                  <span class="notRelevant">134</span>
+                  <span class="fullyCovered" title="Line 135 covered">135</span>
+                  <span class="fullyCovered" title="Line 136 covered">136</span>
+                  <span class="notRelevant">137</span>
+                  <span class="fullyCovered" title="Line 138 covered">138</span>
+                  <span class="notCovered" title="Line 139 not covered">139</span>
+                  <span class="notCovered" title="Line 140 not covered">140</span>
+                  <span class="notCovered" title="Line 141 not covered">141</span>
+                  <span class="notRelevant">142</span>
+                  <span class="fullyCovered" title="Line 143 covered">143</span>
+                  <span class="notRelevant">144</span>
+                  <span class="notRelevant">145</span>
+                  <span class="fullyCovered" title="Line 146 covered">146</span>
+                  <span class="notRelevant">147</span>
+                  <span class="fullyCovered" title="Line 148 covered">148</span>
+                  <span class="fullyCovered" title="Line 149 covered">149</span>
+                  <span class="notRelevant">150</span>
+                  <span class="notRelevant">151</span>
+                  <span class="fullyCovered" title="Line 152 covered">152</span>
+                  <span class="notRelevant">153</span>
+                  <span class="fullyCovered" title="Line 154 covered">154</span>
+                  <span class="fullyCovered" title="Line 155 covered">155</span>
+                  <span class="notRelevant">156</span>
+                  <span class="fullyCovered" title="Line 157 covered">157</span>
+                  <span class="fullyCovered" title="Line 158 covered">158</span>
+                  <span class="notRelevant">159</span>
+                  <span class="notRelevant">160</span>
+                  <span class="notCovered" title="Line 161 not covered">161</span>
+                  <span class="notCovered" title="Line 162 not covered">162</span>
+                  <span class="notCovered" title="Line 163 not covered">163</span>
+                  <span class="notCovered" title="Line 164 not covered">164</span>
+                  <span class="notRelevant">165</span>
+                  <span class="notCovered" title="Line 166 not covered">166</span>
+                  <span class="notRelevant">167</span>
+                  <span class="notRelevant">168</span>
+                  <span class="fullyCovered" title="Line 169 covered">169</span>
+                  <span class="notRelevant">170</span>
+                  <span class="notRelevant">171</span>
+                  <span class="notRelevant">172</span>
+                  <span class="notRelevant">173</span>
+                  <span class="fullyCovered" title="Line 174 covered">174</span>
+                  <span class="fullyCovered" title="Line 175 covered">175</span>
+                  <span class="notRelevant">176</span>
+                  <span class="fullyCovered" title="Line 177 covered">177</span>
+                  <span class="fullyCovered" title="Line 178 covered">178</span>
+                  <span class="notRelevant">179</span>
+                  <span class="notCovered" title="Line 180 not covered">180</span>
+                  <span class="notCovered" title="Line 181 not covered">181</span>
+                  <span class="notRelevant">182</span>
+                  <span class="notCovered" title="Line 183 not covered">183</span>
+                  <span class="notRelevant">184</span>
+                  <span class="notRelevant">185</span>
+                  <span class="notRelevant">186</span>
+                  <span class="fullyCovered" title="Line 187 covered">187</span>
+                  <span class="notRelevant">188</span>
+                  <span class="fullyCovered" title="Line 189 covered">189</span>
+                  <span class="notRelevant">190</span>
+                  <span class="fullyCovered" title="Line 191 covered">191</span>
+                  <span class="fullyCovered" title="Line 192 covered">192</span>
+                  <span class="fullyCovered" title="Line 193 covered">193</span>
+                  <span class="notRelevant">194</span>
+                  <span class="fullyCovered" title="Line 195 covered">195</span>
+                  <span class="notRelevant">196</span>
+                  <span class="notRelevant">197</span>
+                  <span class="fullyCovered" title="Line 198 covered">198</span>
+                  <span class="notRelevant">199</span>
+                  <span class="fullyCovered" title="Line 200 covered">200</span>
+                  <span class="fullyCovered" title="Line 201 covered">201</span>
+                  <span class="fullyCovered" title="Line 202 covered">202</span>
+                  <span class="notRelevant">203</span>
+                  <span class="notRelevant">204</span>
+                  <span class="fullyCovered" title="Line 205 covered">205</span>
+                  <span class="notRelevant">206</span>
+                  <span class="fullyCovered" title="Line 207 covered">207</span>
+                  <span class="notRelevant">208</span>
+                  <span class="fullyCovered" title="Line 209 covered">209</span>
+                  <span class="fullyCovered" title="Line 210 covered">210</span>
+                  <span class="fullyCovered" title="Line 211 covered">211</span>
+                  <span class="fullyCovered" title="Line 212 covered">212</span>
+                  <span class="notRelevant">213</span>
+                  <span class="fullyCovered" title="Line 214 covered">214</span>
+                  </td>
+            <td style="width: 100%;"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Block/Unblock User helper for Pynguin testing</span>
+<span class="sd">Simplified without file I/O and input() calls</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserDatabase</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple in-memory user database for testing&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">by_id</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">by_username</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">blocked</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a user to the database&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+            <span class="s2">&quot;friends&quot;</span><span class="p">:</span> <span class="n">friends</span> <span class="k">if</span> <span class="n">friends</span> <span class="k">else</span> <span class="p">[],</span>
+            <span class="s2">&quot;blocked&quot;</span><span class="p">:</span> <span class="n">blocked</span> <span class="k">if</span> <span class="n">blocked</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">by_id</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">by_username</span><span class="p">[</span><span class="n">username</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_id</span>
+        <span class="k">return</span> <span class="n">user</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_user_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get user record by ID&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">by_id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_user_id_by_username</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get user ID by username&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">by_username</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">user_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if user exists&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">by_id</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">block_user_safe</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">target_username</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Block a user (no input, returns status)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        - &quot;success&quot;: User blocked successfully</span>
+<span class="sd">        - &quot;not_found&quot;: Target user not found</span>
+<span class="sd">        - &quot;self_block&quot;: Cannot block yourself</span>
+<span class="sd">        - &quot;already_blocked&quot;: User already blocked</span>
+<span class="sd">        - &quot;user_not_found&quot;: Current user not found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">current_user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;user_not_found&quot;</span>
+
+    <span class="n">target_id</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_id_by_username</span><span class="p">(</span><span class="n">target_username</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">target_id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;not_found&quot;</span>
+
+    <span class="k">if</span> <span class="n">target_id</span> <span class="o">==</span> <span class="n">current_user_id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;self_block&quot;</span>
+
+    <span class="k">if</span> <span class="n">target_id</span> <span class="ow">in</span> <span class="n">current_user</span><span class="p">[</span><span class="s2">&quot;blocked&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s2">&quot;already_blocked&quot;</span>
+
+    <span class="c1"># Remove from friends if they are friends</span>
+    <span class="k">if</span> <span class="n">target_id</span> <span class="ow">in</span> <span class="n">current_user</span><span class="p">[</span><span class="s2">&quot;friends&quot;</span><span class="p">]:</span>
+        <span class="n">current_user</span><span class="p">[</span><span class="s2">&quot;friends&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">target_id</span><span class="p">)</span>
+
+        <span class="n">target_user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">target_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">target_user</span> <span class="ow">and</span> <span class="n">current_user_id</span> <span class="ow">in</span> <span class="n">target_user</span><span class="p">[</span><span class="s2">&quot;friends&quot;</span><span class="p">]:</span>
+            <span class="n">target_user</span><span class="p">[</span><span class="s2">&quot;friends&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+
+    <span class="c1"># Add to blocked list</span>
+    <span class="n">current_user</span><span class="p">[</span><span class="s2">&quot;blocked&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s2">&quot;success&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">unblock_user_safe</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">target_username</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unblock a user (no input, returns status)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        - &quot;success&quot;: User unblocked successfully</span>
+<span class="sd">        - &quot;not_blocked&quot;: User is not in blocked list</span>
+<span class="sd">        - &quot;not_found&quot;: Target user not found</span>
+<span class="sd">        - &quot;no_blocked_users&quot;: No users are blocked</span>
+<span class="sd">        - &quot;user_not_found&quot;: Current user not found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">current_user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;user_not_found&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="p">[</span><span class="s2">&quot;blocked&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s2">&quot;no_blocked_users&quot;</span>
+
+    <span class="n">target_id</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_id_by_username</span><span class="p">(</span><span class="n">target_username</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">target_id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;not_found&quot;</span>
+
+    <span class="k">if</span> <span class="n">target_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_user</span><span class="p">[</span><span class="s2">&quot;blocked&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s2">&quot;not_blocked&quot;</span>
+
+    <span class="c1"># Remove from blocked list</span>
+    <span class="n">current_user</span><span class="p">[</span><span class="s2">&quot;blocked&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">target_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s2">&quot;success&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_user_blocked</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">target_user_id</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if a user is blocked&quot;&quot;&quot;</span>
+    <span class="n">current_user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">target_user_id</span> <span class="ow">in</span> <span class="n">current_user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span> <span class="p">[])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_blocked_users</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of blocked user IDs&quot;&quot;&quot;</span>
+    <span class="n">current_user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">current_user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span> <span class="p">[])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_blocked_usernames</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of blocked usernames&quot;&quot;&quot;</span>
+    <span class="n">current_user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">blocked_ids</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">usernames</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">blocked_ids</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+            <span class="n">usernames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">usernames</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">count_blocked_users</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Count how many users are blocked&quot;&quot;&quot;</span>
+    <span class="n">blocked</span> <span class="o">=</span> <span class="n">get_blocked_users</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">users_db</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">blocked</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">can_interact</span><span class="p">(</span><span class="n">user1_id</span><span class="p">,</span> <span class="n">user2_id</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if two users can interact (neither has blocked the other)&quot;&quot;&quot;</span>
+    <span class="n">user1</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">user1_id</span><span class="p">)</span>
+    <span class="n">user2</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">user2_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">user2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Check if either user has blocked the other</span>
+    <span class="k">if</span> <span class="n">user2_id</span> <span class="ow">in</span> <span class="n">user1</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">user1_id</span> <span class="ow">in</span> <span class="n">user2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">block_and_unfriend</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">target_username</span><span class="p">,</span> <span class="n">users_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Block a user and remove them from friends in one operation</span>
+<span class="sd">    Returns tuple: (block_status, was_friend)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">current_user</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_by_id</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+    <span class="n">target_id</span> <span class="o">=</span> <span class="n">users_db</span><span class="o">.</span><span class="n">get_user_id_by_username</span><span class="p">(</span><span class="n">target_username</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">target_id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;failed&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">was_friend</span> <span class="o">=</span> <span class="n">target_id</span> <span class="ow">in</span> <span class="n">current_user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;friends&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">block_user_safe</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">,</span> <span class="n">target_username</span><span class="p">,</span> <span class="n">users_db</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">was_friend</span><span class="p">)</span>
+
+
+<span class="c1"># Helper functions for testing</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_sample_users</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create sample user database for testing&quot;&quot;&quot;</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">UserDatabase</span><span class="p">()</span>
+
+    <span class="n">db</span><span class="o">.</span><span class="n">add_user</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;alice&quot;</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">blocked</span><span class="o">=</span><span class="p">[])</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">add_user</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;bob&quot;</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">blocked</span><span class="o">=</span><span class="p">[])</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">add_user</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;charlie&quot;</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="p">[],</span> <span class="n">blocked</span><span class="o">=</span><span class="p">[])</span>
+
+    <span class="k">return</span> <span class="n">db</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_blocking_scenario</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set up a scenario where alice blocks bob&quot;&quot;&quot;</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">create_sample_users</span><span class="p">()</span>
+    <span class="n">block_user_safe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bob&quot;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">db</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_complex_scenario</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set up a complex scenario with multiple blocks&quot;&quot;&quot;</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">UserDatabase</span><span class="p">()</span>
+
+    <span class="n">db</span><span class="o">.</span><span class="n">add_user</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;alice&quot;</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">blocked</span><span class="o">=</span><span class="p">[])</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">add_user</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;bob&quot;</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">blocked</span><span class="o">=</span><span class="p">[])</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">add_user</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;charlie&quot;</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">blocked</span><span class="o">=</span><span class="p">[])</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">add_user</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;dave&quot;</span><span class="p">,</span> <span class="n">friends</span><span class="o">=</span><span class="p">[],</span> <span class="n">blocked</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">db</span>
+</pre></div>
+</td>
+        </tr>
+    </tbody>
+</table>
+<footer>
+  <p>Created at 2026-01-04 14:31:47.798107</p>
+</footer>
+</body>
+</html>

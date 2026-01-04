@@ -20,8 +20,8 @@ class User:
         self.films_added= record.get("films_added", 0)
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = record.get("ratings", {})
-        self.comments = record.get("comments", {})
-        self.avatar_index = record.get("avatarIndex", avatar_index)
+        self.comments = record.get("comments", [])
+        self.avatar_index = record.get("avatar_index", avatar_index)
         self.favFilm= record.get("favFilm", favFilm)
 
         #Set ASCII based on the index above from database
@@ -29,7 +29,7 @@ class User:
             self.avatar_ascii = User.AVATAR_OPTIONS[self.avatar_index]
         else:
             self.avatar_ascii = User.AVATAR_OPTIONS[0] # Fallback
-    
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -37,11 +37,13 @@ class User:
             "watchlist": [film.name for film in self.watchList],
             "films_added": self.films_added,
             "ratings": self.ratings,
-            "comments": [{
-                "user": comment.user,
-                "message": comment.message
+            "comments": [
+                {
+                "film": c["film"],
+                "user": getattr(c["comment"], "user", None),
+                "message": c["comment"].message
                 }
-                for comment in self.comments
+                for c in self.comments
             ],
             "avatar_index": self.avatar_index,
             "favFilm": self.favFilm,
@@ -155,7 +157,8 @@ class User:
     ]
 
     def add_to_watchList(self, film):
-        self.watchList.append(film)
+        if film not in self.watchList:
+            self.watchList.append(film)
 
     def remove_from_watchlist(self, film):
         if film in self.watchList:
@@ -218,7 +221,7 @@ class User:
             print("Comments:")
             for comment in film.comments:
                 comment.display_comment()
-            
+
     def add_rating(self, film_name, rating):
         if rating < 0 or rating > 10:
             raise IndexError("Rating value not in range 0-10")
@@ -230,10 +233,7 @@ class User:
         if not film_name in self.ratings:
             return None
         return self.ratings[film_name]
-        
-    def get_watch_list(self):
-        return self.watchList
-    
+
     def set_default_avatar(self):
         avatar=(
             "   /\\ \n"
@@ -268,7 +268,7 @@ class User:
         return False
 
     def add_comment(self,film, comment):
-        self.comments.update({film,comment})
+        self.comments.append({"film":film.name,"comment":comment})
     
     def get_inbox(self):
         return self.inbox
@@ -286,7 +286,8 @@ class User:
             self.avatar_ascii = User.AVATAR_OPTIONS[index]
             return True
         return False
-    
+
+
     def change_favFilm(self, film_name:str):
         self.favFilm=film_name
         print(f"Favourite Film Updated to: {self.favFilm}")

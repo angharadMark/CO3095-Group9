@@ -36,7 +36,8 @@ class Database:
         while True:
             if len(popular) == 0:
                 print("No popular films")
-                break
+                return False
+
             else:
                 for i in range(len(popular)):
                     print(i+1,popular[i].name)
@@ -68,7 +69,8 @@ class Database:
                     else:
                         print("That film number doesn't exist. Try again!")
             else:
-                break
+                return False
+
             
     def get_all_films(self):
         return self.films

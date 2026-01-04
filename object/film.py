@@ -43,8 +43,9 @@ class Film:
     def add_actor(self, actor):
         for a in self.cast:
             if a.name == actor.name and a.role == actor.role:
-                return
+                return False
         self.cast.append(actor)
+        return True
 
     def prompt_name(self):
         name = input("Whats the name of the film? : ").strip()
@@ -63,8 +64,15 @@ class Film:
         self.age_rating = age_rating if age_rating else None
     
     def prompt_year(self):
-        year = input("When did the file release : ").strip()
-        self.year = year if year else None
+        while True:
+            year = input("When did the film release : ").strip()
+            if not year:
+                self.year = None
+                return
+            if year.isdigit():
+                self.year = int(year)
+                return
+            print("Please input a valid year.")
     
     def prompt_genre(self):
         first_run = True
@@ -75,8 +83,15 @@ class Film:
                 break
             if first_run:
                 self.genre = []
-
             first_run = False
+
+            genre = genre.title()
+
+            if genre not in self.genre:
+                self.genre.append(genre)
+            else:
+                print("Genre already added!")
+
             self.genre.append(genre)
 
             choice = input("Add another genre? Y/N : ").strip()
@@ -93,14 +108,19 @@ class Film:
             if first_run:
                 self.cast = []
             first_run = False
-            role = input("What is that "+actor+"'s role? : ").strip()
+            role = input("What is that "+actor+"'s role? : ").strip().title()
 
-            self.cast.append(Actor(actor, role))
+            actor_obj = Actor(actor.title(), role)
+            added = self.add_actor(actor_obj)
 
-            choice = input("Add another actor? Y/N : ").strip()
-            if choice.lower() == "y":
+            if added == False:
+                print("Actor already added to this film!")
                 continue
             else:
+                print(f"{actor.title()} has been added!")
+
+            choice = input("Add another actor? Y/N : ").strip().lower()
+            if choice.lower() != "y":
                 break
 
 
@@ -203,9 +223,6 @@ class Film:
     def get_cast(self):
         return self.cast
 
-    def add_ratings(self, rating):
-        self.ratings.append(rating)
-
     def set_name(self, name):
         self.name = name
         
@@ -240,5 +257,3 @@ def searchMovies(movies, keyword):
     
     return results
 
-    def add_comment(self, comment):
-        self.comments.append(comment)

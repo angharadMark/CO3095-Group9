@@ -1,0 +1,33 @@
+# Test Group 1: Load Database
+JSON File:
+    ValidJSON.         [property valid_json]
+    EmptyJSON.         [property empty_json]
+    FileNotFound.      [property not_found]
+    InvalidJSON.       [error]
+
+Load Result:
+    Database loaded successfully.[if valid_json]
+    Empty database returned.     [if empty_json || not_found]
+
+# Test Group 2: Write Database
+Database Content:
+    HasFilms.          [property has_films]
+    EmptyDatabase.     [property empty_db]
+
+File Permission:
+    CanWrite.          [property can_write]
+    NoPermission.      [error]
+
+Write Result:
+    JSON file created.           [if has_films && can_write]
+    Empty JSON created.          [if empty_db && can_write]
+
+# Test Group 3: Search Actor
+Search Query:
+    ExactName.         [property exact_name]
+    FuzzyMatch.        [property fuzzy]
+    NoMatch.           [property no_match]
+
+Search Result:
+    Returns actor list.          [if exact_name || fuzzy]
+    Returns False.               [if no_match]

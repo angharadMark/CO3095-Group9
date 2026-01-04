@@ -2,17 +2,15 @@
   {
     "name": "Inception",
     "director": "Christopher Nolan",
-    "producer": "name",
+    "producer": "Emma Thomas",
     "year": 2010,
     "genre": [
-      "horror",
-      "random"
+      "Sci-Fi",
+      "Thriller"
     ],
     "ratings": [
-      8.0,
-      10.0,
-      10.0,
-      10.0,
+      9.0,
+      8.5,
       10.0
     ],
     "cast": [
@@ -35,27 +33,27 @@
     ],
     "comments": [
       {
-        "user": "Anonymous",
-        "message": "****"
-      },
-      {
-        "user": "kass",
-        "message": "very good!"
+        "user": "Alice",
+        "message": "Mind-blowing!"
       }
     ],
-    "age_rating": "15",
-    "description": null
+    "age_rating": "13",
+    "description": "A thief who steals corporate secrets through dream-sharing technology."
   },
   {
     "name": "The Matrix",
     "director": "Lana Wachowski",
-    "producer": null,
+    "producer": "Joel Silver",
     "year": 1999,
     "genre": [
-      "horror",
-      "random"
+      "Sci-Fi",
+      "Action"
     ],
-    "ratings": [],
+    "ratings": [
+      10.0,
+      9.5,
+      9.0
+    ],
     "cast": [
       {
         "actor": "Keanu Reeves",
@@ -70,22 +68,27 @@
         "role": "Morpheus"
       }
     ],
-    "comments": [],
-    "age_rating": 15,
-    "description": "Horror movie about...."
+    "comments": [
+      {
+        "user": "Bob",
+        "message": "A classic!"
+      }
+    ],
+    "age_rating": "15",
+    "description": "A computer hacker learns about the true nature of his reality."
   },
   {
     "name": "Titanic",
-    "director": null,
+    "director": "James Cameron",
     "producer": "James Cameron",
     "year": 1997,
     "genre": [
-      "romance",
-      "tragedy"
+      "Romance",
+      "Drama"
     ],
     "ratings": [
-      10.0,
-      10.0
+      9.0,
+      8.0
     ],
     "cast": [
       {
@@ -94,46 +97,126 @@
       },
       {
         "actor": "Kate Winslet",
-        "role": "Rose Dewitt Bukater"
+        "role": "Rose"
       },
       {
         "actor": "Billy Zane",
-        "role": "Cal Hockley"
+        "role": "Cal"
       }
     ],
-    "comments": [],
-    "age_rating": 12,
-    "description": "Romance movie about...."
+    "comments": [
+      {
+        "user": "Charlie",
+        "message": "So emotional!"
+      }
+    ],
+    "age_rating": "12",
+    "description": "A love story unfolds on the doomed Titanic."
   },
   {
-    "name": "test",
-    "director": "test",
-    "producer": "test",
-    "year": "1245",
+    "name": "Interstellar",
+    "director": "Christopher Nolan",
+    "producer": "Emma Thomas",
+    "year": 2014,
     "genre": [
-      "Test"
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "ratings": [
+      10.0,
+      9.5,
+      9.0
+    ],
+    "cast": [
+      {
+        "actor": "Matthew McConaughey",
+        "role": "Cooper"
+      },
+      {
+        "actor": "Anne Hathaway",
+        "role": "Brand"
+      },
+      {
+        "actor": "Jessica Chastain",
+        "role": "Murph"
+      }
+    ],
+    "comments": [
+      {
+        "user": "Dana",
+        "message": "Spectacular visuals!"
+      }
+    ],
+    "age_rating": "13",
+    "description": "A team of explorers travel through a wormhole in space."
+  },
+  {
+    "name": "Random Movie",
+    "director": "Jane Doe",
+    "producer": "John Smith",
+    "year": 2022,
+    "genre": [
+      "Comedy",
+      "Horror"
     ],
     "ratings": [],
     "cast": [
       {
-        "actor": "Test",
-        "role": "test"
+        "actor": "Actor One",
+        "role": "Hero"
+      },
+      {
+        "actor": "Actor Two",
+        "role": "Villain"
       }
     ],
     "comments": [],
-    "age_rating": "12",
-    "description": null
+    "age_rating": "15",
+    "description": "A random mix of comedy and horror."
   },
   {
-    "name": null,
-    "director": null,
-    "producer": null,
-    "year": null,
-    "genre": [],
-    "ratings": [],
-    "cast": [],
+    "name": "Sci-Fi Adventure",
+    "director": "Christopher Nolan",
+    "producer": "name",
+    "year": 2022,
+    "genre": [
+      "horror",
+      "sci-fi"
+    ],
+    "ratings": [
+      8,
+      9
+    ],
+    "cast": [
+      {
+        "actor": "Tom Hardy",
+        "role": "Eames"
+      }
+    ],
     "comments": [],
-    "age_rating": null,
-    "description": null
+    "age_rating": 15,
+    "description": "Sci-fi thriller..."
+  },
+  {
+    "name": "Romantic Drama",
+    "director": "James Cameron",
+    "producer": "James Cameron",
+    "year": 2010,
+    "genre": [
+      "romance",
+      "drama"
+    ],
+    "ratings": [
+      9
+    ],
+    "cast": [
+      {
+        "actor": "Kate Winslet",
+        "role": "Rose"
+      }
+    ],
+    "comments": [],
+    "age_rating": 12,
+    "description": "Heartfelt romance..."
   }
 ]
