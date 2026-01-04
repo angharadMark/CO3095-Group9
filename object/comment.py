@@ -8,7 +8,4 @@ class Comment:
     def display_comment(self):
         print(self.user, "\n", self.message)
 
-    def edit_message(self, message):
-        self.message = censor(message)
-    
 

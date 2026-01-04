@@ -126,9 +126,12 @@ def settingsMenu(state:UserState):
                 print("Error:", e)
 
         elif choice == "3":
-            oldPw = getpass("Current password: ")
-            newPw = getpass("New password: ")
-            confirm = getpass("Confirm new password: ")
+            oldPw = input("Enter old password: ")
+            newPw = input("Enter new password: ")
+            confirm=input("Are you sure? y/n   ")
+            #oldPw = getpass("Current password: ")
+            #newPw = getpass("New password: ")
+            #confirm = getpass("Confirm new password: ")
 
             if newPw != confirm:
                 print("Passwords do not match.")
