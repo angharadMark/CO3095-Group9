@@ -35,6 +35,30 @@ python -m coverage run -p am1460/test/whitebox/branch_testing/test_object_logic.
 
 python -m coverage run -p am1460/test/whitebox/branch_testing/test_keyword_search_branches.py
 
+## Caitlin's TSL:
+/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/film_recco_output.tsl film_recco.tsl
+
+/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/profanity_filter_output.tsl profanity.tsl
+
+/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/Popular_films_output.tsl Popular_films.tsl
+
+/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/database_loader_output.tsl database_loader.tsl
+
+## Caitlin's Pynguin:
+Executed commands
+
+
+pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-Data_writer_helper-results" --module-name Data_writer_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
+
+pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-block_user_helper-results" --module-name Block_user_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
+
+pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-comment-helper-results" --module-name comment_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
+
+pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-actor-helper-results" --module-name actor_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
+
+
+
+
 ### To run EU20's random blackbox and whitebox testing input into terminal
 python -m coverage run -p -m pytest eu20/test/blackbox/random_based
 python -m coverage run -p -m pytest eu20/test/blackbox/specification_based
