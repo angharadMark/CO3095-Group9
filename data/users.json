@@ -52,9 +52,37 @@
       "avatarIndex": 0,
       "friends": [],
       "blocked": []
+    },
+    "60f8e535-0987-406d-b52f-182c8541a175": {
+      "id": "60f8e535-0987-406d-b52f-182c8541a175",
+      "username": "admin",
+      "passwordHash": "$2b$12$0zK1MJqqDCqLOM4PXXZrXeVpimZTA9OVcAhjDaMhUAYf3N0m752d.",
+      "watchlist": [],
+      "films_added": 0,
+      "ratings": {},
+      "comments": {},
+      "isAdmin": false,
+      "avatarIndex": 0,
+      "friends": [],
+      "blocked": []
+    },
+    "826dab6f-7fc5-495f-b797-9ba34a61d41f": {
+      "id": "826dab6f-7fc5-495f-b797-9ba34a61d41f",
+      "username": "test",
+      "passwordHash": "$2b$12$AQaeBeuVcZkdHKtAAz.bdesxYJhieKrPCoLB6j.UrNLJEUPPfW5EO",
+      "watchlist": [],
+      "films_added": 0,
+      "ratings": {},
+      "comments": {},
+      "isAdmin": false,
+      "avatarIndex": 0,
+      "friends": [],
+      "blocked": []
     }
   },
   "byUsername": {
-    "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c"
+    "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c",
+    "admin": "60f8e535-0987-406d-b52f-182c8541a175",
+    "test": "826dab6f-7fc5-495f-b797-9ba34a61d41f"
   }
 }

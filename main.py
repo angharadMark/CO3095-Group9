@@ -295,7 +295,7 @@ def main():
 
         # Admin Username= admin
         # Admin Password= admins
-        if state.isAdmin() or username=="admin":
+        if state.isAdmin() or (state.currentUser and state.currentUser.get('username') == "admin"):
             print("100: Administrator Tools")
 
         while True:
@@ -520,7 +520,8 @@ def main():
                 state.logout(user)
             break
 
-        elif quest == 100 and state.isAdmin() or quest == 100 and username=="admin":
+
+        elif quest == 100 and (state.isAdmin() or (state.currentUser and state.currentUser.get('username') == "admin")):
             adminMenu(state)
 
         export.upload(database, "films.json")
