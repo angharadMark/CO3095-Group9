@@ -258,7 +258,10 @@ class User:
         return None
 
     def undislike_film(self, film):
-        self.dislikes.remove(film)
+        if film in self.dislikes:
+            self.dislikes.remove(film)
+            return True
+        return False
 
     def add_comment(self,film, comment):
         self.comments.update({film,comment})
