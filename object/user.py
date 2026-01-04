@@ -158,32 +158,36 @@ class User:
         self.watchList.append(film)
 
     def remove_from_watchlist(self, film):
-        self.watchList.remove(film)
+        if film in self.watchList:
+            self.watchList.remove(film)
+            return 1
+        return 0
 
     def pop_from_watchlist(self, film_index):
         return self.watchList.pop(film_index)
 
     def remove_from_watchlist_by_name(self, film_name):
-        return self.remove_from_watchlist_by_property(
-            lambda film: self.name, film_name
-        )
+        # in case a film was somehow added twice to a watchlist.
+        removal_list = []
+
+        for film in self.watchList:
+            if film_name.lower().strip() == film.name.lower().strip():
+                removal_list.append(film)
+                break
+
+        for film in removal_list:
+            self.watchList.remove(film)
+
+        return len(removal_list)
 
     def remove_from_watchlist_by_actors(self, actor_list):
         removal_list = []
 
         for film in self.watchList:
-            can_exit = False
-            #if property_getter(film) == property_value:
-            #    removal_list.push(film)
-            for actor in actor_list:
-                for film_actor in film.cast:
-                    if actor == film_actor.name:
-                        removal_list.push(film)
-                        can_exit = True
-                        break
-
-                if can_exit: break
-                
+            for film_actor in film.cast:
+                if film_actor in actor_list: 
+                    removal_list.append(film)
+                    break
 
         for film in removal_list:
             self.watchList.remove(film)
