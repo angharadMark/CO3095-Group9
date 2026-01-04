@@ -2,11 +2,17 @@ import unittest
 from unittest.mock import patch, mock_open
 from database.database_loader import DatabaseLoader
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Tests data integrity during JSON loading and robust filtering logic 
+             using Category Partitioning to handle corrupted or missing data.
+
+Expected Results:
+- load (File Not Found): Graceful fail; return empty database.
+- load (Corrupted Cast): Skip invalid entries but load valid film data.
+
+
+Actual Results: 100% Pass Rate. Logic successfully isolates corrupted entries without crashing.
 '''
 class TestDatabaseLoader(unittest.TestCase):
     def test_load_file_not_found(self):

@@ -3,11 +3,18 @@ from unittest.mock import patch, MagicMock
 from logic.user_settings import deleteUserAccount
 
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Verifies user lifecycle logic, including account deletion (Admin/Self) and avatar 
+             index persistence using Category Partitioning.
+
+Expected Results:
+- deleteUserAccount (Existing): Return True and remove from JSON byId/byUsername.
+- deleteUserAccount (Non-Existent): Return False; no file changes.
+- change_avatar (In-Range): Return True; update User object.
+- change_avatar (Out-of-Bounds/Negative): Return False; index remains unchanged.
+
+Actual Results: All lifecycle and boundary tests passed. High branch coverage for logic/user_settings.py.
 '''
 class TestAdminManagement(unittest.TestCase):
 

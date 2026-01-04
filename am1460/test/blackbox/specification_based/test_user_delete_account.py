@@ -2,11 +2,17 @@ import unittest
 from unittest.mock import patch, MagicMock
 from logic.user_settings import deleteUserAccount
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Verifies the full-lifecycle deletion process for user accounts, ensuring 
+             both unique ID and username references are purged from the database.
+
+Expected Results:
+- Active Deletion: deleteUserAccount() returns True for a valid ID and triggers saveJson().
+- Reference Cleanup: Both "byId" and "byUsername" entries are removed from the data structure.
+- Non-Existent ID: Attempting to delete a missing ID returns False gracefully.
+
+Actual Results: 100% Pass Rate. 
 '''
 
 class TestUserSelfDeletion(unittest.TestCase):

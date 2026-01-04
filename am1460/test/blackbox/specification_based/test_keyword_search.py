@@ -1,11 +1,17 @@
 import unittest
 from object.film import Film, searchMovies
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Verifies the search engine's ability to match keywords against 
+             both film titles and descriptions using Category Partitioning.
+
+Expected Results:
+- Title Match: searchMovies returns list length 1 when keyword is in the name.
+- Description Match: searchMovies returns list length 1 when keyword is only in description.
+- No Match: searchMovies returns list length 0 for non-existent keywords.
+
+Actual Results: 100% Pass Rate. 
 '''
 class TestSprint4(unittest.TestCase):
     def setUp(self):

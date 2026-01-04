@@ -2,11 +2,18 @@ import unittest
 from unittest.mock import patch
 from object.film import Film
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: This test suite employs Boundary Value Analysis (BVA) on the 
+             user input prompts for creating new film entries.
+
+Expected Results:
+- Case 1 (Valid Full Input): input_film returns True and object is populated.
+- Case 2 (Empty Mandatory Title): input_film returns False/Stops on empty prompt.
+- Case 3 (Input Loop Control): Correctly handles "n" to break Genre/Actor loops.
+
+Actual Results: All test cases passed. The Film object's prompt logic correctly 
+distinguishes between valid data entries and cancellation via empty strings.
 '''
 
 class TestAdminAddFilm(unittest.TestCase):

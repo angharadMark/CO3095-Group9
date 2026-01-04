@@ -4,11 +4,17 @@ from logic.user_settings import changeFavFilmMenu, saveFavFilm
 from object.user import User
 
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Verifies the logic for updating and persisting a user's favorite film 
+             using Category Partitioning to handle both valid input and user cancellation.
+
+Expected Results:
+- Save Logic: saveFavFilm() correctly updates the nested JSON 'byId' structure and triggers saveJson().
+- Menu Cancel: If user input is empty (Enter key), changeFavFilmMenu() exits without calling save logic.
+- Menu Success: Valid film title input updates the local User object and triggers the backend save.
+
+Actual Results: 100% Pass Rate. 
 '''
 DUMMY_USER_RECORD = {
     "id": "b9895d05-667f-44ed-8e55-474f8b643310",

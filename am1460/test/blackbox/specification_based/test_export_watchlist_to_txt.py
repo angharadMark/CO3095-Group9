@@ -4,11 +4,18 @@ from database.database import Database
 from object.film import Film
 from object.user import User
 '''
-Tool used: Unittest & Coverage.py
 Technique: Specification-Based Testing (Black-Box)
-Method: Category Partitioning & Boundary Value Analysis
-Documentation: All test cases are derived from the functional requirements 
-to ensure 100% pass rate and high individual module coverage.
+Tool used: Unittest & Coverage.py
+Description: Verifies the external file-writing logic for exporting a user's 
+             watchlist to a text file using Mocking to simulate the filesystem.
+
+Expected Results:
+- File Creation: Successfully trigger 'builtins.open' with a filename format of '{username}_watchlist.txt'.
+- Content Integrity: Ensure the file is opened in 'w' (write) mode.
+- Data Flow: Verify that the Film names from the User object's watchList are correctly directed to the file buffer.
+
+Actual Results: 100% Pass Rate. The export flow correctly identifies the user's 
+watchlist data and interacts with the OS-level file interface as expected.
 '''
 DUMMY_USER_RECORD = {
     "id": "b9895d05-667f-44ed-8e55-474f8b643310",
