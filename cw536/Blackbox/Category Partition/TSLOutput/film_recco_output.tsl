@@ -1,0 +1,96 @@
+Test Case 1
+	Match Type        : AllMatch              
+	Similarity Score  : High score returned   	(follows [if all_match])
+	Watchlist State   : EmptyWatchlist        
+	Similar Films     : FoundSimilar          
+	Recommend Result  : Returns empty message 	(follows [if empty_wl])
+
+
+Test Case 2
+	Match Type        : AllMatch              
+	Similarity Score  : High score returned   	(follows [if all_match])
+	Watchlist State   : EmptyWatchlist        
+	Similar Films     : NoSimilar             
+	Recommend Result  : Returns empty message 	(follows [if empty_wl])
+
+
+Test Case 3
+	Match Type        : AllMatch                
+	Similarity Score  : High score returned     	(follows [if all_match])
+	Watchlist State   : HasWatchlist            
+	Similar Films     : FoundSimilar            
+	Recommend Result  : Returns recommendations 	(follows [if has_wl && found_similar])
+
+
+Test Case 4
+	Match Type        : AllMatch            
+	Similarity Score  : High score returned 	(follows [if all_match])
+	Watchlist State   : HasWatchlist        
+	Similar Films     : NoSimilar           
+	Recommend Result  : Returns empty list  	(follows [if has_wl && no_similar])
+
+
+Test Case 5
+	Match Type        : PartialMatch          
+	Similarity Score  : Medium score returned 	(follows [if partial_match])
+	Watchlist State   : EmptyWatchlist        
+	Similar Films     : FoundSimilar          
+	Recommend Result  : Returns empty message 	(follows [if empty_wl])
+
+
+Test Case 6
+	Match Type        : PartialMatch          
+	Similarity Score  : Medium score returned 	(follows [if partial_match])
+	Watchlist State   : EmptyWatchlist        
+	Similar Films     : NoSimilar             
+	Recommend Result  : Returns empty message 	(follows [if empty_wl])
+
+
+Test Case 7
+	Match Type        : PartialMatch            
+	Similarity Score  : Medium score returned   	(follows [if partial_match])
+	Watchlist State   : HasWatchlist            
+	Similar Films     : FoundSimilar            
+	Recommend Result  : Returns recommendations 	(follows [if has_wl && found_similar])
+
+
+Test Case 8
+	Match Type        : PartialMatch          
+	Similarity Score  : Medium score returned 	(follows [if partial_match])
+	Watchlist State   : HasWatchlist          
+	Similar Films     : NoSimilar             
+	Recommend Result  : Returns empty list    	(follows [if has_wl && no_similar])
+
+
+Test Case 9
+	Match Type        : NoMatch               
+	Similarity Score  : Zero score returned   	(follows [if no_match])
+	Watchlist State   : EmptyWatchlist        
+	Similar Films     : FoundSimilar          
+	Recommend Result  : Returns empty message 	(follows [if empty_wl])
+
+
+Test Case 10
+	Match Type        : NoMatch               
+	Similarity Score  : Zero score returned   	(follows [if no_match])
+	Watchlist State   : EmptyWatchlist        
+	Similar Films     : NoSimilar             
+	Recommend Result  : Returns empty message 	(follows [if empty_wl])
+
+
+Test Case 11
+	Match Type        : NoMatch                 
+	Similarity Score  : Zero score returned     	(follows [if no_match])
+	Watchlist State   : HasWatchlist            
+	Similar Films     : FoundSimilar            
+	Recommend Result  : Returns recommendations 	(follows [if has_wl && found_similar])
+
+
+Test Case 12
+	Match Type        : NoMatch             
+	Similarity Score  : Zero score returned 	(follows [if no_match])
+	Watchlist State   : HasWatchlist        
+	Similar Films     : NoSimilar           
+	Recommend Result  : Returns empty list  	(follows [if has_wl && no_similar])
+
+

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pynguin coverage report</title>
+  <style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: #586e75; background-color: #073642; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #586e75; background-color: #073642; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #073642 }
+.highlight { background: #002b36; color: #839496 }
+.highlight .c { color: #586E75; font-style: italic } /* Comment */
+.highlight .err { color: #839496; background-color: #DC322F } /* Error */
+.highlight .esc { color: #839496 } /* Escape */
+.highlight .g { color: #839496 } /* Generic */
+.highlight .k { color: #859900 } /* Keyword */
+.highlight .l { color: #839496 } /* Literal */
+.highlight .n { color: #839496 } /* Name */
+.highlight .o { color: #586E75 } /* Operator */
+.highlight .x { color: #839496 } /* Other */
+.highlight .p { color: #839496 } /* Punctuation */
+.highlight .ch { color: #586E75; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #586E75; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #D33682 } /* Comment.Preproc */
+.highlight .cpf { color: #586E75 } /* Comment.PreprocFile */
+.highlight .c1 { color: #586E75; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #586E75; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #DC322F } /* Generic.Deleted */
+.highlight .ge { color: #839496; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #839496; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #DC322F } /* Generic.Error */
+.highlight .gh { color: #839496; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #859900 } /* Generic.Inserted */
+.highlight .go { color: #839496 } /* Generic.Output */
+.highlight .gp { color: #268BD2; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #839496; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #839496; text-decoration: underline } /* Generic.Subheading */
+.highlight .gt { color: #268BD2 } /* Generic.Traceback */
+.highlight .kc { color: #2AA198 } /* Keyword.Constant */
+.highlight .kd { color: #2AA198 } /* Keyword.Declaration */
+.highlight .kn { color: #CB4B16 } /* Keyword.Namespace */
+.highlight .kp { color: #859900 } /* Keyword.Pseudo */
+.highlight .kr { color: #859900 } /* Keyword.Reserved */
+.highlight .kt { color: #B58900 } /* Keyword.Type */
+.highlight .ld { color: #839496 } /* Literal.Date */
+.highlight .m { color: #2AA198 } /* Literal.Number */
+.highlight .s { color: #2AA198 } /* Literal.String */
+.highlight .na { color: #839496 } /* Name.Attribute */
+.highlight .nb { color: #268BD2 } /* Name.Builtin */
+.highlight .nc { color: #268BD2 } /* Name.Class */
+.highlight .no { color: #268BD2 } /* Name.Constant */
+.highlight .nd { color: #268BD2 } /* Name.Decorator */
+.highlight .ni { color: #268BD2 } /* Name.Entity */
+.highlight .ne { color: #268BD2 } /* Name.Exception */
+.highlight .nf { color: #268BD2 } /* Name.Function */
+.highlight .nl { color: #268BD2 } /* Name.Label */
+.highlight .nn { color: #268BD2 } /* Name.Namespace */
+.highlight .nx { color: #839496 } /* Name.Other */
+.highlight .py { color: #839496 } /* Name.Property */
+.highlight .nt { color: #268BD2 } /* Name.Tag */
+.highlight .nv { color: #268BD2 } /* Name.Variable */
+.highlight .ow { color: #859900 } /* Operator.Word */
+.highlight .pm { color: #839496 } /* Punctuation.Marker */
+.highlight .w { color: #839496 } /* Text.Whitespace */
+.highlight .mb { color: #2AA198 } /* Literal.Number.Bin */
+.highlight .mf { color: #2AA198 } /* Literal.Number.Float */
+.highlight .mh { color: #2AA198 } /* Literal.Number.Hex */
+.highlight .mi { color: #2AA198 } /* Literal.Number.Integer */
+.highlight .mo { color: #2AA198 } /* Literal.Number.Oct */
+.highlight .sa { color: #2AA198 } /* Literal.String.Affix */
+.highlight .sb { color: #2AA198 } /* Literal.String.Backtick */
+.highlight .sc { color: #2AA198 } /* Literal.String.Char */
+.highlight .dl { color: #2AA198 } /* Literal.String.Delimiter */
+.highlight .sd { color: #586E75 } /* Literal.String.Doc */
+.highlight .s2 { color: #2AA198 } /* Literal.String.Double */
+.highlight .se { color: #2AA198 } /* Literal.String.Escape */
+.highlight .sh { color: #2AA198 } /* Literal.String.Heredoc */
+.highlight .si { color: #2AA198 } /* Literal.String.Interpol */
+.highlight .sx { color: #2AA198 } /* Literal.String.Other */
+.highlight .sr { color: #CB4B16 } /* Literal.String.Regex */
+.highlight .s1 { color: #2AA198 } /* Literal.String.Single */
+.highlight .ss { color: #2AA198 } /* Literal.String.Symbol */
+.highlight .bp { color: #268BD2 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #268BD2 } /* Name.Function.Magic */
+.highlight .vc { color: #268BD2 } /* Name.Variable.Class */
+.highlight .vg { color: #268BD2 } /* Name.Variable.Global */
+.highlight .vi { color: #268BD2 } /* Name.Variable.Instance */
+.highlight .vm { color: #268BD2 } /* Name.Variable.Magic */
+.highlight .il { color: #2AA198 } /* Literal.Number.Integer.Long */
+
+body{
+    color: #c9d1d9;
+    background: #0d1117;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+td.lines span{
+    display: block;
+    padding-right: 8px;
+    line-height: 125%;
+}
+
+.notCovered{
+    border-right: 5px solid darkred;
+}
+.partiallyCovered{
+    border-right: 5px solid orangered;
+}
+.fullyCovered{
+    border-right: 5px solid darkgreen;
+}
+.notRelevant{
+    border-right: 5px solid transparent;
+}
+
+</style>
+</head>
+<body>
+<h1>Pynguin coverage report for module 'Data_writer_helper'</h1>
+<p>Achieved 87.21% line coverage:
+75/86 lines covered. </p>
+<table>
+    <tbody>
+        <tr>
+            <td style="width: 40px; text-align: right;" class="lines">
+                <span class="fullyCovered" title="Line 1 covered">1</span>
+                  <span class="notRelevant">2</span>
+                  <span class="notRelevant">3</span>
+                  <span class="notRelevant">4</span>
+                  <span class="notRelevant">5</span>
+                  <span class="fullyCovered" title="Line 6 covered">6</span>
+                  <span class="notRelevant">7</span>
+                  <span class="notRelevant">8</span>
+                  <span class="fullyCovered" title="Line 9 covered">9</span>
+                  <span class="fullyCovered" title="Line 10 covered">10</span>
+                  <span class="notRelevant">11</span>
+                  <span class="fullyCovered" title="Line 12 covered">12</span>
+                  <span class="fullyCovered" title="Line 13 covered">13</span>
+                  <span class="fullyCovered" title="Line 14 covered">14</span>
+                  <span class="fullyCovered" title="Line 15 covered">15</span>
+                  <span class="fullyCovered" title="Line 16 covered">16</span>
+                  <span class="fullyCovered" title="Line 17 covered">17</span>
+                  <span class="fullyCovered" title="Line 18 covered">18</span>
+                  <span class="fullyCovered" title="Line 19 covered">19</span>
+                  <span class="fullyCovered" title="Line 20 covered">20</span>
+                  <span class="fullyCovered" title="Line 21 covered">21</span>
+                  <span class="fullyCovered" title="Line 22 covered">22</span>
+                  <span class="fullyCovered" title="Line 23 covered">23</span>
+                  <span class="notRelevant">24</span>
+                  <span class="fullyCovered" title="Line 25 covered">25</span>
+                  <span class="notRelevant">26</span>
+                  <span class="fullyCovered" title="Line 27 covered">27</span>
+                  <span class="fullyCovered" title="Line 28 covered">28</span>
+                  <span class="fullyCovered" title="Line 29 covered">29</span>
+                  <span class="fullyCovered" title="Line 30 covered">30</span>
+                  <span class="fullyCovered" title="Line 31 covered">31</span>
+                  <span class="fullyCovered" title="Line 32 covered">32</span>
+                  <span class="fullyCovered" title="Line 33 covered">33</span>
+                  <span class="fullyCovered" title="Line 34 covered">34</span>
+                  <span class="notCovered" title="Line 35 not covered">35</span>
+                  <span class="fullyCovered" title="Line 36 covered">36</span>
+                  <span class="fullyCovered" title="Line 37 covered">37</span>
+                  <span class="fullyCovered" title="Line 38 covered">38</span>
+                  <span class="notCovered" title="Line 39 not covered">39</span>
+                  <span class="fullyCovered" title="Line 40 covered">40</span>
+                  <span class="fullyCovered" title="Line 41 covered">41</span>
+                  <span class="fullyCovered" title="Line 42 covered">42</span>
+                  <span class="fullyCovered" title="Line 43 covered">43</span>
+                  <span class="notRelevant">44</span>
+                  <span class="notRelevant">45</span>
+                  <span class="notRelevant">46</span>
+                  <span class="fullyCovered" title="Line 47 covered">47</span>
+                  <span class="fullyCovered" title="Line 48 covered">48</span>
+                  <span class="notRelevant">49</span>
+                  <span class="fullyCovered" title="Line 50 covered">50</span>
+                  <span class="fullyCovered" title="Line 51 covered">51</span>
+                  <span class="fullyCovered" title="Line 52 covered">52</span>
+                  <span class="fullyCovered" title="Line 53 covered">53</span>
+                  <span class="notRelevant">54</span>
+                  <span class="fullyCovered" title="Line 55 covered">55</span>
+                  <span class="notRelevant">56</span>
+                  <span class="fullyCovered" title="Line 57 covered">57</span>
+                  <span class="fullyCovered" title="Line 58 covered">58</span>
+                  <span class="notRelevant">59</span>
+                  <span class="fullyCovered" title="Line 60 covered">60</span>
+                  <span class="notRelevant">61</span>
+                  <span class="fullyCovered" title="Line 62 covered">62</span>
+                  <span class="notRelevant">63</span>
+                  <span class="fullyCovered" title="Line 64 covered">64</span>
+                  <span class="notRelevant">65</span>
+                  <span class="fullyCovered" title="Line 66 covered">66</span>
+                  <span class="notRelevant">67</span>
+                  <span class="fullyCovered" title="Line 68 covered">68</span>
+                  <span class="notRelevant">69</span>
+                  <span class="fullyCovered" title="Line 70 covered">70</span>
+                  <span class="fullyCovered" title="Line 71 covered">71</span>
+                  <span class="notRelevant">72</span>
+                  <span class="notRelevant">73</span>
+                  <span class="fullyCovered" title="Line 74 covered">74</span>
+                  <span class="fullyCovered" title="Line 75 covered">75</span>
+                  <span class="notRelevant">76</span>
+                  <span class="fullyCovered" title="Line 77 covered">77</span>
+                  <span class="notRelevant">78</span>
+                  <span class="fullyCovered" title="Line 79 covered">79</span>
+                  <span class="fullyCovered" title="Line 80 covered">80</span>
+                  <span class="notCovered" title="Line 81 not covered">81</span>
+                  <span class="notRelevant">82</span>
+                  <span class="fullyCovered" title="Line 83 covered">83</span>
+                  <span class="fullyCovered" title="Line 84 covered">84</span>
+                  <span class="notRelevant">85</span>
+                  <span class="fullyCovered" title="Line 86 covered">86</span>
+                  <span class="notRelevant">87</span>
+                  <span class="fullyCovered" title="Line 88 covered">88</span>
+                  <span class="notRelevant">89</span>
+                  <span class="fullyCovered" title="Line 90 covered">90</span>
+                  <span class="fullyCovered" title="Line 91 covered">91</span>
+                  <span class="notRelevant">92</span>
+                  <span class="fullyCovered" title="Line 93 covered">93</span>
+                  <span class="fullyCovered" title="Line 94 covered">94</span>
+                  <span class="notRelevant">95</span>
+                  <span class="fullyCovered" title="Line 96 covered">96</span>
+                  <span class="notCovered" title="Line 97 not covered">97</span>
+                  <span class="notRelevant">98</span>
+                  <span class="fullyCovered" title="Line 99 covered">99</span>
+                  <span class="fullyCovered" title="Line 100 covered">100</span>
+                  <span class="notCovered" title="Line 101 not covered">101</span>
+                  <span class="notCovered" title="Line 102 not covered">102</span>
+                  <span class="notCovered" title="Line 103 not covered">103</span>
+                  <span class="notRelevant">104</span>
+                  <span class="fullyCovered" title="Line 105 covered">105</span>
+                  <span class="fullyCovered" title="Line 106 covered">106</span>
+                  <span class="notRelevant">107</span>
+                  <span class="fullyCovered" title="Line 108 covered">108</span>
+                  <span class="notRelevant">109</span>
+                  <span class="fullyCovered" title="Line 110 covered">110</span>
+                  <span class="notRelevant">111</span>
+                  <span class="fullyCovered" title="Line 112 covered">112</span>
+                  <span class="fullyCovered" title="Line 113 covered">113</span>
+                  <span class="fullyCovered" title="Line 114 covered">114</span>
+                  <span class="notCovered" title="Line 115 not covered">115</span>
+                  <span class="notRelevant">116</span>
+                  <span class="fullyCovered" title="Line 117 covered">117</span>
+                  <span class="notRelevant">118</span>
+                  <span class="fullyCovered" title="Line 119 covered">119</span>
+                  <span class="fullyCovered" title="Line 120 covered">120</span>
+                  <span class="notCovered" title="Line 121 not covered">121</span>
+                  <span class="notCovered" title="Line 122 not covered">122</span>
+                  <span class="fullyCovered" title="Line 123 covered">123</span>
+                  <span class="notCovered" title="Line 124 not covered">124</span>
+                  </td>
+            <td style="width: 100%;"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Database Writer helper class for Pynguin testing</span>
+<span class="sd">Includes all necessary classes without external dependencies</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DummyFilm</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper Film class&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">director</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">producer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">genre</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ratings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">comments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">age_rating</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">director</span> <span class="o">=</span> <span class="n">director</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">producer</span> <span class="o">=</span> <span class="n">producer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">genre</span> <span class="o">=</span> <span class="n">genre</span> <span class="k">if</span> <span class="n">genre</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratings</span> <span class="o">=</span> <span class="n">ratings</span> <span class="k">if</span> <span class="n">ratings</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cast</span> <span class="o">=</span> <span class="n">cast</span> <span class="k">if</span> <span class="n">cast</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comments</span> <span class="o">=</span> <span class="n">comments</span> <span class="k">if</span> <span class="n">comments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age_rating</span> <span class="o">=</span> <span class="n">age_rating</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert film to dictionary&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;director&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">director</span><span class="p">,</span>
+            <span class="s2">&quot;producer&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">producer</span><span class="p">,</span>
+            <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+            <span class="s2">&quot;genre&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">genre</span><span class="p">,</span>
+            <span class="s2">&quot;ratings&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratings</span><span class="p">,</span>
+            <span class="s2">&quot;cast&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;actor&quot;</span><span class="p">:</span> <span class="n">actor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">actor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;role&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)}</span>
+                <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cast</span>
+            <span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cast</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[],</span>
+            <span class="s2">&quot;comments&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)}</span>
+                <span class="k">for</span> <span class="n">comment</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comments</span>
+            <span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comments</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[],</span>
+            <span class="s2">&quot;age_rating&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">age_rating</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span>
+        <span class="p">}</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DummyDatabase</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper Database class&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">films</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">users</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_films</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">film</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a film to the database&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">films</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">film</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_films</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all films&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">films</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_film_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get number of films in database&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">films</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_films</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear all films from database&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">films</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DatabaseWriter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Database writer class&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write database to JSON file&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">film</span> <span class="ow">in</span> <span class="n">database</span><span class="o">.</span><span class="n">films</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_with_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write database to JSON file with validation&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">database</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Database cannot be None&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Filename cannot be empty&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">films</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Database.films must be a list&quot;</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">film</span> <span class="ow">in</span> <span class="n">database</span><span class="o">.</span><span class="n">films</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">film</span><span class="p">,</span> <span class="s1">&#39;to_dict&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Film must have to_dict method&quot;</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">film</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_file_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get size of written file&quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">verify_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify that written file is valid JSON&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">FileNotFoundError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</td>
+        </tr>
+    </tbody>
+</table>
+<footer>
+  <p>Created at 2026-01-04 14:56:07.681745</p>
+</footer>
+</body>
+</html>

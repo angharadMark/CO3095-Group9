@@ -1,0 +1,144 @@
+Test Case 1
+	Rating State    : NoFilms                  
+	Popular Result  : Shows no popular message 	(follows [if no_films || below_seven])
+	Rating Data     : NoRatings                
+	Average Result  : Returns zero             	(follows [if no_ratings])
+	User Action     : ViewDetail               
+	Action Result   : Shows film details       	(follows [if view_detail])
+
+
+Test Case 2
+	Rating State    : NoFilms                  
+	Popular Result  : Shows no popular message 	(follows [if no_films || below_seven])
+	Rating Data     : NoRatings                
+	Average Result  : Returns zero             	(follows [if no_ratings])
+	User Action     : ExitMenu                 
+	Action Result   : Exits popular menu       	(follows [if exit_menu])
+
+
+Test Case 3
+	Rating State    : NoFilms                    
+	Popular Result  : Shows no popular message   	(follows [if no_films || below_seven])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ViewDetail                 
+	Action Result   : Shows film details         	(follows [if view_detail])
+
+
+Test Case 4
+	Rating State    : NoFilms                    
+	Popular Result  : Shows no popular message   	(follows [if no_films || below_seven])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ExitMenu                   
+	Action Result   : Exits popular menu         	(follows [if exit_menu])
+
+
+Test Case 5
+	Rating State    : BelowThreshold           
+	Popular Result  : Shows no popular message 	(follows [if no_films || below_seven])
+	Rating Data     : NoRatings                
+	Average Result  : Returns zero             	(follows [if no_ratings])
+	User Action     : ViewDetail               
+	Action Result   : Shows film details       	(follows [if view_detail])
+
+
+Test Case 6
+	Rating State    : BelowThreshold           
+	Popular Result  : Shows no popular message 	(follows [if no_films || below_seven])
+	Rating Data     : NoRatings                
+	Average Result  : Returns zero             	(follows [if no_ratings])
+	User Action     : ExitMenu                 
+	Action Result   : Exits popular menu       	(follows [if exit_menu])
+
+
+Test Case 7
+	Rating State    : BelowThreshold             
+	Popular Result  : Shows no popular message   	(follows [if no_films || below_seven])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ViewDetail                 
+	Action Result   : Shows film details         	(follows [if view_detail])
+
+
+Test Case 8
+	Rating State    : BelowThreshold             
+	Popular Result  : Shows no popular message   	(follows [if no_films || below_seven])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ExitMenu                   
+	Action Result   : Exits popular menu         	(follows [if exit_menu])
+
+
+Test Case 9
+	Rating State    : AboveThreshold      
+	Popular Result  : Shows popular films 	(follows [if above_seven || mixed])
+	Rating Data     : NoRatings           
+	Average Result  : Returns zero        	(follows [if no_ratings])
+	User Action     : ViewDetail          
+	Action Result   : Shows film details  	(follows [if view_detail])
+
+
+Test Case 10
+	Rating State    : AboveThreshold      
+	Popular Result  : Shows popular films 	(follows [if above_seven || mixed])
+	Rating Data     : NoRatings           
+	Average Result  : Returns zero        	(follows [if no_ratings])
+	User Action     : ExitMenu            
+	Action Result   : Exits popular menu  	(follows [if exit_menu])
+
+
+Test Case 11
+	Rating State    : AboveThreshold             
+	Popular Result  : Shows popular films        	(follows [if above_seven || mixed])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ViewDetail                 
+	Action Result   : Shows film details         	(follows [if view_detail])
+
+
+Test Case 12
+	Rating State    : AboveThreshold             
+	Popular Result  : Shows popular films        	(follows [if above_seven || mixed])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ExitMenu                   
+	Action Result   : Exits popular menu         	(follows [if exit_menu])
+
+
+Test Case 13
+	Rating State    : MixedRatings        
+	Popular Result  : Shows popular films 	(follows [if above_seven || mixed])
+	Rating Data     : NoRatings           
+	Average Result  : Returns zero        	(follows [if no_ratings])
+	User Action     : ViewDetail          
+	Action Result   : Shows film details  	(follows [if view_detail])
+
+
+Test Case 14
+	Rating State    : MixedRatings        
+	Popular Result  : Shows popular films 	(follows [if above_seven || mixed])
+	Rating Data     : NoRatings           
+	Average Result  : Returns zero        	(follows [if no_ratings])
+	User Action     : ExitMenu            
+	Action Result   : Exits popular menu  	(follows [if exit_menu])
+
+
+Test Case 15
+	Rating State    : MixedRatings               
+	Popular Result  : Shows popular films        	(follows [if above_seven || mixed])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ViewDetail                 
+	Action Result   : Shows film details         	(follows [if view_detail])
+
+
+Test Case 16
+	Rating State    : MixedRatings               
+	Popular Result  : Shows popular films        	(follows [if above_seven || mixed])
+	Rating Data     : HasRatings                 
+	Average Result  : Returns calculated average 	(follows [if has_ratings])
+	User Action     : ExitMenu                   
+	Action Result   : Exits popular menu         	(follows [if exit_menu])
+
+
