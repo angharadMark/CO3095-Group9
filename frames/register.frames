@@ -1,0 +1,192 @@
+Test Case 1
+	USERNAME_INPUT           : empty   
+	PASSWORD_INPUT           : missing 
+	USERNAME_ALREADY_EXISTS  : no      
+
+
+Test Case 2
+	USERNAME_INPUT           : empty   
+	PASSWORD_INPUT           : missing 
+	USERNAME_ALREADY_EXISTS  : yes     
+
+
+Test Case 3
+	USERNAME_INPUT           : empty     
+	PASSWORD_INPUT           : too_short 
+	USERNAME_ALREADY_EXISTS  : no        
+
+
+Test Case 4
+	USERNAME_INPUT           : empty     
+	PASSWORD_INPUT           : too_short 
+	USERNAME_ALREADY_EXISTS  : yes       
+
+
+Test Case 5
+	USERNAME_INPUT           : empty      
+	PASSWORD_INPUT           : min_length 
+	USERNAME_ALREADY_EXISTS  : no         
+
+
+Test Case 6
+	USERNAME_INPUT           : empty      
+	PASSWORD_INPUT           : min_length 
+	USERNAME_ALREADY_EXISTS  : yes        
+
+
+Test Case 7
+	USERNAME_INPUT           : empty  
+	PASSWORD_INPUT           : longer 
+	USERNAME_ALREADY_EXISTS  : no     
+
+
+Test Case 8
+	USERNAME_INPUT           : empty  
+	PASSWORD_INPUT           : longer 
+	USERNAME_ALREADY_EXISTS  : yes    
+
+
+Test Case 9
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : missing     
+	USERNAME_ALREADY_EXISTS  : no          
+
+
+Test Case 10
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : missing     
+	USERNAME_ALREADY_EXISTS  : yes         
+
+
+Test Case 11
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : too_short   
+	USERNAME_ALREADY_EXISTS  : no          
+
+
+Test Case 12
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : too_short   
+	USERNAME_ALREADY_EXISTS  : yes         
+
+
+Test Case 13
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : min_length  
+	USERNAME_ALREADY_EXISTS  : no          
+
+
+Test Case 14
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : min_length  
+	USERNAME_ALREADY_EXISTS  : yes         
+
+
+Test Case 15
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : longer      
+	USERNAME_ALREADY_EXISTS  : no          
+
+
+Test Case 16
+	USERNAME_INPUT           : spaces_only 
+	PASSWORD_INPUT           : longer      
+	USERNAME_ALREADY_EXISTS  : yes         
+
+
+Test Case 17
+	USERNAME_INPUT           : valid_new 
+	PASSWORD_INPUT           : missing   
+	USERNAME_ALREADY_EXISTS  : no        
+
+
+Test Case 18
+	USERNAME_INPUT           : valid_new 
+	PASSWORD_INPUT           : missing   
+	USERNAME_ALREADY_EXISTS  : yes       
+
+
+Test Case 19
+	USERNAME_INPUT           : valid_new 
+	PASSWORD_INPUT           : too_short 
+	USERNAME_ALREADY_EXISTS  : no        
+
+
+Test Case 20
+	USERNAME_INPUT           : valid_new 
+	PASSWORD_INPUT           : too_short 
+	USERNAME_ALREADY_EXISTS  : yes       
+
+
+Test Case 21
+	USERNAME_INPUT           : valid_new  
+	PASSWORD_INPUT           : min_length 
+	USERNAME_ALREADY_EXISTS  : no         
+
+
+Test Case 22
+	USERNAME_INPUT           : valid_new  
+	PASSWORD_INPUT           : min_length 
+	USERNAME_ALREADY_EXISTS  : yes        
+
+
+Test Case 23
+	USERNAME_INPUT           : valid_new 
+	PASSWORD_INPUT           : longer    
+	USERNAME_ALREADY_EXISTS  : no        
+
+
+Test Case 24
+	USERNAME_INPUT           : valid_new 
+	PASSWORD_INPUT           : longer    
+	USERNAME_ALREADY_EXISTS  : yes       
+
+
+Test Case 25
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : missing               
+	USERNAME_ALREADY_EXISTS  : no                    
+
+
+Test Case 26
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : missing               
+	USERNAME_ALREADY_EXISTS  : yes                   
+
+
+Test Case 27
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : too_short             
+	USERNAME_ALREADY_EXISTS  : no                    
+
+
+Test Case 28
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : too_short             
+	USERNAME_ALREADY_EXISTS  : yes                   
+
+
+Test Case 29
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : min_length            
+	USERNAME_ALREADY_EXISTS  : no                    
+
+
+Test Case 30
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : min_length            
+	USERNAME_ALREADY_EXISTS  : yes                   
+
+
+Test Case 31
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : longer                
+	USERNAME_ALREADY_EXISTS  : no                    
+
+
+Test Case 32
+	USERNAME_INPUT           : valid_new_with_spaces 
+	PASSWORD_INPUT           : longer                
+	USERNAME_ALREADY_EXISTS  : yes                   
+
+

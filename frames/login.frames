@@ -1,0 +1,108 @@
+Test Case 1
+	USERNAME_INPUT  : empty   
+	PASSWORD_INPUT  : missing 
+	ACCOUNT_EXISTS  : no      
+
+
+Test Case 2
+	USERNAME_INPUT  : empty   
+	PASSWORD_INPUT  : missing 
+	ACCOUNT_EXISTS  : yes     
+
+
+Test Case 3
+	USERNAME_INPUT  : empty 
+	PASSWORD_INPUT  : wrong 
+	ACCOUNT_EXISTS  : no    
+
+
+Test Case 4
+	USERNAME_INPUT  : empty 
+	PASSWORD_INPUT  : wrong 
+	ACCOUNT_EXISTS  : yes   
+
+
+Test Case 5
+	USERNAME_INPUT  : empty   
+	PASSWORD_INPUT  : correct 
+	ACCOUNT_EXISTS  : no      
+
+
+Test Case 6
+	USERNAME_INPUT  : empty   
+	PASSWORD_INPUT  : correct 
+	ACCOUNT_EXISTS  : yes     
+
+
+Test Case 7
+	USERNAME_INPUT  : spaces_only 
+	PASSWORD_INPUT  : missing     
+	ACCOUNT_EXISTS  : no          
+
+
+Test Case 8
+	USERNAME_INPUT  : spaces_only 
+	PASSWORD_INPUT  : missing     
+	ACCOUNT_EXISTS  : yes         
+
+
+Test Case 9
+	USERNAME_INPUT  : spaces_only 
+	PASSWORD_INPUT  : wrong       
+	ACCOUNT_EXISTS  : no          
+
+
+Test Case 10
+	USERNAME_INPUT  : spaces_only 
+	PASSWORD_INPUT  : wrong       
+	ACCOUNT_EXISTS  : yes         
+
+
+Test Case 11
+	USERNAME_INPUT  : spaces_only 
+	PASSWORD_INPUT  : correct     
+	ACCOUNT_EXISTS  : no          
+
+
+Test Case 12
+	USERNAME_INPUT  : spaces_only 
+	PASSWORD_INPUT  : correct     
+	ACCOUNT_EXISTS  : yes         
+
+
+Test Case 13
+	USERNAME_INPUT  : valid   
+	PASSWORD_INPUT  : missing 
+	ACCOUNT_EXISTS  : no      
+
+
+Test Case 14
+	USERNAME_INPUT  : valid   
+	PASSWORD_INPUT  : missing 
+	ACCOUNT_EXISTS  : yes     
+
+
+Test Case 15
+	USERNAME_INPUT  : valid 
+	PASSWORD_INPUT  : wrong 
+	ACCOUNT_EXISTS  : no    
+
+
+Test Case 16
+	USERNAME_INPUT  : valid 
+	PASSWORD_INPUT  : wrong 
+	ACCOUNT_EXISTS  : yes   
+
+
+Test Case 17
+	USERNAME_INPUT  : valid   
+	PASSWORD_INPUT  : correct 
+	ACCOUNT_EXISTS  : no      
+
+
+Test Case 18
+	USERNAME_INPUT  : valid   
+	PASSWORD_INPUT  : correct 
+	ACCOUNT_EXISTS  : yes     
+
+

@@ -1,3 +1,5 @@
+# User Story: Register an account
+# SUT: registerUser(username, password)
 
 USERNAME_INPUT:
   empty.
