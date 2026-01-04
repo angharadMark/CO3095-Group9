@@ -268,7 +268,7 @@ class User:
         return False
 
     def add_comment(self,film, comment):
-        self.comments.append({"film":film.name,"comment":comment})
+        self.comments.update({"film":film.name,"comment":comment})
     
     def get_inbox(self):
         return self.inbox
