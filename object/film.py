@@ -67,10 +67,16 @@ class Film:
         self.year = year if year else None
     
     def prompt_genre(self):
+        first_run = True
+
         while True:
             genre = input("What genre is the film? : ").strip()
             if not genre:
                 break
+            if first_run:
+                self.genre = []
+
+            first_run = False
             self.genre.append(genre)
 
             choice = input("Add another genre? Y/N : ").strip()
@@ -78,10 +84,15 @@ class Film:
                 break
     
     def prompt_cast(self):
+        first_run = True
+
         while True:
             actor = input("What actor is in this film? : ").strip()
             if not actor:
                 break
+            if first_run:
+                self.cast = []
+            first_run = False
             role = input("What is that "+actor+"'s role? : ").strip()
 
             self.cast.append(Actor(actor, role))
@@ -122,6 +133,8 @@ class Film:
                 self.set_director(temp_film.get_director())
             if temp_film.get_year() != None:
                 self.set_year(temp_film.get_year())
+            if temp_film.get_age_rating() != None:
+                self.set_age_rating(temp_film.get_age_rating())
             if temp_film.get_genre() != None:
                 self.set_genre(temp_film.get_genre())
             if temp_film.get_cast() != None:
