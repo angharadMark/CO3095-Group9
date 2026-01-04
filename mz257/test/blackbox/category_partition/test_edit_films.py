@@ -12,13 +12,13 @@ class TestEditFilms(unittest.TestCase):
     def setUp(self):
         self.film = Film("A Film",
             [test_actor], "Film Producer", "Film Director",
-            ["Comedy"], "Age Rating", "2000", [], "Description", [])
+            ["Comedy"], "Age Rating", 2000, [], "Description", [])
 
     # this is a sanity test to ensure that films can be compared properly.
     def test_setup(self):
         another_film = Film("A Film",
             [test_actor], "Film Producer", "Film Director",
-            ["Comedy"], "Age Rating", "2000", [], "Description", [])
+            ["Comedy"], "Age Rating", 2000, [], "Description", [])
 
         self.assertEqual(self.film.to_dict(), another_film.to_dict())
 
@@ -150,7 +150,7 @@ class TestEditFilms(unittest.TestCase):
         self.assertEqual(result, True)
 
         self.assertNotEqual(self.film.to_dict(), to_modify.to_dict())
-        self.film.set_year("1990")
+        self.film.set_year(1990)
         self.assertEqual(self.film.to_dict(), to_modify.to_dict())
 
     @patch('builtins.input')

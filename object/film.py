@@ -92,8 +92,6 @@ class Film:
             else:
                 print("Genre already added!")
 
-            self.genre.append(genre)
-
             choice = input("Add another genre? Y/N : ").strip()
             if choice.lower() != "y":
                 break
