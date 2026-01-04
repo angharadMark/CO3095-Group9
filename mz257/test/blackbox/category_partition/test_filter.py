@@ -2,19 +2,21 @@ import unittest
 import json
 
 from logic.filter import *
+
+from object.film import Film
 from object.filter_type import *
 
-class BasicFilmWithCast:
+class BasicFilmWithCast(Film):
     def __init__(self, cast):
         self.cast = cast
         self.genre = ""
 
-class BasicFilmWithGenre:
+class BasicFilmWithGenre(Film):
     def __init__(self, genre):
         self.genre = genre
         self.cast = []
 
-class BasicFilmCombined:
+class BasicFilmCombined(Film):
     def __init__(self, genre, cast):
         self.genre = genre
         self.cast = cast
