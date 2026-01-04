@@ -6,8 +6,7 @@ class TestAdminAddFilm(unittest.TestCase):
 
     @patch('builtins.input')
     def test_add_valid_film(self, mock_input):
-        # Order based on your terminal output:
-
+        # Original order: Name, Director, Producer, Year, Age, Genre, Stop Genre, Actor, Role, Stop Actor, Final Confirm
         mock_input.side_effect = [
             "Inception", "Chris Nolan", "Emma Thomas", "2010", "12",
             "Sci-Fi", "n", "Leo", "Cobb", "n", "y"
@@ -19,7 +18,7 @@ class TestAdminAddFilm(unittest.TestCase):
 
     @patch('builtins.input')
     def test_add_empty_title_film(self, mock_input):
-        # The test will stop as soon as input_film() returns False.
+        # Stops as soon as prompt_name returns an empty string
         mock_input.side_effect = [""] * 15
 
         film = Film()

@@ -8,7 +8,7 @@ class TestUserSelfDeletion(unittest.TestCase):
     @patch('logic.user_settings.readJson')
     @patch('logic.user_settings.saveJson')
     def test_self_deletion_flow(self, mock_save, mock_read):
-        # Frame: Active Session + Confirmed
+        # Active Session + Confirmed
         # Setup: 'ang' exists in the mock DB
         user_id = "b9895d05-667f-44ed-8e55-474f8b643310"
         mock_read.return_value = {
@@ -30,7 +30,7 @@ class TestUserSelfDeletion(unittest.TestCase):
 
     @patch('logic.user_settings.readJson')
     def test_deletion_non_existent(self, mock_read):
-        # Frame: Invalid ID / Session Error
+        # Invalid ID / Session Error
         mock_read.return_value = {"byId": {}, "byUsername": {}}
 
         result = deleteUserAccount("fake-id-123")

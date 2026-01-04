@@ -90,7 +90,6 @@ class TestSprint1FinalPush(unittest.TestCase):
         self.user.display_profile()
 
         output = mock_stdout.getvalue()
-        # Fixed assertion to match the new "1: Inception" UI format
         self.assertIn("1: Inception", output)
         self.assertIn("Leo as Cobb", output)
 
@@ -102,7 +101,6 @@ class TestSprint1FinalPush(unittest.TestCase):
     @patch('builtins.input', side_effect=['y'])
     @patch('sys.stdout', new_callable=StringIO)
     def test_input_film_full_flow(self, mock_stdout, mock_input):
-        """Covers the input_film confirmation logic and actor.display_actor."""
         test_film = Film()
         # Mocking individual prompts to avoid input conflicts during full flow testing
         test_film.prompt_name = MagicMock()
