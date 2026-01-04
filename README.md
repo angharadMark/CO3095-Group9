@@ -7,6 +7,8 @@ Please install these packages before running:
 - coverage
 - beautifulsoup4
 - pynguin
+- pip install pytest-mock
+- pip install typing-extensions
 
 you can install these by simply doing:
 
