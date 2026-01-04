@@ -81,6 +81,10 @@ def registerUser(username: str, password: str):
     saveJson(usersFile, users)
     return record
 
+def UserIdFromUsername(username):
+    users = readJson(usersFile, {"byId": {}, "byUsername": {}})
+    return users["byUsername"].get(username)
+
 def LoadUserById(userId):
     users = readJson(usersFile, {"byId": {}, "byUsername": {}})
     return users["byId"].get(userId)

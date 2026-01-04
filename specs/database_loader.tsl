@@ -1,0 +1,80 @@
+# Component: DatabaseLoader.load(filePath)
+# Technique: Black-box TSL
+
+FACTORS:
+  FILE_STATE:
+    missing
+    valid_json
+    invalid_json
+
+  FILM_COUNT:
+    0
+    1
+    2plus
+
+  CAST_FIELD:
+    missing
+    invalid_entries
+    duplicate_entries
+    valid
+
+  COMMENTS_FIELD:
+    missing
+    invalid_entries
+    valid
+
+  ACTOR_REUSE:
+    no
+    yes
+
+
+FRAMES:
+
+  DL_T1:
+    FILE_STATE = missing
+    FILM_COUNT = 0
+    CAST_FIELD = missing
+    COMMENTS_FIELD = missing
+    ACTOR_REUSE = no
+
+  DL_T2:
+    FILE_STATE = invalid_json
+    FILM_COUNT = 0
+    CAST_FIELD = missing
+    COMMENTS_FIELD = missing
+    ACTOR_REUSE = no
+
+  DL_T3:
+    FILE_STATE = valid_json
+    FILM_COUNT = 0
+    CAST_FIELD = missing
+    COMMENTS_FIELD = missing
+    ACTOR_REUSE = no
+
+  DL_T4:
+    FILE_STATE = valid_json
+    FILM_COUNT = 1
+    CAST_FIELD = missing
+    COMMENTS_FIELD = missing
+    ACTOR_REUSE = no
+
+  DL_T5:
+    FILE_STATE = valid_json
+    FILM_COUNT = 1
+    CAST_FIELD = invalid_entries
+    COMMENTS_FIELD = missing
+    ACTOR_REUSE = no
+
+  DL_T6:
+    FILE_STATE = valid_json
+    FILM_COUNT = 1
+    CAST_FIELD = duplicate_entries
+    COMMENTS_FIELD = missing
+    ACTOR_REUSE = no
+
+  DL_T7:
+    FILE_STATE = valid_json
+    FILM_COUNT = 2plus
+    CAST_FIELD = valid
+    COMMENTS_FIELD = missing
+    ACTOR_REUSE = yes

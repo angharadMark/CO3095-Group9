@@ -1,0 +1,26 @@
+
+
+CONFIG_FILE_STATE:
+  missing.
+  valid.
+  corrupted.
+
+FEATURE_KEY:
+  friends.
+  movie_of_day.
+  comments.
+  unknown_key.
+
+ADMIN_ACTION:
+  toggle_friends.
+  toggle_movie_of_day.
+  toggle_comments.
+  reset_defaults.
+  exit_menu.
+
+EXPECTED_BEHAVIOUR:
+  defaults_loaded_when_missing.
+  config_persisted_after_toggle.
+  feature_on_reflects_config.
+  unknown_key_defaults_true.
+  corrupted_config_falls_back_to_defaults.

@@ -63,6 +63,7 @@ class DatabaseLoader:
 
         except (FileNotFoundError, json.JSONDecodeError, PermissionError):
             raise
+        
         return database
     
 

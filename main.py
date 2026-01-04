@@ -2,9 +2,14 @@ from object.user import User
 from database.database import Database
 from database.database_loader import DatabaseLoader
 from database.database_writer import DatabaseWriter
-from object.film import Film
-from object.film import searchMovies
+from object.film import Film, searchMovies
 from object.comment import Comment
+from logic.watchlist_similarity import WatchlistSimilarity
+from logic.messaging_system import MessagingSystem
+from logic.user_registration import userExists
+
+from logic.filter import *
+from object.filter_type import FilterType
 
 from logic.user_state import UserState
 from logic.user_login import loginUser
@@ -78,12 +83,84 @@ def is_text_int(text):
     except ValueError:
         return False
 
+def filter_search_dialog(database, user):
+    filters = []
+    while True:
+        if len(filters) > 0:
+            print("Filters:")
+            for (i, filter) in enumerate(filters):
+                print(f"{i+1}: (filter {filter.type.name} by '{filter.content}')")
+            print()
+
+        print("Please choose:")
+        print("1: Filter results by cast")
+        print("2: Filter results by genre")
+        print("3: Show results")
+        print("4: Add results to watchlist")
+        print("5: Remove filter by index")
+        print("6: Clear filters")
+        print("7: Exit this menu")
+        print()
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            filter_content = input("What cast member should the results be filtered by? ")
+            filters.append(
+                QueryFilter(FilterType.CAST, filter_content)
+            )
+        elif user_input == 2:
+            filter_content = input("What genre should the results be filtered by? ")
+            filters.append(
+                QueryFilter(FilterType.GENRE, filter_content)
+            )
+        elif user_input == 3:
+            results = filter_films(filters, database.get_all_films())
+            if len(results) > 0:
+                print("Found: ")
+                for film in results:
+                    print(film.name)
+            else:
+                print("No films found")
+        elif user_input == 4:
+            results = filter_films(filters, database.get_all_films())
+            if len(results) == 0:
+                print("No films found")
+                continue
+
+            for film in results:
+                user.add_to_watchList(film)
+
+            print(f"Added {len(results)} films to watchlist")
+        elif user_input == 5:
+            if len(filters) == 0: continue
+
+            filter_index = confirm_choice("Enter the index of the filter to be removed",
+                lambda choice: is_text_int(choice) 
+                    and int(choice) > 0
+                    and int(choice) <= len(filters)
+            )
+
+            if filter_index != None:
+                filter_index = int(filter_index)
+                del filters[filter_index - 1]
+                print(f"Removed filter #{i}")
+
+
+        elif user_input == 6:
+            print("Filters cleared...")
+            filters = []
+
+        elif user_input == 7:
+            return
+
+
 def watchlist_dialog(database, user):
     while True:
         print("Select:")
-        print("1: Add a film to your watchlist")
-        print("2: Remove a film from your watchlist")
-        print("3: Exit this menu")
+        print("1: Add a film to your watchlist by name")
+        print("2: Search for films to add to your watchlist")
+        print("3: Remove a film from your watchlist")
+        print("4: Exit this menu")
         print()
         user_input = int(input("Please select an option: "))
 
@@ -102,6 +179,8 @@ def watchlist_dialog(database, user):
                 user.add_to_watchList(result)
                 print("Film added to watchlist!")
         elif user_input == 2:
+            filter_search_dialog(database, user)
+        elif user_input == 3:
             user.display_watchlist()
             user_watch_list = user.get_watch_list()
             if len(user_watch_list) < 1: continue
@@ -117,7 +196,7 @@ def watchlist_dialog(database, user):
                 removed_film = user.pop_from_watchlist(film_index);
                 print(f"Removed film #{film_index+1} ({removed_film.name}) from your watchlist.")
 
-        elif user_input == 3:
+        elif user_input == 4:
             return
         else:
             print("Input unknown. Please input a valid choice.")
@@ -126,7 +205,7 @@ def watchlist_dialog(database, user):
 
 def main():
     state=UserState()
-    print("Welcome to the film reccomendation system")
+    print("Welcome to the film recommendation system")
 
     # Log in / Register first
     while not state.isLoggedIn():
@@ -134,8 +213,14 @@ def main():
         print("2: Register")
         print("3: Exit")
 
-        choice = int( input ("Select an option:  "))
-        
+        try:
+            choice = int (input ("Select an option:  "))
+        except ValueError:
+            print("Invalid Input")
+            continue
+
+
+
         #Login
         if choice==1:
             username = input("Username: ").strip()
@@ -161,12 +246,15 @@ def main():
         #Exit
         if choice==3:
             return
+
+
+
+
     imports = DatabaseLoader()
     database = imports.load("films.json")
     #database = imports.load("films.json")
     export = DatabaseWriter()
 
-    from object.user import User
     user_record = LoadUserById(state.currentUser["id"])
     user = User(user_record, database)
 
@@ -188,27 +276,30 @@ def main():
         print("10: Manage your watchlist")
         print("11: Save watchlist to txt file")
         print("12: Reccomendations based on watchlist")
+        print("13: View similar watchlists")
 
         if feature_on("comments"):
-            print("13: Comment on your watchlist")
+            print("14: Comment on your watchlist")
 
         print("\n--- DISCOVER ---")
         if feature_on("movie_of_day"):
-            print("14: Movie of the Day")
+            print("15: Movie of the Day")
 
         print("\n--- SOCIAL ---")
         if feature_on("friends"):
-            print("15: Friends System")
+            print("16: Friends System")
+        print("17: Dislike films")
+        print("18: Messaging")
 
         print("\n--- ACCOUNT ---")
-        print("16: Account Settings")
-        print("17: download your personal data")
+        print("19: Account Settings")
+        print("20: download your personal data")
 
-        print("\n18: Exit")
+        print("\n21: Exit")
 
         # Admin Username= admin
         # Admin Password= admins
-        if state.isAdmin():
+        if state.isAdmin() or (state.currentUser and state.currentUser.get('username') == "admin"):
             print("100: Administrator Tools")
 
         while True:
@@ -343,7 +434,22 @@ def main():
                 print("\n Recommended films: ")
                 for i, film in enumerate(recco_films, 1):
                     print(f"{i}. {film.name}")
-        elif quest==13:
+
+        elif quest == 13:
+            # list 3 most similar user's watchlists 
+            similarities = WatchlistSimilarity.find(user, database)[:3]
+
+            for (similar_user_id, score) in similarities:
+                similar_user_record = LoadUserById(similar_user_id)
+                similar_user = User(similar_user_record, database)
+                print(f"Similar user found: {similar_user.username}")
+
+                similar_user.display_watchlist(displaying_other_user = True)
+
+            if len(similarities) == 0:
+                print("Found no similar users")
+
+        elif quest==14:
             watchlist = user.get_watch_list()
             for i,film in enumerate(watchlist, 1):
                 print(f"{i}. {film.name}")
@@ -380,7 +486,8 @@ def main():
                 film = watchlist[film_num-1]
                 film.add_comment(comment)
                 user.add_comment(film, comment)
-        elif quest == 14:
+
+        elif quest == 15:
             if not feature_on("movie_of_day"):
                 print("This feature is currently disabled by the administrator.")
                 continue
@@ -393,29 +500,206 @@ def main():
                 print(f"Description: {motd.description}")
             else:
                 print("No movies available")
-        elif quest == 15:
+
+        elif quest == 16:
             if not feature_on("friends"):
                 print("This feature is currently disabled by the administrator.")
             else:
                 friends_menu(state.currentUser["id"])
-        elif quest==16:
-            settingsMenu(state)
 
-        elif quest==17:
-            export_data(user)
+        elif quest == 17:
+            manage_dislikes(user, database)
 
         elif quest == 18:
+            message_system(user, database)
+
+        elif quest==19:
+            settingsMenu(state)
+        
+        elif quest==20:
+            export_data(user)
+        
+        elif quest == 21:
             if state.isLoggedIn():
                 state.logout(user)
             break
 
-        elif quest == 100 and state.isAdmin():
+
+        elif quest == 100 and (state.isAdmin() or (state.currentUser and state.currentUser.get('username') == "admin")):
             adminMenu(state)
         else:
             print("Unauthorized option.")
 
         export.upload(database, "films.json")
 
+def message_system(user, database):
+    while True:
+        unread = user.unread_message_count()
+
+        if unread > 0:
+            print(f"You have {unread} unread messages!")
+            print()
+
+        print("1: View inbox")
+        print("2: Send message")
+        print("3: Exit menu")
+
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            user_inbox = user.get_inbox()
+            if len(user_inbox) == 0:
+                print("You have no messages")
+
+            for (i, message) in enumerate(reversed(user.get_inbox())):
+                sender_id = message.get_sender_id()
+                sender_record = LoadUserById(sender_id)
+
+                sender = "Unknown User"
+                if sender_record != None:
+                    sender = sender_record.get("username", sender)
+                
+                message_content = message.get_message()
+                message_header_suffix = " (NEW)" if not message.get_read_status() else ""
+                print()
+                print(f"Message #{i+1}{message_header_suffix}")
+                print(f"    From: {sender}")
+                print(f"    Content: {message_content}")
+                message.mark_as_read()
+
+        elif user_input == 2:
+            target_username = None
+            message_content = None
+
+            while target_username == None:
+                input_username = input("Who do you want to send a message to? (Enter their exact username): ")
+                if not userExists(input_username):
+                    print("This user could not be found.")
+                    choice = input("Would you like to try again y/n : ")
+                    if choice.lower() == "y":
+                        continue
+                    else:
+                        break
+                target_username = input_username
+
+            if target_username != None:
+                while message_content == None:
+                    message_content = input("Write your message: ")
+
+                    choice = input("Is this message fine? (Y to proceed, N to rewrite your message): ")
+                    if choice.lower() == "n":
+                        message_content = None
+                        continue
+
+            if target_username != None and message_content != None:
+                if MessagingSystem.message_user(user, 
+                    target_username, message_content, database):
+                    print(f"Message sent to {target_username}")
+                else:
+                    print("Could not send this message. Try again later")
+
+        elif user_input == 3: return
+
+def manage_dislikes(user, database):
+    while True:
+        print("1: Dislike a film in your watchlist")
+        print("2: Dislike a film from the database")
+        print("3: Remove a dislike")
+        print("4: Show disliked films")
+        print("5: Exit menu")
+
+        user_input = int(input("Please select an option: "))
+
+        if user_input == 1:
+            user_watchlist = user.get_watch_list()
+
+            if len(user_watchlist) < 1:
+                print("No films in watchlist")
+                continue
+
+            film = None
+
+            while film == None:
+                for (i, film) in enumerate(user_watchlist):
+                    print(f"{i+1}: {film.name}")
+                print()
+
+                user_input = input("Select a film in your watchlist to dislike: ")
+
+                try:
+                    result = int(user_input)
+                    if result < 1 or result > len(user_watchlist):
+                        print(f"Film #{result} cannot be found in your watchlist")
+                        raise ValueError("outside of range")
+
+                    film = user_watchlist[result - 1]
+                except ValueError:
+                    choice = input("Would you like to try again y/n : ")
+                    if choice.lower() == "y":
+                        continue
+                    else:
+                        break
+
+            if film != None:
+                if user.dislike_film(film) == None:
+                    print("Film already is disliked!")
+                else:
+                    print(f"Film '{film.name}' disliked")
+
+
+        elif user_input == 2:
+            film = input("Please input the film name you want to dislike: ")
+            result = database.get_film(film)
+            while result == False:
+                print("Your film could not be found")
+                choice = input("Would you like to try again y/n : ")
+                if choice.lower() == "y":
+                    film = input("Please input the film again: ")
+                    result = database.get_film(film)
+                else:
+                    break
+
+               
+            if result != False:
+                if user.dislike_film(result) == None:
+                    print("Film already is disliked!")
+                else:
+                    print(f"Film '{result.name}' disliked")
+
+        elif user_input == 3:
+            for (i, film) in enumerate(user.get_dislikes()):
+                print(f"{i+1}: {film.name}")
+            print()
+
+            user_input = input("Select which dislike to remove: ")
+
+            user_dislikes = user.get_dislikes()
+
+            film = None
+
+            try:
+                result = int(user_input)
+                if result < 1 or result > len(user_dislikes):
+                    print(f"Film #{result} cannot be found in your watchlist")
+                    raise ValueError("outside of range")
+
+                film = user_dislikes[result - 1]
+            except ValueError:
+                choice = input("Would you like to try again y/n : ")
+                if choice.lower() == "y":
+                    continue
+                else:
+                    break
+
+            if film != None:
+                user.undislike_film(film)
+            
+        elif user_input == 4:
+            for (i, film) in enumerate(user.get_dislikes()):
+                print(f"{i+1}: {film.name}")
+            print()
+
+        elif user_input == 5: return
 
 def rate_film_in_watchlist(user):
     user_watchlist = user.get_watch_list()

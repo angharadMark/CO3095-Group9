@@ -1,4 +1,8 @@
-#from object.film import Film
+from object.film import Film
+from copy import deepcopy
+from logic.user_registration import readJson, saveJson, usersFile
+
+from object.user_message import UserMessage
 
 class User:
     def __init__(self, record, database=None, avatar_index=0,favFilm="None Set"):
@@ -6,8 +10,13 @@ class User:
         self.username = record["username"]
         if database != None:
             self.watchList= [database.get_film(f) for f in record.get("watchlist",[])]
+            self.dislikes = [database.get_film(film_title) for film_title in record.get("dislikes", [])]
+            self.inbox = [UserMessage.from_dict(message_dict) for message_dict in record.get("inbox", [])]
         else:
             self.watchList = []
+            self.dislikes = []
+            self.inbox = []
+
         self.films_added= record.get("films_added", 0)
         # A dictionary associating film names with their ratings (0-10)
         self.ratings = record.get("ratings", {})
@@ -20,8 +29,6 @@ class User:
             self.avatar_ascii = User.AVATAR_OPTIONS[self.avatar_index]
         else:
             self.avatar_ascii = User.AVATAR_OPTIONS[0] # Fallback
-
-
 
     def to_dict(self):
         return {
@@ -41,7 +48,9 @@ class User:
             "avatar_index": self.avatar_index,
             "favFilm": self.favFilm,
             "friends": [],
-            "blocked": []
+            "blocked": [],
+            "dislikes": [film.name for film in self.dislikes],
+            "inbox": [message.to_dict() for message in self.inbox]
         }
     AVATAR_OPTIONS=[
         # Got these from https://www.asciiart.eu
@@ -154,31 +163,34 @@ class User:
     def remove_from_watchlist(self, film):
         if film in self.watchList:
             self.watchList.remove(film)
+            return 1
+        return 0
 
     def pop_from_watchlist(self, film_index):
         return self.watchList.pop(film_index)
 
     def remove_from_watchlist_by_name(self, film_name):
-        return self.remove_from_watchlist_by_property(
-            lambda film: self.name, film_name
-        )
+        # in case a film was somehow added twice to a watchlist.
+        removal_list = []
+
+        for film in self.watchList:
+            if film_name.lower().strip() == film.name.lower().strip():
+                removal_list.append(film)
+                break
+
+        for film in removal_list:
+            self.watchList.remove(film)
+
+        return len(removal_list)
 
     def remove_from_watchlist_by_actors(self, actor_list):
         removal_list = []
 
         for film in self.watchList:
-            can_exit = False
-            #if property_getter(film) == property_value:
-            #    removal_list.push(film)
-            for actor in actor_list:
-                for film_actor in film.cast:
-                    if actor == film_actor.name:
-                        removal_list.push(film)
-                        can_exit = True
-                        break
-
-                if can_exit: break
-                
+            for film_actor in film.cast:
+                if film_actor in actor_list: 
+                    removal_list.append(film)
+                    break
 
         for film in removal_list:
             self.watchList.remove(film)
@@ -194,11 +206,12 @@ class User:
     def set_films_added(self, value):
         self.films_added = value
 
-    def display_watchlist(self):
-        if not self.watchList:
-            print("\nYour watchlist is currently empty")
-            return
-        print("\nYour Watchlist:")
+    def display_watchlist(self, displaying_other_user = False):
+        if not displaying_other_user:
+            if not self.watchList:
+                print("\nYour watchlist is currently empty")
+                return
+            print("\nYour Watchlist:")
         for i, film in enumerate(self.watchList):
             print(f"{i+1}: {film.name}")
             print(f"  Description: {film.description}")
@@ -239,8 +252,32 @@ class User:
         print(f"Films in Watchlist: {len(self.watchList)}")
         print("---------------------------\n")
 
+    def get_dislikes(self):
+        return self.dislikes
+
+    def dislike_film(self, film):
+        if film not in self.dislikes:
+            self.dislikes.append(film)
+            return film
+        return None
+
+    def undislike_film(self, film):
+        if film in self.dislikes:
+            self.dislikes.remove(film)
+            return True
+        return False
+
     def add_comment(self,film, comment):
         self.comments.append({"film":film.name,"comment":comment})
+    
+    def get_inbox(self):
+        return self.inbox
+
+    def unread_message_count(self):
+        return sum([1 if not message.get_read_status() else 0 for message in self.inbox])
+
+    def send_message(self, message):
+        self.inbox.append(message)
 
     def change_avatar(self,index:int)->bool:
         # Sets avatar to what the user has selected
@@ -254,4 +291,3 @@ class User:
     def change_favFilm(self, film_name:str):
         self.favFilm=film_name
         print(f"Favourite Film Updated to: {self.favFilm}")
-    
