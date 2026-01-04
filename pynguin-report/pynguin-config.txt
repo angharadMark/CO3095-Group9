@@ -1,4 +1,4 @@
-("Configuration(project_path='.', module_name='logic.scraper', "
+("Configuration(project_path='.', module_name='object.film', "
  "test_case_output=TestCaseOutputConfiguration(output_path='eu20/test/blackbox/random_based', "
  "crash_path='', export_strategy=<ExportStrategy.PY_TEST: 'PY_TEST'>, "
  'max_length_test_case=2500, '

@@ -1,5 +1,5 @@
 project_path = "."
-module_name = "logic.scraper"
+module_name = "object.film"
 algorithm = "DYNAMOSA"
 ignore_modules = []
 ignore_methods = []

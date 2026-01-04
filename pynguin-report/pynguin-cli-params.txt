@@ -69,7 +69,7 @@ False
 --mio.initial_config.random_test_or_from_archive_probability
 0.5
 --module_name
-logic.scraper
+object.film
 --project_path
 .
 --pynguinml.ignore_constraints_probability

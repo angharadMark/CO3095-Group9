@@ -5,39 +5,44 @@ from logic.filter import *
 from object.filter_type import FilterType
 from database.database_loader import DatabaseLoader
 
+
 def process_filter(values, filter_enum):
     tied_filters = list(zip(values, [filter_enum] * len(values)))
-
     return [QueryFilter(filter_type, text) for (text, filter_type) in tied_filters]
 
-parser = argparse.ArgumentParser(
-    prog="FilmDatabase"
-)
 
-database = DatabaseLoader().load("films.json")
+def main():
+    parser = argparse.ArgumentParser(prog="FilmDatabase")
 
-parser.add_argument("-fc", "--filter-cast", nargs="+", default=[])
-parser.add_argument("-fg", "--filter-genre", nargs="+", default=[])
+    database = DatabaseLoader().load("films.json")
 
-args = vars(parser.parse_args())
+    parser.add_argument("-fc", "--filter-cast", nargs="+", default=[])
+    parser.add_argument("-fg", "--filter-genre", nargs="+", default=[])
 
-filters = [
-    ("filter_cast", FilterType.CAST), 
-    ("filter_genre", FilterType.GENRE)
-]
+    args = vars(parser.parse_args())
 
-retrieved_filters = list(itertools.chain(
-    *map(lambda values: process_filter(args[values[0]], values[1]), filters))
-)
+    filters = [
+        ("filter_cast", FilterType.CAST),
+        ("filter_genre", FilterType.GENRE),
+    ]
 
-print(retrieved_filters)
-for filter in retrieved_filters:
-    print(f"filter (.type = {filter.type}, .content = {filter.content})")
+    retrieved_filters = list(
+        itertools.chain(
+            *map(lambda values: process_filter(args[values[0]], values[1]), filters)
+        )
+    )
+
+    print(retrieved_filters)
+    for f in retrieved_filters:
+        print(f"filter (.type = {f.type}, .content = {f.content})")
+
+    film_list = filter_films(retrieved_filters, database.get_all_films())
+
+    if len(film_list) > 0:
+        print("Matched films: ")
+        for film in film_list:
+            print(film.name)
 
 
-film_list = filter_films(retrieved_filters, database.get_all_films())
-
-if len(film_list) > 0:
-    print("Matched films: ")
-    for film in film_list:
-        print(film.name)
+if __name__ == "__main__":
+    main()
