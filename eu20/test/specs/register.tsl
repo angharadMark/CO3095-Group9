@@ -1,0 +1,16 @@
+
+USERNAME_INPUT:
+  empty.
+  spaces_only.
+  valid_new.
+  valid_new_with_spaces.
+
+PASSWORD_INPUT:
+  missing.
+  too_short.
+  min_length.
+  longer.
+
+USERNAME_ALREADY_EXISTS:
+  no.
+  yes.
