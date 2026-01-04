@@ -1,0 +1,24 @@
+# Test Group 1: Similarity Calculation
+Match Type:
+    AllMatch.          [property all_match]
+    PartialMatch.      [property partial_match]
+    NoMatch.           [property no_match]
+
+Similarity Score:
+    High score returned.         [if all_match]
+    Medium score returned.       [if partial_match]
+    Zero score returned.         [if no_match]
+
+# Test Group 2: Recommend Films
+Watchlist State:
+    EmptyWatchlist.    [property empty_wl]
+    HasWatchlist.      [property has_wl]
+
+Similar Films:
+    FoundSimilar.      [property found_similar]
+    NoSimilar.         [property no_similar]
+
+Recommend Result:
+    Returns empty message.       [if empty_wl]
+    Returns recommendations.     [if has_wl && found_similar]
+    Returns empty list.          [if has_wl && no_similar]

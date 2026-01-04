@@ -15,8 +15,10 @@ while True:
     break
 
 while True:
-    password = getpass("Enter a password (Min 6 chars):")
-    confirm = getpass("Confirm Password: ")
+    #password = getpass("Enter a password (Min 6 chars):")
+    password = input("Enter a password (Min 6 chars):")
+    confirm = input("Confirm password: ")
+    #confirm = getpass("Confirm Password: ")
     if password != confirm:
         print("Passwords do not match. \n")
         continue

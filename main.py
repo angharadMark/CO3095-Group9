@@ -36,8 +36,10 @@ def register_flow():
         break
 
     while True:
-        password = getpass("Enter a password (Min 6 chars):")
-        confirm = getpass("Confirm Password: ")
+        password = input("Enter a password (Min 6 chars): ")
+        #password = getpass("Enter a password (Min 6 chars):")
+        confirm = input("Confirm password: ")
+        #confirm = getpass("Confirm Password: ")
         if password != confirm:
             print("Passwords do not match. \n")
             continue
@@ -54,7 +56,7 @@ def register_flow():
     except Exception as e:
         print("Registration failed:", e)
         return None
-      
+
 def confirm_choice(dialog_message, validate_fun,
     repeat_message = None, reject_message = "Invalid input value"):
     if not repeat_message: repeat_message = dialog_message
@@ -137,7 +139,8 @@ def main():
         #Login
         if choice==1:
             username = input("Username: ").strip()
-            password = getpass("Password: ")
+            password = input("Password: ")
+            #password = getpass("Password: ")
 
             user = loginUser(username, password)
 
@@ -160,6 +163,7 @@ def main():
             return
     imports = DatabaseLoader()
     database = imports.load("films.json")
+    #database = imports.load("films.json")
     export = DatabaseWriter()
 
     from object.user import User
@@ -371,12 +375,11 @@ def main():
                 if not message:
                     print("comment cannot be empty, please try again.")
                     continue
-
-                if anon == 1:
-                    (watchlist[film_num-1]).add_comment(Comment(message))
-                else:
-                    (watchlist[film_num-1]).add_comment(Comment(message,user.username))
-
+                
+                comment = Comment(message, user.username if anon == 2 else None)
+                film = watchlist[film_num-1]
+                film.add_comment(comment)
+                user.add_comment(film, comment)
         elif quest == 14:
             if not feature_on("movie_of_day"):
                 print("This feature is currently disabled by the administrator.")
@@ -408,6 +411,8 @@ def main():
 
         elif quest == 100 and state.isAdmin():
             adminMenu(state)
+        else:
+            print("Unauthorized option.")
 
         export.upload(database, "films.json")
 

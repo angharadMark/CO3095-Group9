@@ -15,28 +15,64 @@ def getMovieOfTheDay(fileName="films.json"):
 def similarity_results(film_1, film_2):
     similarity_points = 0
 
-    #compare genre
     for genre_1 in film_1.get_genre():
         for genre_2 in film_2.get_genre():
             if genre_1 == genre_2:
                 similarity_points+=2
     
-    # compare actors
+
     for actors_1 in film_1.cast:
         for actors_2 in film_2.cast:
             if actors_1.name == actors_2.name:
                 similarity_points+=1
     
-    # compare director
+
     if film_1.director == film_2.director:
         similarity_points+=1
 
-    # compare producer
+
     if film_1.producer == film_2.producer:
         similarity_points+=1
 
     return similarity_points
 
+#manual testing commented out
+"""
+def similarity_results(film_1, film_2):
+    similarity_points = 0
+    print("TESTING")
+
+    for genre_1 in film_1.get_genre():
+        for genre_2 in film_2.get_genre():
+            if genre_1 == genre_2:
+                similarity_points += 2
+                print(similarity_points)
+                print(genre_1, genre_2)
+
+
+    for actors_1 in film_1.cast:
+        for actors_2 in film_2.cast:
+            if actors_1.name == actors_2.name:
+                similarity_points += 1
+                print(similarity_points)
+                print(actors_1.name, actors_2.name)
+
+
+    if film_1.director == film_2.director:
+        similarity_points += 1
+        print(similarity_points)
+        print(film_1.director, film_2.director)
+
+
+    if film_1.producer == film_2.producer:
+        similarity_points += 1
+        print(similarity_points)
+        print(film_1.producer, film_2.producer)
+
+    print(similarity_points)
+    print("END TEST")
+    return similarity_points
+"""
 def reccomend_films(user, database, limit = 5):
     reccomendation = []
     watchlist_names = [film.name for film in user.get_watch_list()]

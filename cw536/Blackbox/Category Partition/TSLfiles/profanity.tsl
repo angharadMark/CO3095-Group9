@@ -1,0 +1,23 @@
+# Test Group 1: Load Function
+File Status:
+    FileExists.        [property file_exists]
+    FileNotExists.     [property file_not_exists]
+
+Load Result:
+    Returns word set.            [if file_exists]
+    Returns empty set.           [if file_not_exists]
+
+# Test Group 2: Censor Function
+Text Type:
+    CleanText.         [property clean]
+    HasProfanity.      [property has_profan]
+
+Censor Result:
+    Text unchanged.              [if clean]
+    Text censored.               [if has_profan]
+
+# Test Group 3: Edge Cases
+Special Case:
+    EmptyString.       [single]
+    CaseInsensitive.   [single]
+    WordBoundaries.    [single]

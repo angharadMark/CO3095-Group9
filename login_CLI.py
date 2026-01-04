@@ -12,7 +12,8 @@ state = UserState()
 print("Welcome to the login tool\n")
 
 username = input("Username: ").strip()
-password = getpass("Password: ")
+password = input("Password: ")
+#password = getpass("Password: ")
 
 user = loginUser(username, password)
 
@@ -60,7 +61,8 @@ while True:
             print("Username does not match the username of the account currently logged in... Account will NOT be deleted...")
             continue
 
-        check_password = getpass("Confirm your password to delete your account: ")
+        check_password = input("Confirm your password to delete your account: ")
+        #check_password = getpass("Confirm your password to delete your account: ")
 
         # assuming that everything in the file is alright if the user
         # is logged in, so the only case where it can return False

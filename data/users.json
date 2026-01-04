@@ -13,9 +13,61 @@
       "blocked": [],
       "passwordHash": "$2b$12$MQIpaX.5Y.Vt/quml4NG7OMIf2Vms0RMtokEwVF5HfHOO0iEqRUty",
       "isAdmin": false
+    },
+    "319a63b2-4941-4eb1-95fe-ffb20aa1f768": {
+      "id": "319a63b2-4941-4eb1-95fe-ffb20aa1f768",
+      "username": "c",
+      "watchlist": [
+        "Inception"
+      ],
+      "films_added": 0,
+      "ratings": {},
+      "comments": [
+        {
+          "film": "Inception",
+          "user": "c",
+          "message": "wonderful!"
+        }
+      ],
+      "avatar_index": 0,
+      "favFilm": "None Set",
+      "friends": [],
+      "blocked": [],
+      "passwordHash": "$2b$12$vCv3rJDHPgqLouKDsL51puC6oLZLJYGclMYtvjj2KYOh5fjdLGBMG",
+      "isAdmin": false
+    },
+    "7963b942-e399-4a16-873e-10d1dfdc17f0": {
+      "id": "7963b942-e399-4a16-873e-10d1dfdc17f0",
+      "username": "caitlin",
+      "watchlist": [],
+      "films_added": 0,
+      "ratings": {},
+      "comments": [],
+      "avatar_index": 0,
+      "favFilm": "None Set",
+      "friends": [],
+      "blocked": [],
+      "passwordHash": "$2b$12$igUptlkCBUBEok./elsSuOh64hxcJQMAVrhGiymPQdrCu.6V0/cZ.",
+      "isAdmin": false
+    },
+    "ce44f7d3-5d70-4255-b4d2-473615f387fd": {
+      "id": "ce44f7d3-5d70-4255-b4d2-473615f387fd",
+      "username": "test",
+      "passwordHash": "$2b$12$UK157okLGHgSKYHPnoGKY.G8QxUmW/WUAP625gV952YfkGoJc27au",
+      "watchlist": [],
+      "films_added": 0,
+      "ratings": {},
+      "comments": {},
+      "isAdmin": false,
+      "avatarIndex": 0,
+      "friends": [],
+      "blocked": []
     }
   },
   "byUsername": {
-    "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c"
+    "kass": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c",
+    "c": "319a63b2-4941-4eb1-95fe-ffb20aa1f768",
+    "caitlin": "7963b942-e399-4a16-873e-10d1dfdc17f0",
+    "test": "ce44f7d3-5d70-4255-b4d2-473615f387fd"
   }
 }

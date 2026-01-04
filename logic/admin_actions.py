@@ -38,8 +38,6 @@ def import_movies(html_path, films_path):
 
     return added, skipped
 
-
-
 def add_profan(word):
     with open(profanFile, "a") as f:
         f.write(word + "\n")
