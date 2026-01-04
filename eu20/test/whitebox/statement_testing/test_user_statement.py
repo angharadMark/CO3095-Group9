@@ -22,7 +22,7 @@ class TestUserStatement(unittest.TestCase):
             # FIX: from_dict expects "sender", not "sender_id"
             "inbox": [{"sender": "u2", "message": "hi", "read": False}],
             "ratings": {"A": 7},
-            "comments": [],
+            "comments": {},
             "films_added": 1,
             "avatarIndex": 0,
             "favFilm": "None Set",
@@ -65,8 +65,10 @@ class TestUserStatement(unittest.TestCase):
         u.add_rating("B", 9)
         self.assertEqual(u.get_rating("B"), 9)
         u.add_comment(Film(name="A"), "Nice")
-        self.assertEqual(len(u.comments), 1)
-        self.assertEqual(u.comments[0]["film"], "A")
+        self.assertEqual(len(u.comments), 2) 
+        self.assertEqual(u.comments["film"], "A")
+        self.assertEqual(u.comments["comment"], "Nice")
+
 
         # inbox / unread count
         self.assertEqual(u.unread_message_count(), 1)
