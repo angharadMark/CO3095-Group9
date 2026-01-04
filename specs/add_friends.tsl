@@ -1,0 +1,13 @@
+CURRENT_USER_STATE:
+    valid_user.
+
+TARGET_USERNAME_INPUT:
+    empty.
+    spaces_only.
+    non_existent.
+    valid_existing.
+
+RELATIONSHIP_STATE:
+    self.
+    already_friends.
+    not_friends.

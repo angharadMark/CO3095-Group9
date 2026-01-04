@@ -1,0 +1,20 @@
+
+
+HTML_INPUT:
+  no_movie_blocks.
+  movie_blocks_missing_required_fields.
+  valid_single_movie.
+  mixed_movies_some_invalid.
+  malformed_html.
+
+EXISTING_FILMS_JSON_STATE:
+  empty.
+  contains_duplicate_key.
+  contains_unrelated_films.
+
+EXPECTED_OUTCOME:
+  no_movies_found_message.
+  added_movies_count_correct.
+  skipped_movies_count_correct.
+  films_json_updated.
+  no_duplicates_added.

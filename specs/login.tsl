@@ -1,0 +1,16 @@
+# User Story: Login to account
+# SUT: loginUser(username, password)
+
+USERNAME_INPUT:
+  empty.
+  spaces_only.
+  valid.
+
+PASSWORD_INPUT:
+  missing.
+  wrong.
+  correct.
+
+ACCOUNT_EXISTS:
+  no.
+  yes.

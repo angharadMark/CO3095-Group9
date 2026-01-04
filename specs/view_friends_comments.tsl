@@ -1,0 +1,11 @@
+FRIENDS_LIST_STATE:
+    empty.
+    non_empty.
+
+FRIENDS_COMMENTS_STATE:
+    none.
+    some.
+
+VALID_RECORD_VALIDITY:
+    valid.
+    missing_friend_record.

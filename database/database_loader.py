@@ -61,7 +61,7 @@ class DatabaseLoader:
                 film.comments = comments
                 database.add_films(film)
 
-        except FileNotFoundError:
+        except (FileNotFoundError, json.JSONDecodeError):
             pass
         return database
     
