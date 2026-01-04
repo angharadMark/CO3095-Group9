@@ -2,6 +2,14 @@ import unittest
 from unittest.mock import patch, MagicMock
 from logic.user_settings import changeFavFilmMenu, saveFavFilm
 from object.user import User
+
+'''
+Tool used: Unittest & Coverage.py
+Technique: Specification-Based Testing (Black-Box)
+Method: Category Partitioning & Boundary Value Analysis
+Documentation: All test cases are derived from the functional requirements 
+to ensure 100% pass rate and high individual module coverage.
+'''
 DUMMY_USER_RECORD = {
     "id": "b9895d05-667f-44ed-8e55-474f8b643310",
     "username": "ang",

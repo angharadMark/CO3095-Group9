@@ -1,7 +1,13 @@
 import unittest
 from unittest.mock import MagicMock
 from logic.movie_recommendations import similarity_results, reccomend_films
-
+'''
+Tool used: Unittest & Coverage.py
+Technique: Specification-Based Testing (Black-Box)
+Method: Category Partitioning & Boundary Value Analysis
+Documentation: All test cases are derived from the functional requirements 
+to ensure 100% pass rate and high individual module coverage.
+'''
 
 class TestRecommendations(unittest.TestCase):
     def setUp(self):

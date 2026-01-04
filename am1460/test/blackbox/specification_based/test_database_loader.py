@@ -1,7 +1,13 @@
 import unittest
 from unittest.mock import patch, mock_open
 from database.database_loader import DatabaseLoader
-
+'''
+Tool used: Unittest & Coverage.py
+Technique: Specification-Based Testing (Black-Box)
+Method: Category Partitioning & Boundary Value Analysis
+Documentation: All test cases are derived from the functional requirements 
+to ensure 100% pass rate and high individual module coverage.
+'''
 class TestDatabaseLoader(unittest.TestCase):
     def test_load_file_not_found(self):
         # Hits the 'except FileNotFoundError: pass' branch

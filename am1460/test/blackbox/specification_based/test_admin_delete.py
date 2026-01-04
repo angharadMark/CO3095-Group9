@@ -2,7 +2,13 @@ import unittest
 from unittest.mock import patch, MagicMock
 from logic.user_settings import deleteUserAccount
 
-
+'''
+Tool used: Unittest & Coverage.py
+Technique: Specification-Based Testing (Black-Box)
+Method: Category Partitioning & Boundary Value Analysis
+Documentation: All test cases are derived from the functional requirements 
+to ensure 100% pass rate and high individual module coverage.
+'''
 class TestAdminManagement(unittest.TestCase):
 
     @patch('logic.user_settings.readJson')

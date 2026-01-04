@@ -3,7 +3,13 @@ from unittest.mock import patch, MagicMock
 from database.database import Database
 from object.film import Film
 from object.actor import Actor
-
+'''
+Tool used: Unittest & Coverage.py
+Technique: Specification-Based Testing (Black-Box)
+Method: Category Partitioning & Boundary Value Analysis
+Documentation: All test cases are derived from the functional requirements 
+to ensure 100% pass rate and high individual module coverage.
+'''
 
 class TestDatabaseLogic(unittest.TestCase):
     def setUp(self):

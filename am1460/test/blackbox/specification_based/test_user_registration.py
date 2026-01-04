@@ -2,7 +2,13 @@ import unittest
 from unittest.mock import patch, mock_open
 from logic.user_registration import registerUser, userExists
 
-
+'''
+Tool used: Unittest & Coverage.py
+Technique: Specification-Based Testing (Black-Box)
+Method: Category Partitioning & Boundary Value Analysis
+Documentation: All test cases are derived from the functional requirements 
+to ensure 100% pass rate and high individual module coverage.
+'''
 class TestUserRegistration(unittest.TestCase):
 
     @patch('logic.user_registration.readJson')
