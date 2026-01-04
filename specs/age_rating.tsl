@@ -1,0 +1,12 @@
+# User Story: Get films based on age rating (minimum age rating desired)
+# SUT: Database.get_age_filtered_films(user_age)
+
+USER_AGE_INPUT:
+  empty.
+  spaces_only.
+  non_numeric.
+  negative.
+  valid_low.
+  valid_mid.
+  valid_high.
+  above_all.
