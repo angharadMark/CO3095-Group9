@@ -73,7 +73,7 @@ class TestSprint1FinalPush(unittest.TestCase):
         f = Film()
         f.prompt_cast()
         self.assertEqual(len(f.cast), 1)
-        self.assertEqual(f.cast[0].name, 'Leonardo DiCaprio')
+        self.assertEqual(f.cast[0].name, 'Leonardo Dicaprio')
 
     def test_average_rating_logic(self):
         f_empty = Film()
