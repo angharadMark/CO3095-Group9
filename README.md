@@ -1,20 +1,27 @@
 # CO3095-Group9
 # Film Reccomendation System
+GitHub Link: https://github.com/angharadMark/CO3095-Group9.git
 
-## Installions before running
-Please install these packages before running:
-- fuzzywuzzy
-- coverage
-- beautifulsoup4
-- pynguin
-- pip install pytest-mock
-- pip install typing-extensions
+## 1. Project Description
+We have created a Film Recommendation System with a registration, login, personal watchlist, and more.
 
-you can install these by simply doing:
+## 2. Setup Instructions
+### a. Uncompress the Project
+Locate the .zip file.
+Extract All...
 
-pip install (name of library)
+### b. Loading into PyCharm
+In Pycharm, go to File > Open then navigate to our folder.
 
-## For Testing
+### c. Install Dependencies
+In the terminal please enter:
+pip install fuzzywuzzy coverage beautifulsoup4 pynguin pytest-mock typing-extensions pytest
+
+## 3. Run Application
+Run it normally via the main.py or in the terminal:
+python main.py
+
+## 4. Testing
 ### To run AM1460's random blackbox and whitebox testing input into terminal:
 python -m coverage run -p -m pytest am1460/test/blackbox/random_based/test_logic_user_settings.py
 
@@ -28,17 +35,16 @@ python -m coverage run -p am1460/test/whitebox/branch_testing/test_object_logic.
 
 python -m coverage run -p am1460/test/whitebox/branch_testing/test_keyword_search_branches.py
 
-python -m coverage run -p -m pytest am1460/test/blackbox/random_based/test_logic_user_settings.py
-
-
 ### Combine: 
 python -m coverage combine
 
 ### Report: 
 python -m coverage report -m
-## Descripion
 
-## Usage
+## 5. Usage Guidelines:
+**Registration:** Passwords for registration must be atleast 6 characters.
+**Admin:** Admin can be accessed by the username 'admin' and password 'admins'.
 
-## Contributors
+## 6. Contributors
+Contributions can be seen in the user stories or the report.
 
