@@ -5,12 +5,20 @@ from logic.user_registration import UserIdFromUsername, LoadUserById, userExists
 
 class MessagingSystem:
     @staticmethod
-    def message_user(from_user, target_username, message, database):
-        if not userExists(target_username):
-            return False      
+    def message_user(from_user, target_username, message, database = None):
+        if not userExists(target_username): return False      
+        if not message: return False
+        if not database: return False
 
         target_id = UserIdFromUsername(target_username)
+        if not target_id: return False
+
         target_record = LoadUserById(target_id)
+
+        if not target_record: return False
+
+        # the user shouldn't be able to message themselves
+        if from_user.id == target_record.get("id"): return False
 
         target_user = User(target_record, database)
 

@@ -89,6 +89,8 @@ class TestUserRemoval(unittest.TestCase):
 
             self.assertEqual(expected_dict, self.changed_content)
 
+    # second test to make sure everything behaves fine with multiple users in the
+    # dict.
     @patch("logic.user_management.readJson", new=spoof_read_json(
         {"byUsername": {"valid_user_name": "1111", "other_user": "1112"}, 
          "byId": {
