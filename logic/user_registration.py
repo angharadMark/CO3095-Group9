@@ -69,7 +69,7 @@ def registerUser(username: str, password: str):
         "watchlist": [],
         "films_added": 0,
         "ratings": {},
-        "comments": {},
+        "comments": [],
         "isAdmin": False,
         "avatarIndex":0,
         "friends": [],
