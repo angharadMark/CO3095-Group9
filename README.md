@@ -15,6 +15,7 @@ In Pycharm, go to File > Open then navigate to our folder.
 
 ### c. Install Dependencies
 In the terminal please enter:
+
 pip install bcrypt fuzzywuzzy coverage beautifulsoup4 pynguin pytest-mock typing-extensions pytest
 
 ## 3. Run Application
