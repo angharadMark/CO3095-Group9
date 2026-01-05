@@ -35,29 +35,19 @@ python -m coverage run -p am1460/test/whitebox/branch_testing/test_object_logic.
 
 python -m coverage run -p am1460/test/whitebox/branch_testing/test_keyword_search_branches.py
 
-## Caitlin's TSL:
-/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/film_recco_output.tsl film_recco.tsl
+### To run CW536 Whitebox and Blackbox testing input into terminal:
 
-/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/profanity_filter_output.tsl profanity.tsl
+python -m coverage run -p -m pytest cw536/test/Blackbox/Random_Testing/test_actor_helper.py
+python -m coverage run -p -m pytest cw536/test/Blackbox/Random_Testing/test_Data_writer_helper.py
 
-/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/Popular_films_output.tsl Popular_films.tsl
+python -m coverage run -p -m pytest "cw536/test/Blackbox/Category Partition/Database_load_test.py"
+python -m coverage run -p -m pytest "cw536/test/Blackbox/Category Partition/Film_recco_tests.py"
+python -m coverage run -p -m pytest "cw536/test/Blackbox/Category Partition/Popular_test.py"
+python -m coverage run -p -m pytest "cw536/test/Blackbox/Category Partition/Profanity_test.py"
 
-/c/Users/ckwat/tslcompiler/build/tslcompiler.exe -c -o ../TSLOutput/database_loader_output.tsl database_loader.tsl
-
-## Caitlin's Pynguin:
-Executed commands
-
-
-pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-Data_writer_helper-results" --module-name Data_writer_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
-
-pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-block_user_helper-results" --module-name Block_user_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
-
-pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-comment-helper-results" --module-name comment_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
-
-pynguin --project-path "C:\Users\ckwat\CO3095-Group9\cw536\blackbox\random_testing\helper_files" --output-path ".\pynguin-actor-helper-results" --module-name actor_helper --algorithm RANDOM -v --seed 0 --coverage-metrics LINE --create-coverage-report True
-
-
-
+python -m coverage run -p -m pytest "cw536/test/Whitebox/Branch Testing/Main_test.py"
+python -m coverage run -p -m pytest "cw536/test/Whitebox/Statement Testing/User_test.py"
+python -m coverage run -p -m pytest "cw536/test/Whitebox/Statement Testing/Film_test.py"
 
 ### To run EU20's random blackbox and whitebox testing input into terminal
 python -m coverage run -p -m pytest eu20/test/blackbox/random_based
