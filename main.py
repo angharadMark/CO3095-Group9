@@ -26,6 +26,7 @@ from logic.user_registration import registerUser, userExists
 from logic.file_manager import exportWatchlist
 
 from settings import feature_on
+from __init__ import main as main
 
 def register_flow():
     print("\nWelcome to the registration tool\n")

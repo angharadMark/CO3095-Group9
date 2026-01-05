@@ -9,21 +9,15 @@ import logic.friends_system as fs
 
 
 class TestAddFriendTSL(unittest.TestCase):
-    """
-    Black-box Specification-based testing (Category Partition / TSL).
-    User Story: Add other users as friends.
-    SUT: logic.friends_system.add_friend(current_user_id) which prompts for username.
-    """
+
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         tmp_path = self.tmp.name
 
-        # Patch registration storage
         ur.dataDir = tmp_path
         ur.usersFile = os.path.join(tmp_path, "users.json")
 
-        # IMPORTANT: friends_system imported usersFile by value, so patch it too
         fs.usersFile = ur.usersFile
 
         # Create empty users.json
@@ -44,9 +38,6 @@ class TestAddFriendTSL(unittest.TestCase):
         with open(ur.usersFile, "r", encoding="utf-8") as f:
             return json.load(f)
 
-    # -------------------------
-    # TARGET_USERNAME_INPUT partitions (via patched input())
-    # -------------------------
 
     def test_add_friend_empty_username_rejected(self):
         users_before = self.read_users()
@@ -69,9 +60,6 @@ class TestAddFriendTSL(unittest.TestCase):
         users_after = self.read_users()
         self.assertEqual(users_after, users_before)
 
-    # -------------------------
-    # RELATIONSHIP_STATE partitions
-    # -------------------------
 
     def test_add_friend_self_rejected(self):
         users_before = self.read_users()
@@ -88,7 +76,6 @@ class TestAddFriendTSL(unittest.TestCase):
         u1_record = users["byId"][self.u1_id]
         u2_record = users["byId"][self.u2_id]
 
-        # Mutual friendship is expected from your implementation
         self.assertIn(self.u2_id, u1_record.get("friends", []))
         self.assertIn(self.u1_id, u2_record.get("friends", []))
 
