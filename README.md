@@ -35,6 +35,16 @@ python -m coverage run -p am1460/test/whitebox/branch_testing/test_object_logic.
 
 python -m coverage run -p am1460/test/whitebox/branch_testing/test_keyword_search_branches.py
 
+### To run EU20's random blackbox and whitebox testing input into terminal
+python -m coverage run -p -m pytest eu20/test/blackbox/random_based
+python -m coverage run -p -m pytest eu20/test/blackbox/specification_based
+python -m coverage run -p -m pytest eu20/test/whitebox/statement_testing/test_user_statement.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_database_loader_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_database_filter_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_film_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_user_auth_branch.py
+python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_user_auth_branch.py
+
 ### To run CW536 Whitebox and Blackbox testing input into terminal:
 
 python -m coverage run -p -m pytest cw536/test/Blackbox/Random_Testing/test_actor_helper.py
@@ -49,15 +59,6 @@ python -m coverage run -p -m pytest "cw536/test/Whitebox/Branch Testing/Main_tes
 python -m coverage run -p -m pytest "cw536/test/Whitebox/Statement Testing/User_test.py"
 python -m coverage run -p -m pytest "cw536/test/Whitebox/Statement Testing/Film_test.py"
 
-### To run EU20's random blackbox and whitebox testing input into terminal
-python -m coverage run -p -m pytest eu20/test/blackbox/random_based
-python -m coverage run -p -m pytest eu20/test/blackbox/specification_based
-python -m coverage run -p -m pytest eu20/test/whitebox/statement_testing/test_user_statement.py
-python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_database_loader_branch.py
-python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_database_filter_branch.py
-python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_film_branch.py
-python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_user_auth_branch.py
-python -m coverage run -p -m pytest eu20/test/whitebox/branch_testing/test_user_auth_branch.py
 
 ### Combine: 
 python -m coverage combine
@@ -67,7 +68,7 @@ python -m coverage report -m
 
 ## 5. Usage Guidelines:
 **Registration:** Passwords for registration must be atleast 6 characters.
-**Admin:** Admin can be accessed by the username 'admin' and password 'admins'.
+**Admin:** Admin can be accessed by registering with the username 'admin'.
 
 ## 6. Contributors
 Contributions can be seen in the user stories or the report.
