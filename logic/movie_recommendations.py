@@ -89,7 +89,7 @@ def reccomend_films(user, database, limit = 5):
         for watchlist_film in user.get_watch_list():
             total_score += similarity_results(film, watchlist_film)
 
-        if total_score > 4:
+        if total_score > 2:
             reccomendation.append((film, total_score))
 
     reccomendation.sort(reverse=True, key=lambda x: x[1])

@@ -3,7 +3,9 @@
     "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c": {
       "id": "3c4fe2a4-066a-4b2c-a141-c686ecf3fe1c",
       "username": "kass",
-      "watchlist": [],
+      "watchlist": [
+        "Inception"
+      ],
       "films_added": 0,
       "ratings": {},
       "comments": [],
@@ -11,6 +13,8 @@
       "favFilm": "None Set",
       "friends": [],
       "blocked": [],
+      "dislikes": [],
+      "inbox": [],
       "passwordHash": "$2b$12$MQIpaX.5Y.Vt/quml4NG7OMIf2Vms0RMtokEwVF5HfHOO0iEqRUty",
       "isAdmin": false
     },
