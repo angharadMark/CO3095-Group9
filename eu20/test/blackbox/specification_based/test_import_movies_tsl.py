@@ -9,11 +9,7 @@ from logic.admin_actions import import_movies
 
 
 class TestImportMoviesTSL(unittest.TestCase):
-    """
-    Black-box Specification-based testing (Category Partition / TSL).
-    Sprint 3 User Story: Admin can import movies from HTML into films.json.
-    SUT: logic.admin_actions.import_movies(html_path, films_path)
-    """
+
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -43,9 +39,6 @@ class TestImportMoviesTSL(unittest.TestCase):
             func(*args, **kwargs)
         return buf.getvalue()
 
-    # --------------------------
-    # TSL Partitions / Test cases
-    # --------------------------
 
     def test_import_no_movie_blocks(self):
         """

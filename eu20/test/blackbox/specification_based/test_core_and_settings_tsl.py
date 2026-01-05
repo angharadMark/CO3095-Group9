@@ -9,12 +9,36 @@ import logic.user_registration as ur
 import logic.friends_system as fs
 import database.database as dbmod
 
-import __init__ as rootpkg
 
 from logic.filter import string_fuzzy_match, QueryFilter, filter_films
 from object.filter_type import FilterType
 from object.film import Film
 from object.actor import Actor
+
+import importlib.util
+from pathlib import Path
+
+
+
+
+def load_rootpkg():
+    here = Path(__file__).resolve()
+    for parent in [here] + list(here.parents):
+        candidate = parent / "__init__.py"
+        if candidate.exists():
+            try:
+                txt = candidate.read_text(encoding="utf-8", errors="ignore")
+            except Exception:
+                continue
+            if "def main" in txt:
+                spec = importlib.util.spec_from_file_location("rootpkg", str(candidate))
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+                return mod
+    raise RuntimeError("Could not find root __init__.py containing def main()")
+
+rootpkg = load_rootpkg()
+
 
 
 class TestCoreBoostTSL(unittest.TestCase):
@@ -50,7 +74,6 @@ class TestCoreBoostTSL(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    # ---------- __init__.py coverage (main + process_filter) ----------
 
     def test_root_main_with_patched_args(self):
         class FakeDB:
@@ -67,7 +90,6 @@ class TestCoreBoostTSL(unittest.TestCase):
         out = rootpkg.process_filter(["X", "Y"], FilterType.CAST)
         self.assertEqual(len(out), 2)
 
-    # ---------- logic/filter.py coverage ----------
 
     def test_filter_module_branches(self):
         self.assertTrue(string_fuzzy_match("  Hi ", "hi"))
@@ -90,7 +112,6 @@ class TestCoreBoostTSL(unittest.TestCase):
         self.assertEqual(filter_films([genre_filter_list], []), [])
         self.assertEqual([f.name for f in filter_films([genre_filter_list], [f1, f2])], ["A"])
 
-    # ---------- database/database.py coverage ----------
 
     def test_database_basic_and_age_and_actor_search(self):
         db = dbmod.Database()
@@ -111,7 +132,7 @@ class TestCoreBoostTSL(unittest.TestCase):
         a1 = Actor("Tom Hardy", "Role")
         a2 = Actor("Scarlett Johansson", "Role")
         db.add_actor(a1)
-        db.add_actor(a1)  # dedupe branch
+        db.add_actor(a1)
         db.add_actor(a2)
 
         self.assertFalse(db.search_actor("zzzzzz", threshold=99))
@@ -145,7 +166,6 @@ class TestCoreBoostTSL(unittest.TestCase):
         with patch("builtins.input", side_effect=["1", "x", "99", "1"]), patch("builtins.print"):
             db2.popular_films()
 
-    # ---------- logic/friends_system.py coverage ----------
 
     def test_friends_system_paths(self):
         # add friend success
