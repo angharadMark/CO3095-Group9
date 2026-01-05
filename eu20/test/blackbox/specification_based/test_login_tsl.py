@@ -6,6 +6,18 @@ import os
 import logic.user_registration as ur
 import logic.user_login as ul
 
+'''
+Testing Login user story
+6 test cases
+Partitions covered:
+Empty username
+Spaces-only username
+Missing password
+Non-existent username
+Wrong password
+Successful login returns a user record
+'''
+
 
 class TestLoginUserTSL(unittest.TestCase):
 

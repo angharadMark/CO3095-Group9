@@ -1,17 +1,3 @@
-"""
-White-box Branch Testing for database.database_loader.DatabaseLoader
-
-Goal: Cover key branches inside DatabaseLoader.load():
-  - Missing file -> FileNotFoundError path
-  - Invalid JSON -> json.JSONDecodeError path (graceful handling)
-  - Valid JSON with:
-      * cast entries that are not dict -> continue
-      * dict missing actor/role -> continue
-      * duplicate (actor, role) in same film -> continue
-      * actor reused across multiple films -> actors_by_name reuse branch
-  - comments entries that are invalid vs valid dict with 'user' and 'message'
-"""
-
 import json
 import os
 import tempfile
@@ -19,6 +5,14 @@ import unittest
 
 from database.database_loader import DatabaseLoader
 
+'''
+Branch testing for DatabaseLoader.load()
+3 tests
+Coverage includes:
+missing file branch
+invalid JSON branch
+valid JSON with mixed bad cast entries, missing actor/role, duplicate cast, bad comment entries, valid comments, and actor reuse across films
+'''
 
 class TestDatabaseLoaderBranch(unittest.TestCase):
     def setUp(self):

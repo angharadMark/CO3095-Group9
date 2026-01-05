@@ -7,6 +7,18 @@ from contextlib import redirect_stdout
 
 from logic.admin_actions import import_movies
 
+'''
+Testing the admin import movies from HTML user story
+5 test cases
+Partitions:
+No <div class="movie"> blocks → message: no movies
+Movie blocks missing required fields (name/year) → treated as no valid movies
+Single valid movie → added=1 skipped=0
+Duplicate movie already in films.json → added=0 skipped=1
+Mixed duplicate + new → added=1 skipped=1
+
+'''
+
 
 class TestImportMoviesTSL(unittest.TestCase):
 

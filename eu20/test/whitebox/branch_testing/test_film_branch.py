@@ -1,15 +1,15 @@
-"""
-White-box Branch Testing for object.film.Film
-
-Goal:
-  - average_rating(): cover branch when ratings empty (return 0) and when ratings present
-  - add_actor(): cover branch where duplicate actor causes early return
-"""
-
 import unittest
 from object.film import Film
 from object.actor import Actor
 
+'''
+Branch testing for Film object
+3 tests
+Branches:
+average rating when ratings list is empty → returns 0
+average rating when ratings exist → returns computed mean
+add_actor duplicate actor → ignored (dedupe branch)
+'''
 
 class TestFilmBranch(unittest.TestCase):
     def test_average_rating_empty_returns_zero(self):

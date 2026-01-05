@@ -6,6 +6,17 @@ from object.film import Film
 from object.actor import Actor
 from object.user_message import UserMessage
 
+'''
+White box statement testing for User object
+1 test
+touches:
+getters (username, films added, inbox length)
+watchlist operations (add/remove/pop + display branches)
+remove_from_watchlist_by_actors loop path
+ratings + adding a comment
+inbox/unread count + sending message
+profile display printing path
+'''
 
 class DummyDB:
     def get_film(self, title):

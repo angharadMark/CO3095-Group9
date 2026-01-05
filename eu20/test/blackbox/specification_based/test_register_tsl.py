@@ -5,6 +5,18 @@ import os
 
 import logic.user_registration as ur
 
+'''
+testing register user story
+7 test cases
+Partitions:
+Empty username → rejected (ValueError)
+Spaces-only username → rejected
+Missing password → rejected
+Too-short password (<6) → rejected
+Valid registration → user stored in JSON correctly
+Username trimming → " emre " becomes "emre"
+Duplicate username → rejected
+'''
 
 class TestRegisterUserTSL(unittest.TestCase):
     def setUp(self):

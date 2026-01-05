@@ -5,14 +5,27 @@ import json
 from unittest.mock import patch
 
 import settings
+'''
+Testing the interface feature toggle in settings
+6 test cases
+    Covers file state partitions and menu action partitions
+Partitions:
 
+Missing config file → defaults load
+
+Save then load → persistence works
+
+Unknown feature key → defaults to True
+
+Corrupted JSON config → falls back to defaults
+
+Menu toggle action (toggle friends) → value flips
+
+Reset defaults action → returns to all True
+'''
 
 class TestInterfaceTogglesTSL(unittest.TestCase):
-    """
-    Black-box Specification-based testing (Category Partition / TSL).
-    Sprint 3 User Story: Admin can enable/disable interface features.
-    SUT: settings.load_interface(), settings.save_interface(), settings.feature_on(key), settings.interface_menu()
-    """
+
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

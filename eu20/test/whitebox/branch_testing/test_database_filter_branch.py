@@ -9,6 +9,18 @@ from logic.filter import string_fuzzy_match, QueryFilter, filter_films
 from object.filter_type import FilterType
 
 
+'''
+Branch testing for database filtering and films menus
+3 tests
+covers:
+string_fuzzy_match() true/false + invalid input type
+filter matching for cast/genre + filter_films list handling (bad inputs, empty filters, empty films)
+database: get_film hit/miss, age filter bad input
+add_actor dedupe + search_actor match/no match
+popular films menu paths: no popular films, exit option, view then exit ‘e’, invalid then out-of-range then valid
+'''
+
+
 class TestDatabaseFilterBranch(unittest.TestCase):
     def test_filter_branches(self):
         self.assertTrue(string_fuzzy_match("  Hi ", "hi"))

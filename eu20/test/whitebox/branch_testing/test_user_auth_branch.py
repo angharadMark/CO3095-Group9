@@ -1,16 +1,3 @@
-"""
-White-box Branch Testing (Lab 9 style)
-
-Goal: Cover each decision outcome (True/False) at least once in:
-  - logic.user_registration.readJson (file exists vs missing)
-  - logic.user_registration.registerUser (empty username, short password, duplicate username, success)
-  - logic.user_login.loginUser (missing inputs, unknown username, missing record, wrong password, success)
-
-Notes:
-  * We redirect all file I/O to a TemporaryDirectory so tests do not touch real project data.
-  * This is branch testing: cases are chosen to flip every if-condition outcome.
-"""
-
 import os
 import tempfile
 import unittest
@@ -18,7 +5,13 @@ import unittest
 import logic.user_registration as user_reg
 import logic.user_login as user_login
 
-
+'''
+10 tests
+Branches:
+register: empty username, short password, duplicate username, success
+readJson: file exists vs file missing default return
+login: missing inputs, unknown username, username mapped but missing record, wrong password, success
+'''
 class TestUserAuthBranch(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

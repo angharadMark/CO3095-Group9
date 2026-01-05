@@ -9,6 +9,28 @@ import logic.user_settings as us
 import settings
 from logic.user_state import UserState
 
+'''
+used for the settings menu and admin menu
+3 test cases
+settingsMenu()
+    view profile, 
+    change username, 
+    password mismatch handling,
+    avatar menu exit, 
+    cancel fav film change, 
+    logout
+    
+    adminMenu()
+        delete branches
+            user not found
+            cant delete admins
+            cancel delete
+            confirm delete
+        print users
+        manage interface toggles
+        
+'''
+
 
 class TestSettingsAdminTSL(unittest.TestCase):
     def setUp(self):

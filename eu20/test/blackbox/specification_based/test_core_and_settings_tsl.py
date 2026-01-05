@@ -18,7 +18,9 @@ from object.actor import Actor
 import importlib.util
 from pathlib import Path
 
-
+'''
+Used to test the settings section and the core functionalities within the program
+'''
 
 
 def load_rootpkg():

@@ -1,6 +1,22 @@
 import json
 from database.database_loader import DatabaseLoader
 
+'''
+Testing for DatabaseLoader.load()
+
+7 test cases
+
+Partitions:
+Missing file → returns empty DB
+Invalid JSON → returns empty DB
+Valid empty list → empty DB
+Single film minimal → loads exactly 1 film
+Invalid cast entries → ignored (cast length stays 0)
+Duplicate cast entries → deduplicated
+Same actor reused across films → actor object reused (only one actor instance)
+
+'''
+
 
 def write_json(path, obj):
     with open(path, "w", encoding="utf-8") as f:

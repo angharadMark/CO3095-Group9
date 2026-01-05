@@ -5,6 +5,16 @@ from object.user import User
 from object.film import Film
 from object.user_message import UserMessage
 
+'''
+white box testing for User to flip True/False outcomes
+4 tests
+Branches covered include:
+rating bounds invalid (<0, >10) throws, valid rating stored, missing rating returns None
+avatar change success vs fail
+dislike duplicate branch (second dislike returns None)
+unread message count: 0 vs 1 vs after marking read
+fav film change printing path
+'''
 
 class DummyDB:
     def get_film(self, title):

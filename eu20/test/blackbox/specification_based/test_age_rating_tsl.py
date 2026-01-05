@@ -2,7 +2,20 @@ import unittest
 
 from database.database import Database
 from object.film import Film
+'''
+to test Age rating filtering within the database
 
+There are 8 test conditions
+
+Partitions:
+partitions
+Empty input → returns []
+Spaces-only → returns []
+Non-numeric text → returns []
+Negative value → treated like low threshold and returns the valid rated films
+Valid values 12 / 15 / 18 → progressively smaller result sets
+Above all ratings (21) → returns []
+'''
 
 class TestAgeRatingTSL(unittest.TestCase):
 
