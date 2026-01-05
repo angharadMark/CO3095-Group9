@@ -37,6 +37,7 @@ class TestDislikes(unittest.TestCase):
        
         self.assertEqual(result, film_1)
 
+        # sanity check
         self.assertEqual(len(self.user.get_dislikes()), 1)
 
     def test_dislike_duplicate_add(self):
