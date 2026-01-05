@@ -11,13 +11,13 @@ import logic.friends_system as fs
 Covers add friends user story
 6 test cases
 Partitions:
-Missing file → returns empty DB
-Invalid JSON → returns empty DB
-Valid empty list → empty DB
-Single film minimal → loads exactly 1 film
-Invalid cast entries → ignored (cast length stays 0)
-Duplicate cast entries → deduplicated
-Same actor reused across films → actor object reused (only one actor instance
+Partitions:
+Empty input → no change
+Spaces-only input → no change
+Username not found → no change
+User tries adding themselves → rejected
+Successful add → mutual friendship stored both sides
+Adding an existing friend → no duplicates stored
 '''
 class TestAddFriendTSL(unittest.TestCase):
 
