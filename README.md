@@ -75,6 +75,7 @@ python -m coverage report -m
 
 ## 5. Usage Guidelines:
 **Registration:** Passwords for registration must be atleast 6 characters.
+
 **Admin:** Admin can be accessed by registering with the username 'admin'.
 
 ## 6. Contributors
